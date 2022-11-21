@@ -12,21 +12,24 @@ import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import ReactImageZoom from 'react-image-zoom';
 import ReactImageMagnify from 'react-image-magnify';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { ModalDialog } from "react-bootstrap";
 
 
 
 
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-    },
-};
+// const customStyles = {
+//     content: {
+//         top: '50%',
+//         left: '50%',
+//         right: 'auto',
+//         bottom: 'auto',
+//         marginRight: '-50%',
+//         transform: 'translate(-50%, -50%)',
+//     },
+// };
 
 let handlesize = (data) => {
     console.log("your selected size", data);
@@ -49,6 +52,35 @@ export default function Tshirt() {
     const [getteesdata, setGetteesdata] = useState(JSON.parse(localStorage.getItem('productdetail')));
     const [isOpen, setIsOpen] = useState(false);
     const [modal, setModal] = useState({});
+
+
+
+
+    const settings = {
+        customPaging: function (i) {
+            return (
+                <div>
+                    <img
+                        src={modal.file[i]}
+                        alt=""
+                        style={{
+                            height: "80px",
+                            width: "72px",
+                            objectFit: "fill",
+                            borderRadius: "10px"
+                        }}
+                    />
+                </div>
+            );
+        },
+        dots: true,
+        cssEase: "linear",
+        dotsClass: "slick-dots slick-thumb",
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    }
 
     const openModal = (data) => {
         console.log('data :: ', data)
@@ -93,7 +125,7 @@ export default function Tshirt() {
                         )
                     })
                 }
-                <Modal isOpen={isOpen} onRequestClose={closeModal}>
+                {isOpen && <Modal isOpen={isOpen} onRequestClose={closeModal}>
                     <input type="button" value="Close modal" onClick={closeModal} />
                     <div>
                         <div class="container">
@@ -101,54 +133,52 @@ export default function Tshirt() {
                                 <div class="container-fliud">
                                     <div class="wrapper row">
                                         <div class="preview col-md-6">
+                                            <div class="tab-pane active" id="pic-1">
+                                                {/* <img src={modal.file && (modal.file.length > 0 ? modal.file[0] : '')}
+                                                    isclassName="innerproduct"
+                                                    width="500" /> */}
+                                                <div>
+                                                    <Zoom>
+                                                        <Slider {...settings}>
+                                                            {modal.file.map((item, i) => (
+                                                                <div>
+                                                                    <img
+                                                                        src={modal.file[i]}
+                                                                        alt=""
+                                                                        style={{ width: "550px", height: "70vh" }}
+                                                                        className="slickslideriamge"
+                                                                    />
+                                                                </div>
+                                                            ))}
 
-                                            <div class="preview-pic tab-content">
-                                                <div class="tab-pane active" id="pic-1">
-                                                    <img src={modal.file && (modal.file.length > 0 ? modal.file[0] : '')} isclassName="innerproduct" width="500" />
-                                                    <ul class="preview-thumbnail nav nav-tabs">
+                                                        </Slider>
+                                                    </Zoom>
+                                                </div>
 
-                                                     {/* <div style={{ width: 200, height: 100 }}>
-                                                                            <ReactImageMagnify
-                                                                                {...{
-                                                                                    smallImage: {
-                                                                                        isFluidWidth: true,
-                                                                                        src:  modal.file[0] ,
-                                                                                        width: 100,
-                                                                                        height: 250
-                                                                                    },
-                                                                                    largeImage: {
-                                                                                        src:  modal.file[0] ,
-                                                                                        width: 1200,
-                                                                                        height: 1800
-                                                                                    },
-                                                                                    enlargedImageContainerDimensions: {
-                                                                                        width: "200%",
-                                                                                        height: "100%"
-                                                                                    }
-                                                                                }}
-                                                                            />
-                                                                        </div> */} */}
-                                                        {modal.file && modal.file.map((item, i) => {
-                                                            return (
-                                                                <li class="active">
-                                                                    <a data-target="#pic-1" data-toggle="tab">
-                                                                        <img src={item} className="innerproduct" />
-                                                                        {/* <Zoom>
+
+                                            </div>
+                                            {/* <div class="preview-pic tab-content"> */}
+                                                {/* <ul class="preview-thumbnail nav nav-tabs">
+                                                    {modal.file && modal.file.map((item, i) => {
+                                                        return (
+                                                            <li class="active">
+                                                                <a data-target="#pic-1" data-toggle="tab">
+                                                                    <img src={item} className="innerproduct" />
+                                                                   
                                                                             <img
                                                                                 alt="That Wanaka Tree, New Zealand by Laura Smetsers"
                                                                                 src={item}
                                                                                 width="100"
                                                                                 className="zoomeffct" 
                                                                             />
-                                                                        </Zoom> */}
-                                                                    </a>
-                                                                </li>
-                                                            )
-                                                        })}
-                                                    </ul>
-                                                </div>
+                                                                      
+                                                                </a>
+                                                            </li>
+                                                        )
+                                                    })}
+                                                </ul> */}
 
-                                            </div>
+                                            {/* </div> */}
                                         </div>
                                         <div class="details col-md-6">
                                             <h3 class="product-title">{modal.productname}</h3>
@@ -172,7 +202,7 @@ export default function Tshirt() {
                             </div>
                         </div>
                     </div>
-                </Modal>
+                </Modal>}
             </div>
         </div>
 
