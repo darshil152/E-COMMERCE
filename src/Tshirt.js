@@ -16,6 +16,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ModalDialog } from "react-bootstrap";
+import { type } from "@testing-library/user-event/dist/type";
 
 
 
@@ -47,12 +48,31 @@ let handlecart = (e) => {
 }
 
 
+
 export default function Tshirt() {
 
     const [getteesdata, setGetteesdata] = useState(JSON.parse(localStorage.getItem('productdetail')));
     const [isOpen, setIsOpen] = useState(false);
     const [modal, setModal] = useState({});
 
+
+    let dosoemthing =(e)=> {
+        e.preventDefault();
+        getteesdata.sort((a, b) => {
+            const nameA = a.productname.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.productname .toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+            return 0;
+          });
+        //   console.log('temp :: ', productname)
+
+        //  console.log("jfsdzjhgjd")
+    }
 
 
 
@@ -96,8 +116,12 @@ export default function Tshirt() {
 
     return (
         <div className='container'>
+
             <div class="row">
                 <h1 className='heading1'>Tshirts</h1>
+
+                <button className="sorting" onClick={dosoemthing}>sorting</button>
+
                 <p className='p'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
                 {
                     getteesdata.length > 0 && getteesdata.map((item, i) => {
@@ -158,7 +182,7 @@ export default function Tshirt() {
 
                                             </div>
                                             {/* <div class="preview-pic tab-content"> */}
-                                                {/* <ul class="preview-thumbnail nav nav-tabs">
+                                            {/* <ul class="preview-thumbnail nav nav-tabs">
                                                     {modal.file && modal.file.map((item, i) => {
                                                         return (
                                                             <li class="active">
