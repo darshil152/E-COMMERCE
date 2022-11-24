@@ -12,6 +12,8 @@ import Main from "./main";
 import Tshirt from "./Tshirt";
 import Showproduct from "./showproduct";
 import Cart from "./cart";
+import Register from "./register";
+import Table from "./table";
 
 
 export default function ReactRouter() {
@@ -19,6 +21,8 @@ export default function ReactRouter() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login />}> </Route>
+                <Route path="/register" element={<Register />}> </Route>
+                <Route path="/table" element={<Table />}> </Route>
                 <Route path="/admin" element={<Admin />}> </Route>
                 <Route path="/addproduct" element={<Addproduct />}> </Route>
                 <Route path="/main" element={<Main />}> </Route>

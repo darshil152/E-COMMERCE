@@ -7,7 +7,6 @@ import show from './assets/show.gif';
 import { json } from 'react-router';
 import Modal from 'react-modal';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import ReactImageZoom from 'react-image-zoom';
@@ -145,7 +144,7 @@ export default function Tshirt() {
                                                                     <img
                                                                         src={modal.file[i]}
                                                                         alt=""
-                                                                        style={{ width: "550px", height: "70vh" }}
+                                                                        style={{ width: "100%", height: "100%" }}
                                                                         className="slickslideriamge"
                                                                     />
                                                                 </div>
@@ -158,7 +157,7 @@ export default function Tshirt() {
 
                                             </div>
                                             {/* <div class="preview-pic tab-content"> */}
-                                                {/* <ul class="preview-thumbnail nav nav-tabs">
+                                            {/* <ul class="preview-thumbnail nav nav-tabs">
                                                     {modal.file && modal.file.map((item, i) => {
                                                         return (
                                                             <li class="active">

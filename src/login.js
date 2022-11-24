@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 let temparray1 = []
-let count = 0 
+let count = 0
 
 
 
@@ -12,30 +12,33 @@ export default function Login() {
     useEffect(() => {
         count++
         if (count == 1) {
-          const newarray = JSON.parse(localStorage.getItem('login'));
-          if (newarray) {
-            temparray1 = newarray
-            setNewData(temparray1)
-            console.log(temparray1);
-          }
+            const newarray = JSON.parse(localStorage.getItem('login'));
+            if (newarray) {
+                temparray1 = newarray
+                setNewData(temparray1)
+                console.log(temparray1);
+            }
         }
-      }, [temparray1]);
-    
+    }, [temparray1]);
+
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const [allNewData, setNewData] = useState([]);
 
-    const getData=(data)=>{
+    const getData = (data) => {
         console.log(data)
         setEmail(data.email)
         setPassword(data.password)
-        
-        const newData = {email:data.email , password:data.password};
+
+        const newData = { email: data.email, password: data.password };
         temparray1.push(newData)
-        setNewData(temparray1); 
-        localStorage.setItem('login',JSON.stringify(allNewData));
+        console.log(temparray1)
+        localStorage.setItem('register', JSON.stringify(temparray1));
+        setNewData(temparray1);
+
+        localStorage.setItem('login', JSON.stringify(temparray1));
         // window.location.href = './addproduct'
         setEmail('')
         setPassword('')
@@ -55,10 +58,10 @@ export default function Login() {
             password: Yup.string()
                 .min(8, "Minimum 8 characters")
                 .required("Required!"),
-            }),
+        }),
 
         onSubmit: values => {
-            getData(values)
+
             // localStorage.setItem('items', JSON.stringify(value))
         }
     });
@@ -93,7 +96,7 @@ export default function Login() {
                             <p>{formik.errors.password}</p>
                         )}
                     </div>
-                    
+
                     <div>
                         <button type="submit">Submit</button>
                     </div>
