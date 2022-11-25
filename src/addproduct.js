@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { json } from "react-router-dom";
+import { Switch } from "@material-ui/core";
 
 let temparray1 = [];
 let temparray2 = [];
@@ -34,6 +35,7 @@ export default function Addproduct() {
   const [description, setDescription] = useState("");
   const [file, setfile] = useState("");
   const [id, setId] = useState(Date.now());
+  const [trending, setTrending] = useState('');
 
   const [data, setData] = useState([]);
 
@@ -79,11 +81,11 @@ export default function Addproduct() {
     setDiscount(data.discount)
     setDescription(data.description);
     setfile(data.setfile);
+    setTrending(data.trending)
 
 
-    // alert(data.productname + data.skucode + data.category + data.gender)
     console.log(temparray1, 'before');
-    const newdata = { checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
+    const newdata = { trending:data.trending,checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
     console.log(newdata)
     temparray1.push(newdata)
     console.log(newdata)
@@ -91,6 +93,7 @@ export default function Addproduct() {
     console.log(temparray1, 'after')
     localStorage.setItem('productdetail', JSON.stringify(temparray1));
 
+    // muchas gracias afición esto es para vosotros siuuuuuuuuuuuu
 
     temparray2 = []
 
@@ -129,6 +132,7 @@ export default function Addproduct() {
                 file: temparray2,
                 checked: [],
                 data: [],
+                trending:'',
               }}
               validationSchema={LoginSchema}
 
@@ -181,25 +185,43 @@ export default function Addproduct() {
                     />
                   </div>
 
-
-                  {/* <label>
-                    <Field type="checkbox" name="toggle" />
-                    {`${values.toggle}`}
-                  </label> */}
+                  <div className="form-group">
+                    <label htmlFor="trending">trending</label>
+                  <Switch
+                    name="trending"
+                    value="Y"
+                    checked={values.trending === "Y"}
+                    onChange={(event, checked) => {
+                      setFieldValue("trending", checked ? "Y" : "N");
+                    }}
+                  />
+                  </div>
 
                   <div id="checkbox-group">Size</div>
                   <div role="group" aria-labelledby="checkbox-group">
                     <label>
-                      <Field type="checkbox" name="checked" value="S" />
+                      <Field type="checkbox" name="checked" value="Small" />
                       S
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="M" />
+                      <Field type="checkbox" name="checked" value="Medium" />
                       M
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="L" />
+                      <Field type="checkbox" name="checked" value="Large" />
                       L
+                    </label>
+                    <label>
+                      <Field type="checkbox" name="checked" value="Single Large" />
+                      XL
+                    </label>
+                    <label>
+                      <Field type="checkbox" name="checked" value="Double Large" />
+                      XXL
+                    </label>
+                    <label>
+                      <Field type="checkbox" name="checked" value="Triple Large" />
+                      XXXL
                     </label>
                   </div>
 

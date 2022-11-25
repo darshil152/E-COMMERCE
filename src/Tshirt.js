@@ -19,19 +19,6 @@ import { ModalDialog } from "react-bootstrap";
 import { type } from "@testing-library/user-event/dist/type";
 
 
-
-
-// const customStyles = {
-//     content: {
-//         top: '50%',
-//         left: '50%',
-//         right: 'auto',
-//         bottom: 'auto',
-//         marginRight: '-50%',
-//         transform: 'translate(-50%, -50%)',
-//     },
-// };
-
 let handlesize = (data) => {
     console.log("your selected size", data);
     toast.success(((data)), {
@@ -40,41 +27,19 @@ let handlesize = (data) => {
     });
 }
 
-let dummyarray = [];
-
-
-let handlecart = (e) => {
-    console.log(JSON.parse(localStorage.getItem('productdetail')))
-}
-
-
-
 export default function Tshirt() {
 
     const [getteesdata, setGetteesdata] = useState(JSON.parse(localStorage.getItem('productdetail')));
     const [isOpen, setIsOpen] = useState(false);
     const [modal, setModal] = useState({});
 
+     const sorting = () =>{
+        getteesdata.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+     }
 
-    let dosoemthing =(e)=> {
-        e.preventDefault();
-        getteesdata.sort((a, b) => {
-            const nameA = a.productname.toUpperCase(); // ignore upper and lowercase
-            const nameB = b.productname .toUpperCase(); // ignore upper and lowercase
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-            return 0;
-          });
-        //   console.log('temp :: ', productname)
-
-        //  console.log("jfsdzjhgjd")
-    }
-
-
+    //  const sorting1 = () =>{
+    //     getteesdata.sort((a,b)=>parseFloat(b.price)-parseFloat(a.price))
+    //  }
 
     const settings = {
         customPaging: function (i) {
@@ -119,10 +84,8 @@ export default function Tshirt() {
 
             <div class="row">
                 <h1 className='heading1'>Tshirts</h1>
-
-                <button className="sorting" onClick={dosoemthing}>sorting</button>
-
                 <p className='p'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                <button onClick={sorting}>low to high</button>
                 {
                     getteesdata.length > 0 && getteesdata.map((item, i) => {
                         return (
