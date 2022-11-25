@@ -15,20 +15,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ModalDialog } from "react-bootstrap";
+import { type } from "@testing-library/user-event/dist/type";
 
-
-
-
-// const customStyles = {
-//     content: {
-//         top: '50%',
-//         left: '50%',
-//         right: 'auto',
-//         bottom: 'auto',
-//         marginRight: '-50%',
-//         transform: 'translate(-50%, -50%)',
-//     },
-// };
 
 let handlesize = (data) => {
     console.log("your selected size", data);
@@ -38,22 +26,19 @@ let handlesize = (data) => {
     });
 }
 
-let dummyarray = [];
-
-
-let handlecart = (e) => {
-    console.log(JSON.parse(localStorage.getItem('productdetail')))
-}
-
-
 export default function Tshirt() {
 
     const [getteesdata, setGetteesdata] = useState(JSON.parse(localStorage.getItem('productdetail')));
     const [isOpen, setIsOpen] = useState(false);
     const [modal, setModal] = useState({});
 
+     const sorting = () =>{
+        getteesdata.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+     }
 
-
+    //  const sorting1 = () =>{
+    //     getteesdata.sort((a,b)=>parseFloat(b.price)-parseFloat(a.price))
+    //  }
 
     const settings = {
         customPaging: function (i) {
@@ -95,9 +80,11 @@ export default function Tshirt() {
 
     return (
         <div className='container'>
+
             <div class="row">
                 <h1 className='heading1'>Tshirts</h1>
                 <p className='p'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                <button onClick={sorting}>low to high</button>
                 {
                     getteesdata.length > 0 && getteesdata.map((item, i) => {
                         return (
