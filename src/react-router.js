@@ -12,12 +12,10 @@ import Main from "./main";
 import Tshirt from "./Tshirt";
 import Showproduct from "./showproduct";
 import Cart from "./cart";
-<<<<<<< HEAD
 import Register from "./register";
 import Table from "./table";
-=======
 import Producttable from "./producttable";
->>>>>>> e72269d0664629ba1dcda6ba779eee31f23f3a74
+import Trending from "./Trending";
 
 
 export default function ReactRouter() {
@@ -26,6 +24,7 @@ export default function ReactRouter() {
             <Routes>
                 <Route path="/" element={<Login />}> </Route>
                 <Route path="/register" element={<Register />}> </Route>
+                <Route path="/trending" element={<Trending />}> </Route>
                 <Route path="/table" element={<Table />}> </Route>
                 <Route path="/admin" element={<Admin />}> </Route>
                 <Route path="/producttable" element={<Producttable />}> </Route>

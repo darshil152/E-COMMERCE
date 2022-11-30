@@ -36,6 +36,7 @@ export default function Addproduct() {
   const [file, setfile] = useState("");
   const [id, setId] = useState(Date.now());
   const [trending, setTrending] = useState('');
+  const [showpreview, setShowpreview] = useState(temparray2)
 
   const [data, setData] = useState([]);
 
@@ -62,6 +63,7 @@ export default function Addproduct() {
       temparray2.push(reader.result)
       console.log(temparray2)
     };
+    setShowpreview(temparray2)
   }
 
   const uploadImage = (images) => {
@@ -85,7 +87,7 @@ export default function Addproduct() {
 
 
     console.log(temparray1, 'before');
-    const newdata = { trending:data.trending,checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
+    const newdata = { trending: data.trending, checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
     console.log(newdata)
     temparray1.push(newdata)
     console.log(newdata)
@@ -132,7 +134,7 @@ export default function Addproduct() {
                 file: temparray2,
                 checked: [],
                 data: [],
-                trending:'',
+                trending: '',
               }}
               validationSchema={LoginSchema}
 
@@ -187,14 +189,14 @@ export default function Addproduct() {
 
                   <div className="form-group">
                     <label htmlFor="trending">trending</label>
-                  <Switch
-                    name="trending"
-                    value="Y"
-                    checked={values.trending === "Y"}
-                    onChange={(event, checked) => {
-                      setFieldValue("trending", checked ? "Y" : "N");
-                    }}
-                  />
+                    <Switch
+                      name="trending"
+                      value="Y"
+                      checked={values.trending === "Y"}
+                      onChange={(event, checked) => {
+                        setFieldValue("trending", checked ? "Y" : "N");
+                      }}
+                    />
                   </div>
 
                   <div id="checkbox-group">Size</div>
@@ -326,7 +328,24 @@ export default function Addproduct() {
                       }`} type="file" onChange={(event) => {
                         uploadImage(event.target.files);
                       }} multiple />
+                    <div className="showimgae">
+                      {console.log('first', showpreview)}
+                      {
+
+                        showpreview.map((items, i) => {
+                          return (<>
+                            <h1>Hello</h1>
+                            <img src={items} alt='noe' />
+                            <p>{items}</p>
+                          </>
+
+                          )
+                        })
+                      }
+
+                    </div>
                   </div>
+
 
 
                   <div className="form-group">
