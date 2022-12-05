@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { ContactPageSharp } from '@mui/icons-material';
 
 
+<<<<<<< HEAD
 
 let handleEdit = () => {
     console.log('You click edit button')
@@ -17,6 +18,17 @@ const options = {
 
 export default function Producttable() {
 
+=======
+
+export default function Producttable() {
+
+    let abc = JSON.parse(localStorage.getItem('productdetail'))
+
+    let handleEdit = () => {
+        console.log('You click edit button')
+    }
+
+>>>>>>> a62a810ae665eee760d2fc38f84b761d86e0737c
     const columns = [
         {
             name: "id",
@@ -96,17 +108,26 @@ export default function Producttable() {
         // },
         {
             name: "id",
+<<<<<<< HEAD
             label: "View",
             options: {
                 customBodyRender: (value, tableMeta, rowData) => {
                     return (
                         <button onClick={(e) => handleShow(value)}>
+=======
+            label: "Delete",
+            options: {
+                customBodyRender: (value, tableMeta, rowData) => {
+                    return (
+                        <button onClick={(e) => handleShow(tableMeta.rowData)}>
+>>>>>>> a62a810ae665eee760d2fc38f84b761d86e0737c
                             View
                         </button>
                     );
                 }
             }
         },
+<<<<<<< HEAD
         {
             name: "id",
             label: "View",
@@ -148,14 +169,36 @@ export default function Producttable() {
 
         <div>    
         {/* <Modal show={viewmodal}>
+=======
+    ];
+
+    const options = {
+        filterType: 'checkbox',
+    }
+
+    const [viewmodal, setViewmodal] = useState(false);
+
+    const handleShow = (data) => {
+        setViewmodal(true)
+        console.log(data)
+    }
+
+    return (
+        <div>
+            <Modal show={viewmodal}>
+>>>>>>> a62a810ae665eee760d2fc38f84b761d86e0737c
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
                 <Modal.Footer>
                 </Modal.Footer>
+<<<<<<< HEAD
             </Modal>        */}
 
+=======
+            </Modal>
+>>>>>>> a62a810ae665eee760d2fc38f84b761d86e0737c
 
             <MUIDataTable
                 title={"Product List"}
