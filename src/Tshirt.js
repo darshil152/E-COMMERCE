@@ -16,7 +16,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ModalDialog } from "react-bootstrap";
 import { type } from "@testing-library/user-event/dist/type";
-
+import Cart from './cart';
 
 let handlesize = (data) => {
     console.log("your selected size", data);
@@ -32,13 +32,11 @@ export default function Tshirt() {
     const [isOpen, setIsOpen] = useState(false);
     const [modal, setModal] = useState({});
 
-     const sorting = () =>{
-        getteesdata.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-     }
 
-    //  const sorting1 = () =>{
-    //     getteesdata.sort((a,b)=>parseFloat(b.price)-parseFloat(a.price))
-    //  }
+    const sorting = () => {
+        getteesdata.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        console.log(getteesdata)
+    }
 
     const settings = {
         customPaging: function (i) {
@@ -75,12 +73,25 @@ export default function Tshirt() {
         setIsOpen(false)
     }
 
+    const [add, setAdd] = useState([]); 
+    const [abcd, setAbcd] = useState('')
+    const addtocarts = (data) => {
+        add.push(data)
+        setAdd(add)
+        console.log(add)
+    }
+    
+    
+// function parentalert() {
+//     alert(setAdd);
+// }
+
     // const openModal = useCallback(() => setIsOpen(true), setModalData(data), []);
     // const closeModal = useCallback(() => setIsOpen(false), []);
 
     return (
         <div className='container'>
-
+            <Cart name={setAdd}  />
             <div class="row">
                 <h1 className='heading1'>Tshirts</h1>
                 <p className='p'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
@@ -96,7 +107,7 @@ export default function Tshirt() {
                                         </a>
                                         <span class="product-discount-label">{item.discount}</span>
                                         <ul class="product-links">
-                                            <li><a href="#" data-tip="Add to Wishlist"><i class="fas fa-heart" ></i></a></li>
+                                            <li><a href="#" data-tip="Add to Wishlist" onClick={() => addtocarts(item)}><i class="fas fa-heart" ></i></a></li>
                                             <li><a href="#" data-tip="Quick View" onClick={() => openModal(item)}><i class="fa fa-search" ></i></a></li>
                                         </ul>
                                     </div>
@@ -136,7 +147,6 @@ export default function Tshirt() {
                                                                     />
                                                                 </div>
                                                             ))}
-
                                                         </Slider>
                                                     </Zoom>
                                                 </div>
@@ -173,7 +183,6 @@ export default function Tshirt() {
                                                 {modal.checked && modal.checked.map((item, i) => {
                                                     return (
                                                         <button className="sizebutton" onClick={() => handlesize(item)}>{item}</button>
-
                                                     )
                                                 })}
                                             </div>
@@ -194,3 +203,5 @@ export default function Tshirt() {
 
     )
 }
+
+

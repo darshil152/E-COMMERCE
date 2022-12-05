@@ -11,6 +11,7 @@ let temparray1 = [];
 let temparray2 = [];
 let count = 0
 export default function Addproduct() {
+
   useEffect(() => {
     count++
     if (count == 1) {
@@ -22,6 +23,32 @@ export default function Addproduct() {
       }
     }
   }, [temparray1]);
+
+
+  const [ids, setIds] = useState('');
+  const [olddata, setOlddata] = useState(JSON.parse(localStorage.getItem('productdetail')))
+  const [currentdata, setCurrentdata] = useState('')
+  const [xyz, setXyz] = useState('')
+
+  useEffect(() => {
+    
+    let url = window.location.href;
+    let ids = url.substring(url.lastIndexOf('/') + 1);
+    console.log(ids)
+    setIds(ids)
+
+    let currentdata = '';
+    for (let i = 0; i < olddata.length; i++) { 
+      if (olddata[i].id == ids) {
+        currentdata = olddata[i];
+     
+        if(olddata[i].gender)
+      console.log(currentdata)
+      setXyz(currentdata)
+      }      
+      // setCurrentdata({currentdata, productname:currentdata.productname})
+    }
+  })
 
 
 
@@ -64,6 +91,7 @@ export default function Addproduct() {
     };
   }
 
+
   const uploadImage = (images) => {
     for (let i = 0; i < images.length; i++) {
       getBase64(images[i])
@@ -85,7 +113,7 @@ export default function Addproduct() {
 
 
     console.log(temparray1, 'before');
-    const newdata = { trending:data.trending,checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
+    const newdata = { trending: data.trending, checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
     console.log(newdata)
     temparray1.push(newdata)
     console.log(newdata)
@@ -93,7 +121,6 @@ export default function Addproduct() {
     console.log(temparray1, 'after')
     localStorage.setItem('productdetail', JSON.stringify(temparray1));
 
-    // muchas gracias afición esto es para vosotros siuuuuuuuuuuuu
 
     temparray2 = []
 
@@ -107,6 +134,8 @@ export default function Addproduct() {
     });
 
   };
+
+
 
   return (
     <div>
@@ -132,7 +161,7 @@ export default function Addproduct() {
                 file: temparray2,
                 checked: [],
                 data: [],
-                trending:'',
+                trending: '',
               }}
               validationSchema={LoginSchema}
 
@@ -155,6 +184,7 @@ export default function Addproduct() {
                     <label htmlFor="productname">Productname</label>
                     <Field
                       type="text"
+                      value={xyz.productname}
                       name="productname"
                       placeholder="Enter productname"
                       className={`form-control ${touched.productname && errors.productname
@@ -174,6 +204,7 @@ export default function Addproduct() {
                     <Field
                       type="text"
                       name="skucode"
+                      value={xyz.skucode}
                       placeholder="Enter skucode"
                       className={`form-control ${touched.skucode && errors.skucode ? "is-invalid" : ""
                         }`}
@@ -187,40 +218,40 @@ export default function Addproduct() {
 
                   <div className="form-group">
                     <label htmlFor="trending">trending</label>
-                  <Switch
-                    name="trending"
-                    value="Y"
-                    checked={values.trending === "Y"}
-                    onChange={(event, checked) => {
-                      setFieldValue("trending", checked ? "Y" : "N");
-                    }}
-                  />
+                    <Switch
+                      name="trending"
+                      value="Y"
+                      checked={values.trending === "Y"}
+                      onChange={(event, checked) => {
+                        setFieldValue("trending", checked ? "Y" : "N");
+                      }}
+                    />
                   </div>
 
                   <div id="checkbox-group">Size</div>
                   <div role="group" aria-labelledby="checkbox-group">
                     <label>
-                      <Field type="checkbox" name="checked" value="Small" />
+                      <Field type="checkbox" name="checked" value="S" />
                       S
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="Medium" />
+                      <Field type="checkbox" name="checked" value="M" />
                       M
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="Large" />
+                      <Field type="checkbox" name="checked" value="L" />
                       L
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="Single Large" />
+                      <Field type="checkbox" name="checked" value="XL" />
                       XL
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="Double Large" />
+                      <Field type="checkbox" name="checked" value="XXL" />
                       XXL
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="Triple Large" />
+                      <Field type="checkbox" name="checked" value="XXXL" />
                       XXXL
                     </label>
                   </div>
@@ -229,6 +260,7 @@ export default function Addproduct() {
                     <label htmlFor="price">price</label>
                     <Field
                       type="number"
+                      value={xyz.price}
                       name="price"
                       placeholder="Ex: $5"
                       className={`form-control ${touched.price && errors.price ? "is-invalid" : ""
@@ -245,6 +277,7 @@ export default function Addproduct() {
                     <label htmlFor="discount">discount</label>
                     <Field
                       type="text"
+                      value={xyz.discount}
                       name="discount"
                       placeholder="Enter discount"
                       className={`form-control ${touched.discount && errors.discount ? "is-invalid" : ""
@@ -273,7 +306,7 @@ export default function Addproduct() {
                       <option value="" label="Select a category">
                         Select a category{" "}
                       </option>
-                      <option value="Cloths" label="Cloths">
+                      <option value={"Cloths"} label="Cloths">
                         {" "}
                         Cloths
                       </option>
@@ -333,6 +366,7 @@ export default function Addproduct() {
                     <label htmlFor="description">description</label>
                     <Field
                       as="textarea"
+                      value={xyz.description}
                       name="description"
                       placeholder="Enter description"
                       className={`form-control ${touched.description && errors.description ? "is-invalid" : ""

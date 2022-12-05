@@ -25,7 +25,6 @@ let registararray = [];
 let count = 0
 
 
-
 export default function Register() {
 
     useEffect(() => {
@@ -62,7 +61,7 @@ export default function Register() {
         registararray.push(savedata)
         console.log(registararray)
         localStorage.setItem('Register', JSON.stringify(registararray));
-        // setNewData(registararray);
+        window.location = './'
         setName('')
         setEmail('')
         setPassword('')
@@ -87,7 +86,7 @@ export default function Register() {
 
                         }}
                     >
-                        {({ touched, errors, isSubmitting, values, handleChange, handleBlur }) => (
+                        {({ touched, errors, isSubmitting, values, handleChange, handleBlur, }) => (
                             <Form>
 
 
@@ -153,7 +152,6 @@ export default function Register() {
                                         {errors.confirmpassword}
                                     </span>
                                 </div>
-
 
                                 <button
                                     type="submit"
