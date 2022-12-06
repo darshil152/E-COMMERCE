@@ -60,6 +60,7 @@ export default function Addproduct() {
   const [file, setfile] = useState("");
   const [id, setId] = useState(Date.now());
   const [trending, setTrending] = useState('');
+  const [showpreview, setShowpreview] = useState(temparray2)
 
   const [data, setData] = useState([]);
 
@@ -86,6 +87,7 @@ export default function Addproduct() {
       temparray2.push(reader.result)
       console.log(temparray2)
     };
+    setShowpreview(temparray2)
   }
 
 
@@ -356,7 +358,24 @@ export default function Addproduct() {
                       }`} type="file" onChange={(event) => {
                         uploadImage(event.target.files);
                       }} multiple />
+                    <div className="showimgae">
+                      {console.log('first', showpreview)}
+                      {
+
+                        showpreview.map((items, i) => {
+                          return (<>
+                            <h1>Hello</h1>
+                            <img src={items} alt='noe' />
+                            <p>{items}</p>
+                          </>
+
+                          )
+                        })
+                      }
+
+                    </div>
                   </div>
+
 
 
                   <div className="form-group">
