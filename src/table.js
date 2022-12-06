@@ -1,5 +1,6 @@
 import React from 'react'
 import MUIDataTable from "mui-datatables";
+import Cart from './cart';
 
 let data = JSON.parse(localStorage.getItem('Register'))
 console.log(data)
@@ -46,8 +47,6 @@ const options = {
 
 export default function Table() {
     return (
-
-
         <MUIDataTable
             title={"Employee List"}
             data={data}

@@ -14,6 +14,10 @@ import shirts from "./assets/shirts.jpg"
 import delivery from "./assets/delivery.png"
 import dollor from "./assets/dollor.png"
 import support from "./assets/support.png"
+import one from "./assets/one.jpg"
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 
@@ -24,6 +28,7 @@ let profilehandle = () => {
 const tshirt = () => {
     window.location.href = '/tshirt'
 }
+
 
 
 export default function main() {
@@ -39,6 +44,16 @@ export default function main() {
                         </button>
                         <div class="collapse navbar-collapse" id="myNav">
                             <div class="navbar-nav ms-auto">
+                                <NavDropdown title="Sneakers" id="basic-nav-dropdown">
+                                    <NavDropdown.Item href="#action/3.1">All Sneakers</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.2">
+                                        Yezzy 
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item >Jordans</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Dunks</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Grails</NavDropdown.Item>
+                                </NavDropdown>
+
                                 <a class="nav-link active" aria-current="page" href="#">All</a>
                                 <a class="nav-link" href="#">Women's</a>
                                 <a class="nav-link" href="#">Men's</a>
@@ -64,14 +79,9 @@ export default function main() {
                 <MDBCarouselItem
                     className='w-100 d-block bannerimage'
                     itemId={1}
-                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg'
+                    src={one}
                     alt='...'
                 >
-                    <h5>First slide label</h5>
-                    <p className='bannerparagraph'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.s</p>
-                    <div className='adads'>
-                        <button className='cfade'>Collections</button>
-                    </div>
                 </MDBCarouselItem>
 
                 <MDBCarouselItem
@@ -90,6 +100,18 @@ export default function main() {
                 <MDBCarouselItem
                     className='w-100 d-block bannerimage'
                     itemId={3}
+                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg'
+                    alt='...'
+                >
+                    <h5>Third slide label</h5>
+                    <p className='bannerparagraph'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div className='adads'>
+                        <button className='cfade'>Collections</button>
+                    </div>
+                </MDBCarouselItem>
+                <MDBCarouselItem
+                    className='w-100 d-block bannerimage'
+                    itemId={4}
                     src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg'
                     alt='...'
                 >
@@ -170,31 +192,31 @@ export default function main() {
                         <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123cfa20eb10892de86b2cb_10.jpg" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123cfaa6e097a705d5be171_11.jpg"  className='courosal'alt="" />
+                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123cfaa6e097a705d5be171_11.jpg" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://cdn.shopify.com/s/files/1/1056/1394/t/239/assets/amiri.svg?v=84927243290060662811668016991" className='courosal'alt="" />
+                        <img src="https://cdn.shopify.com/s/files/1/1056/1394/t/239/assets/amiri.svg?v=84927243290060662811668016991" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123cfd1a3ad0dfa12395a76_14.jpg"className='courosal' alt="" />
+                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123cfd1a3ad0dfa12395a76_14.jpg" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://1000logos.net/wp-content/uploads/2020/03/Asics-logo-500x166.png" className='courosal'alt="" />
+                        <img src="https://1000logos.net/wp-content/uploads/2020/03/Asics-logo-500x166.png" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://1000logos.net/wp-content/uploads/2021/05/Air-Jordan-Jumpman-logo-500x281.png"className='courosal' alt="" />
+                        <img src="https://1000logos.net/wp-content/uploads/2021/05/Air-Jordan-Jumpman-logo-500x281.png" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123cfd1a3ad0dfa12395a76_14.jpg"className='courosal' alt="" />
+                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123cfd1a3ad0dfa12395a76_14.jpg" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123d0a8a3ad0d3207395ba2_22.jpg"className='courosal'alt="" />
+                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123d0a8a3ad0d3207395ba2_22.jpg" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123d0a8a3ad0d3207395ba2_22.jpg" className='courosal'alt="" />
+                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123d0a8a3ad0d3207395ba2_22.jpg" className='courosal' alt="" />
                     </div>
                     <div class="slide">
-                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123d1b57de6188bb7f2a040_30.jpgs" className='courosal'alt="" />
+                        <img src="https://global-uploads.webflow.com/5f1c9cd99129705b848a815a/6123d1b57de6188bb7f2a040_30.jpgs" className='courosal' alt="" />
                     </div>
                 </div>
             </div>
@@ -228,7 +250,7 @@ export default function main() {
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
 

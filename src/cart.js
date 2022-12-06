@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Cart(props) {
-  console.log(props)
+export default function Cart({dataParentToChild}) {
+  console.log({dataParentToChild})
   return (
     <div>
-      <h2>{props.name}</h2>
+      <h2>{dataParentToChild}</h2>
     </div>
   )
 }

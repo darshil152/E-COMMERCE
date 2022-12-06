@@ -20,10 +20,8 @@ const LoginSchema = Yup.object().shape({
     })
 });
 
-
 let registararray = [];
 let count = 0
-
 
 export default function Register() {
 

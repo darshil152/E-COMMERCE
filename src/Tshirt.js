@@ -17,31 +17,64 @@ import "slick-carousel/slick/slick-theme.css";
 import { ModalDialog } from "react-bootstrap";
 import { type } from "@testing-library/user-event/dist/type";
 import Cart from './cart';
+import { color } from "@mui/system";
+import { BatchPrediction, CheckBox } from "@mui/icons-material";
+import sizechart from "./assets/sizechart.png"
 
-let handlesize = (data) => {
-    console.log("your selected size", data);
-    toast.success(((data)), {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 5000
-    });
-}
+
 
 export default function Tshirt() {
 
     const [getteesdata, setGetteesdata] = useState(JSON.parse(localStorage.getItem('productdetail')));
     const [isOpen, setIsOpen] = useState(false);
     const [modal, setModal] = useState({});
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [counter, setCounter] = useState(0);
+
+    
+
+    // -----------------  Product Counter --------------------//
+    const increase = () => {
+        setCounter(count => count + 1);
+    };
+    const decrease = () => {
+        if (counter > 0) {
+            setCounter(count => count - 1);
+        }
+    };
+    const reset = () => {
+        setCounter(0)
+    }
 
 
-    const sorting = () => {
+    //  -------------------- Price sorting ----------------------//
+    const sorting = (e) => {
         getteesdata.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
         console.log(getteesdata)
     }
+    const sorting1 = (e) => {
+        getteesdata.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        console.log(getteesdata)
+    }
 
+
+    //---------------select size-------------------------------//
+    let handlesize = (data) => {
+        console.log("your selected size", data);
+        toast.success(((data)), {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 5000
+        });
+    }
+
+
+
+    //-------------------product slider --------------------------//
     const settings = {
         customPaging: function (i) {
             return (
-                <div>
+                <a>
+
                     <img
                         src={modal.file[i]}
                         alt=""
@@ -52,7 +85,7 @@ export default function Tshirt() {
                             borderRadius: "10px"
                         }}
                     />
-                </div>
+                </a>
             );
         },
         dots: true,
@@ -64,6 +97,9 @@ export default function Tshirt() {
         slidesToScroll: 1
     }
 
+
+
+    // ------------------open model ---------------------//
     const openModal = (data) => {
         console.log('data :: ', data)
         setModal(data)
@@ -73,29 +109,63 @@ export default function Tshirt() {
         setIsOpen(false)
     }
 
-    const [add, setAdd] = useState([]); 
-    const [abcd, setAbcd] = useState('')
+    const setModalIsOpenToTrue = () => {
+        setModalIsOpen(true)
+    }
+    const closemodals = () => {
+        setModalIsOpen(false)
+    }
+
+
+
+
+    //-------------------add to cart /state lifting---------------//
+    const [add, setAdd] = useState([]);
     const addtocarts = (data) => {
         add.push(data)
         setAdd(add)
         console.log(add)
     }
-    
-    
-// function parentalert() {
-//     alert(setAdd);
-// }
+
+
+
+    //----------------show selected size ----------------------------//
+    const getInitialState = () => {
+        const value = "X";
+        return value;
+    };
+    const [value, setValue] = useState(getInitialState);
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    };
+
+
+
+
+    //-------------------Total price of product ---------------------//
+    const sendprice = (data) => {
+        console.log("Total Price", data * modal.price)
+    }
+
 
     // const openModal = useCallback(() => setIsOpen(true), setModalData(data), []);
     // const closeModal = useCallback(() => setIsOpen(false), []);
 
     return (
         <div className='container'>
-            <Cart name={setAdd}  />
+            <Cart name={add} />
             <div class="row">
                 <h1 className='heading1'>Tshirts</h1>
-                <p className='p'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                <button onClick={sorting}>low to high</button>
+
+                <div className="soring">
+
+                <label className="price">Price:</label>
+                    <select id="sorting">
+                     <option value="low to high" onClick={sorting}>low to high</option>
+                     <option value="low to high" onClick={sorting1}>high to low</option>
+                    </select>
+                </div>
+
                 {
                     getteesdata.length > 0 && getteesdata.map((item, i) => {
                         return (
@@ -123,7 +193,7 @@ export default function Tshirt() {
                     })
                 }
                 {isOpen && <Modal isOpen={isOpen} onRequestClose={closeModal}>
-                    <input type="button" value="Close modal" onClick={closeModal} />
+                    <button onClick={closeModal}>X</button>
                     <div>
                         <div class="container">
                             <div class="card">
@@ -135,20 +205,18 @@ export default function Tshirt() {
                                                     isclassName="innerproduct"
                                                     width="500" /> */}
                                                 <div>
-                                                    <Zoom>
-                                                        <Slider {...settings}>
-                                                            {modal.file.map((item, i) => (
-                                                                <div>
-                                                                    <img
-                                                                        src={modal.file[i]}
-                                                                        alt=""
-                                                                        style={{ width: "100%", height: "100%" }}
-                                                                        className="slickslideriamge"
-                                                                    />
-                                                                </div>
-                                                            ))}
-                                                        </Slider>
-                                                    </Zoom>
+                                                    <Slider {...settings}>
+                                                        {modal.file.map((item, i) => (
+                                                            <div>
+                                                                <img
+                                                                    src={modal.file[i]}
+                                                                    alt=""
+                                                                    style={{ width: "100%", height: "100%" }}
+                                                                    className="slickslideriamge"
+                                                                />
+                                                            </div>
+                                                        ))}
+                                                    </Slider>
                                                 </div>
 
 
@@ -178,19 +246,50 @@ export default function Tshirt() {
                                         </div>
                                         <div class="details col-md-6">
                                             <h3 class="product-title">{modal.productname}</h3>
-                                            <h4 class="price">current price: <span>${modal.price}</span></h4>
-                                            <div>
-                                                {modal.checked && modal.checked.map((item, i) => {
+                                            <h4 class="price"><span>₹{modal.price}</span></h4>
+                                            <div class="product-info-button" onClick={setModalIsOpenToTrue}>Size chart →
+
+                                                <Modal isOpen={modalIsOpen} className="charts">
+                                                    {/* <button onClick={closeModals}>x</button> */}
+                                                    <button onClick={closemodals}>X</button>
+                                                    <div className="sizechart" >
+                                                        <img src={sizechart} />
+                                                    </div>
+                                                </Modal>
+                                            </div>
+                                            <div className="sizes">
+                                                {/* {modal.checked && modal.checked.map((item, i) => {
                                                     return (
-                                                        <button className="sizebutton" onClick={() => handlesize(item)}>{item}</button>
+                                                        <button className="sizebutton" onClick={() => handlesize(item)}>{item}</button> 
                                                     )
-                                                })}
+                                                   
+                                                })} */}
+                                                <select value={value} onChange={handleChange}>
+                                                    <option value="X">X</option>
+                                                    <option value="S">S</option>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                    <option value="XXL">XXL</option>
+                                                    <option value="XXXL">XXXL</option>
+                                                </select>
+                                                <h4>{`You selected size ${value}`}</h4>
+                                            </div>
+
+                                            <div className="counter">
+                                                <span className="counter__output">{counter}</span>
+                                                <div className="btn__container">
+                                                    <button className="control__btn" onClick={decrease}>-</button>
+                                                    <button className="control__btn" onClick={increase}>+</button>
+                                                    <button className="reset" onClick={reset}>Reset</button>
+                                                    <button className='cfade1' value="Close modal" onClick={() => sendprice(counter)}>Add to Cart</button>
+
+                                                </div>
                                             </div>
                                             <div className='adada1'>
                                                 <button className='cfade1' value="Close modal">Add to Wishlist</button>
-                                                <button className='cfade1' value="Close modal" >Add to Cart</button>
                                             </div>
-                                            <p class="product-description">{modal.description}</p>
+                                            {/* <p class="product-description">{modal.description}</p> */}
                                         </div>
                                     </div>
                                 </div>

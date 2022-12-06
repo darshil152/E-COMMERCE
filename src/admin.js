@@ -4,7 +4,7 @@ import Addproduct from './addproduct';
 export default function Admin() {
   return (
     <div>
-    <Addproduct />
-        </div>
+      <Addproduct />
+    </div>
   )
 }

@@ -96,12 +96,12 @@ export default function Producttable() {
         // },
         {
             name: "id",
-            label: "View",
+            label: "Edit",
             options: {
                 customBodyRender: (value, tableMeta, rowData) => {
                     return (
                         <button onClick={(e) => handleShow(value)}>
-                            View
+                            Edit
                         </button>
                     );
                 }

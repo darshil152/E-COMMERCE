@@ -7,6 +7,7 @@ import './header.css';
 import './addproduct.css';
 import './main.css';
 import './tshirt.css';
+import './shoes.css';
 
 function App() {
   return (

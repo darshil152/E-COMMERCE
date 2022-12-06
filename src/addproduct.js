@@ -10,6 +10,7 @@ import { Switch } from "@material-ui/core";
 let temparray1 = [];
 let temparray2 = [];
 let count = 0
+
 export default function Addproduct() {
 
   useEffect(() => {
@@ -24,33 +25,29 @@ export default function Addproduct() {
     }
   }, [temparray1]);
 
-
   const [ids, setIds] = useState('');
   const [olddata, setOlddata] = useState(JSON.parse(localStorage.getItem('productdetail')))
   const [currentdata, setCurrentdata] = useState('')
   const [xyz, setXyz] = useState('')
 
   useEffect(() => {
-    
+
     let url = window.location.href;
     let ids = url.substring(url.lastIndexOf('/') + 1);
-    console.log(ids)
+    console.log(ids)  
     setIds(ids)
 
     let currentdata = '';
-    for (let i = 0; i < olddata.length; i++) { 
+    for (let i = 0; i < olddata.length; i++) {
       if (olddata[i].id == ids) {
         currentdata = olddata[i];
-     
-        if(olddata[i].gender)
-      console.log(currentdata)
-      setXyz(currentdata)
-      }      
+        if (olddata[i].gender)
+          console.log(currentdata)
+        setXyz(currentdata)
+      }
       // setCurrentdata({currentdata, productname:currentdata.productname})
     }
   })
-
-
 
   const [productname, setProductname] = useState("");
   const [skucode, setSkucode] = useState("");
@@ -231,27 +228,27 @@ export default function Addproduct() {
                   <div id="checkbox-group">Size</div>
                   <div role="group" aria-labelledby="checkbox-group">
                     <label>
-                      <Field type="checkbox" name="checked" value="S" />
+                      <Field type="checkbox" className="s" name="checked" value="S" />
                       S
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="M" />
+                      <Field type="checkbox" className="m" name="checked" value="M" />
                       M
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="L" />
+                      <Field type="checkbox" className="l" name="checked" value="L" />
                       L
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="XL" />
+                      <Field type="checkbox" className="xl" name="checked" value="XL" />
                       XL
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="XXL" />
+                      <Field type="checkbox" className="xxl" name="checked" value="XXL" />
                       XXL
                     </label>
                     <label>
-                      <Field type="checkbox" name="checked" value="XXXL" />
+                      <Field type="checkbox" className="xxxl" name="checked" value="XXXL" />
                       XXXL
                     </label>
                   </div>
