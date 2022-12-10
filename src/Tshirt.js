@@ -144,7 +144,7 @@ export default function Tshirt() {
         }
         console.log(add)
     }
-    
+
     //----------------show selected size ----------------------------//
     const getInitialState = () => {
         const value = "X";
@@ -248,8 +248,6 @@ export default function Tshirt() {
                                                             ))}
                                                         </Slider>
                                                     </div>
-
-
                                                 </div>
                                                 {/* <div class="preview-pic tab-content"> */}
                                                 {/* <ul class="preview-thumbnail nav nav-tabs">
