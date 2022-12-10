@@ -44,7 +44,6 @@ export default function Register() {
     const [password, setPassword] = useState('')
     const [cpassword, setCpassword] = useState('')
     const [id, setId] = useState()
-
     const [savedata, setNewData] = useState([])
 
     const getData = (data) => {

@@ -8,6 +8,7 @@ import './addproduct.css';
 import './main.css';
 import './tshirt.css';
 import './shoes.css';
+import './cart.css';
 
 function App() {
   return (

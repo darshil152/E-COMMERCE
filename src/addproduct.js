@@ -20,7 +20,6 @@ export default function Addproduct() {
       if (newarray) {
         temparray1 = newarray
         setData(temparray1)
-        console.log(temparray1);
       }
     }
   }, [temparray1]);
@@ -31,13 +30,14 @@ export default function Addproduct() {
   const [xyz, setXyz] = useState('')
 
   useEffect(() => {
-
     let url = window.location.href;
     let ids = url.substring(url.lastIndexOf('/') + 1);
-    console.log(ids)  
+    console.log(ids)
     setIds(ids)
 
+    let olddata = localStorage.getItem("productdetail") ? JSON.parse(localStorage.getItem('productdetail')) : []
     let currentdata = '';
+
     for (let i = 0; i < olddata.length; i++) {
       if (olddata[i].id == ids) {
         currentdata = olddata[i];
@@ -77,6 +77,8 @@ export default function Addproduct() {
     // .required('Description in reuired'),
     price: Yup.string()
       .required("Price is required"),
+    description: Yup.string()
+      .required("Description is required"),
   });
 
   const getBase64 = (file) => {
@@ -133,8 +135,6 @@ export default function Addproduct() {
     });
 
   };
-
-
 
   return (
     <div>
@@ -359,20 +359,16 @@ export default function Addproduct() {
                         uploadImage(event.target.files);
                       }} multiple />
                     <div className="showimgae">
-                      {console.log('first', showpreview)}
+                      {/* {console.log('first', showpreview)} */}
                       {
-
                         showpreview.map((items, i) => {
-                          return (<>
-                            <h1>Hello</h1>
-                            <img src={items} alt='noe' />
-                            <p>{items}</p>
-                          </>
-
+                          return (
+                            <>
+                              <img src={items} style={{ height: "100px" }} alt='noe' />
+                            </>
                           )
                         })
                       }
-
                     </div>
                   </div>
 
@@ -387,6 +383,11 @@ export default function Addproduct() {
                       placeholder="Enter description"
                       className={`form-control ${touched.description && errors.description ? "is-invalid" : ""
                         }`}
+                    />
+                    <ErrorMessage
+                      component="div"
+                      name="description"
+                      className="invalid-feedback"
                     />
                   </div>
 

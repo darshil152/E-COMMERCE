@@ -3,17 +3,18 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { json } from 'react-router';
 import Spinner from "react-spinkit";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 let temparray1 = []
 let count = 0
 
 
-
 export default function Login() {
 
     useEffect(() => {
-     count++
+        count++
         if (count == 1) {
             const newarray = JSON.parse(localStorage.getItem('login'));
             if (newarray) {
@@ -24,26 +25,25 @@ export default function Login() {
         }
     }, [temparray1]);
 
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [match,setMatch] = useState(JSON.parse(localStorage.getItem('Register')));
+    const [match, setMatch] = useState(JSON.parse(localStorage.getItem('Register')));
     const [flag, setFlag] = useState(false);
     const [allNewData, setNewData] = useState([]);
 
     const getData = (data) => {
-        for (let i = 0; i < match.length; i++) {  
+        for (let i = 0; i < match.length; i++) {
             if (data.email === match[i].email && data.password === match[i].password) {
                 setFlag(true)
-                window.location.href= "./main"
-            }
-            else{
-                alert('ahfahfkag');
             }
         }
-      
-        
-       
+        if (flag) {
+            window.location.href = "./main"
+        } else {
+            alert('Please enter valid credential');
+        }
+
+
         setEmail(data.email)
         setPassword(data.password)
 
@@ -63,7 +63,7 @@ export default function Login() {
     const formik = useFormik({
         initialValues: {
             email: "",
-            password: "",   
+            password: "",
         },
 
         validationSchema: Yup.object({
@@ -75,7 +75,7 @@ export default function Login() {
         }),
 
         onSubmit: values => {
-            getData(values);          
+            getData(values);
             // localStorage.setItem('items', JSON.stringify(value))
         }
     });

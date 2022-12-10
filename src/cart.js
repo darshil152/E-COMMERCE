@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { createContext } from 'react'
 
-export default function Cart({dataParentToChild}) {
-  console.log({dataParentToChild})
+
+export default function Cart() {
   return (
-    <div>
-      <h2>{dataParentToChild}</h2>
-    </div>
+  <>
+
+  </>
   )
 }
