@@ -21,8 +21,8 @@ import { color } from "@mui/system";
 import { BatchPrediction, CheckBox, PermCameraMic } from "@mui/icons-material";
 import sizechart from "./assets/sizechart.png"
 import Wishlist from "./wishlist";
-
-
+import Trending from "./Trending";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -78,7 +78,6 @@ export default function Tshirt() {
         customPaging: function (i) {
             return (
                 <a>
-
                     <img
                         src={modal.file[i]}
                         alt=""
@@ -181,6 +180,22 @@ export default function Tshirt() {
         }
         console.log(wishlist1)
     }
+    //------------------------Trending-------------------------------//
+    const [trending, setTrending] = useState([])
+    const [flag,setFlag] = useState(false)
+    let trendings = localStorage.getItem("productdetail") ? JSON.parse(localStorage.getItem('productdetail')) : []
+    let isflag = false
+    for (let i = 0; i < trendings.length; i++) {
+            if (trendings[i].trending == "Y") {
+                setFlag(true)
+            }        
+    }
+    if (flag) {
+        setTrending(trendings)
+    } else {
+        console.log('false')
+    }
+
 
     // const openModal = useCallback(() => setIsOpen(true), setModalData(data), []);
     // const closeModal = useCallback(() => setIsOpen(false), []);
@@ -237,40 +252,21 @@ export default function Tshirt() {
                                                     <div>
                                                         <Slider {...settings}>
                                                             {modal.file.map((item, i) => (
-                                                                <div>
-                                                                    <img
-                                                                        src={modal.file[i]}
-                                                                        alt=""
-                                                                        style={{ width: "100%", height: "100%" }}
-                                                                        className="slickslideriamge"
-                                                                    />
-                                                                </div>
+                                                                <Zoom>
+                                                                    <div>
+                                                                        <img
+                                                                            src={modal.file[i]}
+                                                                            alt=""
+                                                                            style={{ width: "100%", height: "100%" }}
+                                                                            className="slickslideriamge"
+                                                                        />
+                                                                    </div>
+                                                                </Zoom>
                                                             ))}
                                                         </Slider>
                                                     </div>
                                                 </div>
-                                                {/* <div class="preview-pic tab-content"> */}
-                                                {/* <ul class="preview-thumbnail nav nav-tabs">
-                                                    {modal.file && modal.file.map((item, i) => {
-                                                        return (
-                                                            <li class="active">
-                                                                <a data-target="#pic-1" data-toggle="tab">
-                                                                    <img src={item} className="innerproduct" />
-                                                                   
-                                                                            <img
-                                                                                alt="That Wanaka Tree, New Zealand by Laura Smetsers"
-                                                                                src={item}
-                                                                                width="100"
-                                                                                className="zoomeffct" 
-                                                                            />
-                                                                      
-                                                                </a>
-                                                            </li>
-                                                        )
-                                                    })}
-                                                </ul> */}
 
-                                                {/* </div> */}
                                             </div>
                                             <div class="details col-md-6">
                                                 <h3 class="product-title">{modal.productname}</h3>

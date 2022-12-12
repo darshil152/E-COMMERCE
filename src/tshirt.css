@@ -208,7 +208,7 @@ h3.product-title {
   font-family: PT Sans;
   margin-top: 60px;
   margin-left: 50px;
-  font-size: 32px;
+  font-size: 55px;
   font-weight: 400;
   letter-spacing: -0.5px;
 }
@@ -223,7 +223,7 @@ p.product-description {
 
 h4.price {
   font-family: PT Sans;
-  margin-top: 20px;
+  margin-top: 55px;
   margin-left: 50px;
   font-size: 25px;
   font-weight: 400;
@@ -408,3 +408,8 @@ label.price {
   font-family: PT Sans;
   margin-right: 10px;
 }
+svg{
+  margin-bottom: 15px;
+}
+
+  

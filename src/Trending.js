@@ -16,7 +16,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ModalDialog } from "react-bootstrap";
 import { type } from "@testing-library/user-event/dist/type";
-
+import { Flag } from "@mui/icons-material";
+import { data } from "./admin";
+    
 
 let handlesize = (data) => {
     console.log("your selected size", data);
@@ -80,6 +82,21 @@ export default function Trending() {
     }
     const closeModal = () => {
         setIsOpen(false)
+    }
+
+
+    //--------------------------------------------------------------------------------------------------------//
+
+    const [flag, setFlag] = useState(false)
+    const [data, setData] = useState(JSON.parse(localStorage.getItem('productdetail')))
+    const [newdata, setNewdata] = useState([])
+    const [newdata1, setNewdata1] = useState('')
+
+
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].trending === "Y") {
+            console.log(data[i])
+        }
     }
 
     // const openModal = useCallback(() => setIsOpen(true), setModalData(data), []);

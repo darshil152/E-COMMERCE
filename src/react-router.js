@@ -17,6 +17,7 @@ import Table from "./table";
 import Producttable from "./producttable";
 import Shoes from "./shoes";
 import Wishlist from "./wishlist";
+import Trending from "./Trending";
 
 
 export default function ReactRouter() {
@@ -35,6 +36,7 @@ export default function ReactRouter() {
                 <Route path="/wishlist" element={<Wishlist />}> </Route>
                 <Route path="/cart" element={<Cart />}> </Route>
                 <Route path="/shoes" element={<Shoes />}> </Route>
+                <Route path="/trending" element={<Trending />}> </Route>
                 {/* <Route path="/show" element={<Showproduct />}> </Route> */}
             </Routes>
         </BrowserRouter>

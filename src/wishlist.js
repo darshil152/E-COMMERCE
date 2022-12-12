@@ -1,13 +1,11 @@
 import React, { useContext } from 'react'
 import { useState } from 'react'
-import { CartContext } from './admin'
 
 
 export default function Wishlist() {
 
-    const {abc} = useContext(CartContext);
-    console.log(abc)
-
+    let isflag = false;
+    const [getitem1, setGetitem1] = useState(JSON.parse(localStorage.getItem('productdetail')))
     const [getitem, setGetitem] = useState(JSON.parse(localStorage.getItem('wishlist')));
     //--------------Deleteitem ---------------//
     const deleteitem = (data) => {
@@ -30,7 +28,7 @@ export default function Wishlist() {
                                         <div class="table-wishlist">
                                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                                 <thead>
-                                                    <tr>
+                                                    <tr border="10px">
                                                         <th>Product image</th>
                                                         <th>Product Name</th>
                                                         <th>Product Price</th>
