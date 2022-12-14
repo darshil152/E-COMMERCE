@@ -18,6 +18,10 @@ import one from "./assets/one.jpg"
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import sneker from './assets/sneker.png'
+import apperal from './assets/appeal.png'
+import watch from './assets/watchjpg.jpg'
+
 
 
 
@@ -27,6 +31,9 @@ let profilehandle = () => {
 
 const tshirt = () => {
     window.location.href = '/tshirt'
+}
+const  sneaker = () =>{
+    window.location.href = './sneaker'
 }
 
 
@@ -128,17 +135,17 @@ export default function main() {
                 <section class="project-grid">
                     <a href="#">
                         <img
-                            src={hoodies}
+                            src={sneker}
                             alt=""
                             loading="lazy"
                         />
                         <div className='adad'>
-                            <button className='cfade' >Shop Now</button>
+                            <button className='cfade' onClick={sneaker}>Shop Now</button>
                         </div>
                     </a>
                     <a href="#">
                         <img
-                            src={imagetshirt}
+                            src={apperal}
                             alt=""
                             loading="lazy"
                         />
@@ -148,12 +155,12 @@ export default function main() {
                     </a>
                     <a href="#">
                         <img
-                            src={shirts}
+                            src={watch}
                             alt=""
                             loading="lazy"
                         />
                         <div className='adad'>
-                            <button className='cfade'>Shop Now</button>
+                            <button className='cfade' onClick={tshirt}>Shop Now</button>
                         </div>
                     </a>
                 </section>

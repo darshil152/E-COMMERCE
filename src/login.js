@@ -28,19 +28,21 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [match, setMatch] = useState(JSON.parse(localStorage.getItem('Register')));
-    const [flag, setFlag] = useState(false);
+    // const [flag, setFlag] = useState(false);
+    let flags = false;
     const [allNewData, setNewData] = useState([]);
 
     const getData = (data) => {
         for (let i = 0; i < match.length; i++) {
             if (data.email === match[i].email && data.password === match[i].password) {
-                setFlag(true)
+               flags = true;
             }
         }
-        if (flag) {
+        if (flags) {
             window.location.href = "./main"
-        } else {
-            alert('Please enter valid credential');
+            
+        } else {              
+             alert('Please enter valid credential');
         }
 
 
@@ -59,6 +61,11 @@ export default function Login() {
         setPassword('')
 
     }
+
+    const toforgot = () =>{
+        window.location.href = '/forgot'
+    }
+    
 
     const formik = useFormik({
         initialValues: {
@@ -109,6 +116,10 @@ export default function Login() {
                         {formik.errors.password && formik.touched.password && (
                             <p>{formik.errors.password}</p>
                         )}
+                    </div>
+
+                    <div>
+                        <a href='forgot' onClick={toforgot} >Forgot password</a>
                     </div>
 
                     <div>

@@ -18,6 +18,8 @@ import Producttable from "./producttable";
 import Shoes from "./shoes";
 import Wishlist from "./wishlist";
 import Trending from "./Trending";
+import Forgotpass from "./forgotpass";
+import Sneaker from "./sneaker";
 
 
 export default function ReactRouter() {
@@ -37,7 +39,8 @@ export default function ReactRouter() {
                 <Route path="/cart" element={<Cart />}> </Route>
                 <Route path="/shoes" element={<Shoes />}> </Route>
                 <Route path="/trending" element={<Trending />}> </Route>
-                {/* <Route path="/show" element={<Showproduct />}> </Route> */}
+                <Route path="/sneaker" element={<Sneaker />}> </Route>
+                <Route path="/forgot" element={<Forgotpass />}> </Route>
             </Routes>
         </BrowserRouter>
     )

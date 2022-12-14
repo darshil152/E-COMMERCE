@@ -1,10 +1,10 @@
-import React, { useState, useCallback, createContext } from "react";
+import React, { useState, useCallback, createContext, useEffect } from "react";
 import { CartProvider, useCart } from "react-use-cart";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import hoddies from './assets/jackets.jpg';
 import show from './assets/show.gif';
-import { json } from 'react-router';
+import { json, useAsyncError } from 'react-router';
 import Modal from 'react-modal';
 import { ToastContainer, toast } from 'react-toastify';
 import Zoom from 'react-medium-image-zoom'
@@ -23,6 +23,7 @@ import sizechart from "./assets/sizechart.png"
 import Wishlist from "./wishlist";
 import Trending from "./Trending";
 import { faL } from "@fortawesome/free-solid-svg-icons";
+import { lightGreen } from "@mui/material/colors";
 
 
 
@@ -103,10 +104,15 @@ export default function Tshirt() {
 
 
     // ------------------open model ---------------------//
+
     const openModal = (data) => {
         console.log('data :: ', data)
         setModal(data)
         setIsOpen(true)
+
+
+
+
     }
     const closeModal = () => {
         setIsOpen(false)
@@ -181,24 +187,53 @@ export default function Tshirt() {
         console.log(wishlist1)
     }
     //------------------------Trending-------------------------------//
-    const [trending, setTrending] = useState([])
-    const [flag,setFlag] = useState(false)
-    let trendings = localStorage.getItem("productdetail") ? JSON.parse(localStorage.getItem('productdetail')) : []
-    let isflag = false
-    for (let i = 0; i < trendings.length; i++) {
-            if (trendings[i].trending == "Y") {
-                setFlag(true)
-            }        
-    }
-    if (flag) {
-        setTrending(trendings)
-    } else {
-        console.log('false')
-    }
-
+    // const [trending, setTrending] = useState([])
+    // const [flag,setFlag] = useState(false)
+    // let trendings = localStorage.getItem("productdetail") ? JSON.parse(localStorage.getItem('productdetail')) : []
+    // let isflag = false
+    // for (let i = 0; i < trendings.length; i++) {
+    //         if (trendings[i].trending == "Y") {
+    //             setFlag(true)
+    //         }        
+    // }
+    // if (flag) {
+    //     setTrending(trendings)
+    // } else {
+    //     console.log('false')
+    // }
 
     // const openModal = useCallback(() => setIsOpen(true), setModalData(data), []);
     // const closeModal = useCallback(() => setIsOpen(false), []);
+
+
+
+    const [relate, setRelate] = useState({})
+    const [footware, setFootware] = useState({})
+    const [fflag, setFflag] = useState(false)
+
+    useEffect(() => {
+        const filtered = getteesdata.filter((items) => {
+            return items.category === "Cloths"
+        });
+        setRelate(filtered)
+        console.log(filtered);
+    }, [])
+
+    
+    useEffect(() => {
+        const filtered1 = getteesdata.filter((item) => {
+            return item.category === "Footware"   
+        });
+        setFootware(filtered1)
+        setFflag(true)
+        console.log(footware);
+    },[])
+
+
+
+
+
+
 
     return (
         <>
@@ -313,12 +348,30 @@ export default function Tshirt() {
                                                 <div className='adada1'>
                                                     <button className='cfade1' value="Close modal">Add to Wishlist</button>
                                                 </div>
+
+
                                                 {/* <p class="product-description">{modal.description}</p> */}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className="related">
+                            <h1 className="prd">Related Product</h1>
+                        </div>
+                        <div className="rel">
+                            {
+                                relate.length > 0 && relate.map((items, i) => {
+                                    return (
+                                        <>
+                                            <div>
+                                                <img src={items.file[i]} style={{ width: "150px" }} />
+                                            </div>
+                                        </>
+                                    )
+                                })
+                            }
                         </div>
                     </Modal>}
                 </div>

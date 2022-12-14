@@ -411,5 +411,11 @@ label.price {
 svg{
   margin-bottom: 15px;
 }
-
+.rel {
+  display: flex;
+  justify-content: center;
+}
+h1.prd{
+  text-align: center;
+}
   
