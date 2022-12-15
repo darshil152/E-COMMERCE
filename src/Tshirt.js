@@ -53,14 +53,49 @@ export default function Tshirt() {
 
 
     //  -------------------- Price sorting ----------------------//
+    const [filters, setFilters] = useState({})
+    const [filters2, setFilters2] = useState({})
+    const [filters3, setFilters3] = useState({})
     const sorting = (e) => {
         getteesdata.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
         console.log(getteesdata)
+        setFilters(getteesdata)
+        setFilters2()
     }
+
     const sorting1 = (e) => {
         getteesdata.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
         console.log(getteesdata)
+        setFilters2(getteesdata)
+        setFilters()
     }
+
+    const sorting2 = (e) => {
+        getteesdata.sort(function (a, b) {
+            if (a.productname < b.productname) {
+                return -1;
+            }
+            if (a.productname > b.productname) {
+                return 1;
+            }
+            return 0;
+        });
+        setFilters3(getteesdata)
+        setFilters()
+        setFilters2()
+
+    }
+
+    const handleChanges = (e) => {
+        console.log(e.target.value);
+        if (e.target.value == "low to high") {
+            sorting()
+        } else if (e.target.value == "high to low") {
+            sorting1()
+        } else if (e.target.value == "a to z")
+            sorting2()
+    }
+
 
 
     //---------------select size-------------------------------//
@@ -106,7 +141,7 @@ export default function Tshirt() {
     // ------------------open model ---------------------//
 
     const openModal = (data) => {
-        console.log('data :: ', data)
+        // console.log('data :: ', data)
         setModal(data)
         setIsOpen(true)
 
@@ -216,24 +251,24 @@ export default function Tshirt() {
             return items.category === "Cloths"
         });
         setRelate(filtered)
-        console.log(filtered);
+        // console.log(filtered);
     }, [])
 
-    
+
     useEffect(() => {
         const filtered1 = getteesdata.filter((item) => {
-            return item.category === "Footware"   
+            return item.category === "Footware"
         });
         setFootware(filtered1)
         setFflag(true)
         console.log(footware);
-    },[])
+    }, [])
 
 
 
+    //-------------------------------search bar ------------------------------//
 
-
-
+    const [search, setSearch] = useState({});
 
     return (
         <>
@@ -242,10 +277,13 @@ export default function Tshirt() {
                     <h1 className='heading1'>Tshirts</h1>
                     <div className="soring">
                         <label className="price">Price:</label>
-                        <select id="sorting">
-                            <option value="low to high" onClick={sorting}>low to high</option>
-                            <option value="low to high" onClick={sorting1}>high to low</option>
+                        <select id="sorting" onChange={(e) => handleChanges(e)}>
+                            <option value="low to high" id="xyz" >low to high</option>
+                            <option value="high to low" id="abc" >high to low</option>
+                            <option value="a to z" id="def" >a to z</option>
                         </select>
+
+                        {/* <button onClick={sorting}>Low to high</button> */}
                     </div>
                     {
                         getteesdata.length > 0 && getteesdata.map((item, i) => {
@@ -376,8 +414,6 @@ export default function Tshirt() {
                     </Modal>}
                 </div>
             </div>
-        </>
-
-
+        </>*
     )
 }
