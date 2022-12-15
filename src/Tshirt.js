@@ -97,6 +97,30 @@ export default function Tshirt() {
     }
 
 
+    //-----------------related products ---------------------------//
+    const [relate, setRelate] = useState({})
+    const [footware, setFootware] = useState({})
+    const [fflag, setFflag] = useState(false)
+
+    useEffect(() => {
+        const filtered = getteesdata.filter((items) => {
+            return items.category === "Cloths"
+        });
+        setRelate(filtered)
+        // console.log(filtered);
+    }, [])
+
+
+    // useEffect(() => {
+    //     const filtered1 = getteesdata.filter((item) => {
+    //         return item.category === "Footware"
+    //     });
+    //     setFootware(filtered1)
+    //     setFflag(true)
+    //     console.log(footware);
+    // }, [])
+
+
 
     //---------------select size-------------------------------//
     let handlesize = (data) => {
@@ -242,27 +266,6 @@ export default function Tshirt() {
 
 
 
-    const [relate, setRelate] = useState({})
-    const [footware, setFootware] = useState({})
-    const [fflag, setFflag] = useState(false)
-
-    useEffect(() => {
-        const filtered = getteesdata.filter((items) => {
-            return items.category === "Cloths"
-        });
-        setRelate(filtered)
-        // console.log(filtered);
-    }, [])
-
-
-    useEffect(() => {
-        const filtered1 = getteesdata.filter((item) => {
-            return item.category === "Footware"
-        });
-        setFootware(filtered1)
-        setFflag(true)
-        console.log(footware);
-    }, [])
 
 
 
@@ -297,7 +300,7 @@ export default function Tshirt() {
                                             <span class="product-discount-label">{item.discount}%</span>
                                             <ul class="product-links">
                                                 <li><a href="#" data-tip="Add to Wishlist" onClick={() => addto(item)}><i class="fas fa-heart" ></i></a></li>
-                                                <li><a href="#" data-tip="Quick View" onClick={() => openModal(item)}><i class="fa fa-search" ></i></a></li>
+                                                <li><a href="#" data-tip="Quick View" value="related" onClick={() => openModal(item)}><i class="fa fa-search" ></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="product-content">
@@ -414,6 +417,6 @@ export default function Tshirt() {
                     </Modal>}
                 </div>
             </div>
-        </>*
+        </>
     )
 }

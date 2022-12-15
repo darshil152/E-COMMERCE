@@ -1,21 +1,18 @@
-import React, { createContext } from 'react'
-// import { data } from './admin'
-import { data } from './admin'
+import React, { Component, useContext } from 'react'
+import UserContext from "./admin"
 
-export default function Cart() {
-  return (
-    <data.Consumer>
-         {
-       (name) => {
-             return (
-               <h1>My name {name}</h1>
-             )
-           }
-         }
-       </data.Consumer> 
-  )
+export default class Cart extends Component {
+
+  static contextType = UserContext
+
+  render() {
+
+    let userDetail = this.context
+    return (
+      <div>
+        <div>Name:{userDetail.name}</div>
+        <div>age:{userDetail.age}</div>
+      </div>
+    )
+  }
 }
-
-
-
- 

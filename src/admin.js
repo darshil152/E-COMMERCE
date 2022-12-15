@@ -1,17 +1,17 @@
-import React, { createContext } from 'react'
+import React, { Component } from 'react'
 import Cart from './cart'
 
+const UserContext = React.createContext()
 
- const data = createContext
+export default class Admin extends Component {
+  render() {
 
-export default function Admin() {
-  const name  = "Darshil"
-  return (
-    <>
-    <data.Provider value={name}>
-      <Cart />
-    </data.Provider>
-    </>
-  )
+    let user = { name: "mike", age: "26" }
+    return (
+      <UserContext.Provider value={user}>
+        <Cart />
+      </UserContext.Provider>
+
+    )
+  }
 }
-export {data};
