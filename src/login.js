@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-let temparray1 = []
+let loginarray = []
 let count = 0
 
 
@@ -18,12 +18,12 @@ export default function Login() {
         if (count == 1) {
             const newarray = JSON.parse(localStorage.getItem('login'));
             if (newarray) {
-                temparray1 = newarray
-                setNewData(temparray1)
-                console.log(temparray1);
+                loginarray = newarray
+                setNewData(loginarray)
+                console.log(loginarray);
             }
         }
-    }, [temparray1]);
+    }, [loginarray]);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -49,11 +49,11 @@ export default function Login() {
         setEmail(data.email)
         setPassword(data.password)
 
-        const newData = { email: data.email, password: data.password };
-        // temparray1.push(newData)
-        // console.log(temparray1)
-        // localStorage.setItem('register', JSON.stringify(temparray1));
-        // setNewData(temparray1);
+        const newData = { email: data.email, password: data.password, };
+        loginarray.push(newData)
+        console.log(loginarray)
+        localStorage.setItem('login', JSON.stringify(loginarray));
+        setNewData(loginarray);
 
         // localStorage.setItem('login', JSON.stringify(temparray1));
         // window.location.href = './addproduct'
@@ -105,7 +105,7 @@ export default function Login() {
                             <p>{formik.errors.email}</p>
                         )}
                     </div>
-                    <div>
+                    <div >
                         <label>Password</label>
                         <input
                             type="password"

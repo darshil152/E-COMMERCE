@@ -9,20 +9,41 @@ import { Switch } from "@material-ui/core";
 
 let temparray1 = [];
 let temparray2 = [];
-let count = 0
+let temparray3 = [];
+let count = 0;
+
 
 export default function Addproduct() {
+
+    
+const [array, setArray] = useState([]);
+let flag = false;
 
   useEffect(() => {
     count++
     if (count == 1) {
       const newarray = JSON.parse(localStorage.getItem('productdetail'));
+      console.log(newarray);
       if (newarray) {
         temparray1 = newarray
         setData(temparray1)
       }
     }
   }, [temparray1]);
+
+  
+  useEffect(() => {
+    count++
+    if (count == 1) {
+      const olddata = JSON.parse(localStorage.getItem('featured'));
+      console.log(olddata);
+      if (olddata) {
+        temparray3 = olddata
+        setData(temparray3)
+      }
+    }
+  }, [temparray3]);
+
 
   const [ids, setIds] = useState('');
   const [olddata, setOlddata] = useState(JSON.parse(localStorage.getItem('productdetail')))
@@ -52,6 +73,7 @@ export default function Addproduct() {
   const [productname, setProductname] = useState("");
   const [skucode, setSkucode] = useState("");
   const [category, setcategory] = useState("");
+  const [style, setStyle] = useState("");
   const [gender, setGender] = useState("");
   const [price, setPrice] = useState("");
   const [checked, setChecked] = useState([]);
@@ -79,8 +101,12 @@ export default function Addproduct() {
       .required("Price is required"),
     description: Yup.string()
       .required("Description is required"),
+    style: Yup.string()
+      .required("style is required"),
   });
 
+
+  
   const getBase64 = (file) => {
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -93,29 +119,47 @@ export default function Addproduct() {
   }
 
 
-  const uploadImage = (images) => {
+  
+
+  const uploadImage = (images) => { 
     for (let i = 0; i < images.length; i++) {
       getBase64(images[i])
     }
   }
 
+
+ 
   const getData1 = (data) => {
 
-    setProductname(data.productname);
+    setProductname(data.productname);   
     setSkucode(data.skucode);
     setcategory(data.category);
+    setStyle(data.style);
     setGender(data.gensd);
     setPrice(data.price);
     setChecked(data.checked)
     setDiscount(data.discount)
     setDescription(data.description);
-    setfile(data.setfile);
+    setfile(data.file);
     setTrending(data.trending)
 
 
     console.log(temparray1, 'before');
-    const newdata = { trending: data.trending, checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
-    console.log(newdata)
+    const newdata = { style: data.style, trending: data.trending, checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
+    console.log(newdata);
+
+
+    // for (let i = 0; i < newdata.length; i++) {
+    //   if (newdata[i].style === "featured") {
+    //     flag = true
+    //   }
+    // } if (!flag) {
+    //   temparray3.push(newdata)
+    //   setArray(temparray3)
+    //   localStorage.setItem('featured', JSON.stringify(temparray3));
+    // } else {
+    //   console.log("Not added");
+    // }
     temparray1.push(newdata)
     console.log(newdata)
     setData(temparray1)
@@ -125,9 +169,9 @@ export default function Addproduct() {
 
     temparray2 = []
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 2000);
 
     toast.success('You successfully add product', {
       position: toast.POSITION.TOP_CENTER,
@@ -320,6 +364,44 @@ export default function Addproduct() {
                     <ErrorMessage
                       component="div"
                       name="category"
+                      className="invalid-feedback"
+                    />
+
+                  </div>
+
+
+                  <div className="form-group">
+                    <label htmlFor="where" style={{ display: "block" }}>
+                      style
+                    </label>
+                    <select
+                      name="style"
+                      value={values.style}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      style={{ display: "block" }}
+                      className={`form-control ${touched.style && errors.style ? "is-invalid" : ""
+                        }`}
+                    >
+                      <option value="" label="Select a style">
+                        Select a style{" "}
+                      </option>
+                      <option value="trending" label="trending">
+                        trending
+                      </option>
+                      <option value="newarrivle" label="newarrivle">
+                        newarrivle
+                      </option>
+                      <option value="featured" label="featured">
+                        featured
+                      </option>
+                      <option value="latestlook" label="latestlook">
+                        latestlook
+                      </option>
+                    </select>
+                    <ErrorMessage
+                      component="div"
+                      name="style"
                       className="invalid-feedback"
                     />
 

@@ -10,6 +10,8 @@ import './tshirt.css';
 import './shoes.css';
 import './cart.css';
 import './sneaker.css'
+import './order.css'
+
 
 function App() {
   return (

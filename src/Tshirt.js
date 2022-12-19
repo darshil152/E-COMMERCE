@@ -34,21 +34,25 @@ export default function Tshirt() {
     const [isOpen, setIsOpen] = useState(false);
     const [modal, setModal] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [counter, setCounter] = useState(0);
+    const [carts, setCarts] = useState({})
 
+    //-------------addtocart------------------------//
+    const [add, setAdd] = useState([])
+    const addtocart = (data) => {
+        let olddata = localStorage.getItem("cartitems") ? JSON.parse(localStorage.getItem('cartitems')) : []
+        let duplicate = false;
 
-
-    // -----------------  Product Counter --------------------//
-    const increase = () => {
-        setCounter(count => count + 1);
-    };
-    const decrease = () => {
-        if (counter > 0) {
-            setCounter(count => count - 1);
+        for (let i = 0; i < olddata.length; i++) {
+            if (olddata[i] === data) {
+                duplicate = true
+            }
         }
-    };
-    const reset = () => {
-        setCounter(0)
+        if (!duplicate) {
+            add.push(data)
+            setAdd(add)
+            localStorage.setItem('cartitems', JSON.stringify(add));
+        }
+        console.log(add);
     }
 
 
@@ -186,27 +190,24 @@ export default function Tshirt() {
 
 
     //-------------------add to cart /state lifting---------------//
-    const [add, setAdd] = useState([])
+    const [cart, setCart] = useState([])
     const addtocarts = (data) => {
 
-        // add.push(data)
-        // setAdd(add)
-        // localStorage.setItem('cartitems', JSON.stringify(add));
+        let oldcart = localStorage.getItem("cartitems") ? JSON.parse(localStorage.getItem('cartitems')) : [];
 
-        let olddata = localStorage.getItem("cartitems") ? JSON.parse(localStorage.getItem('cartitems')) : []
-        let duplicate = false;
+        let flag = false;
 
-        for (let i = 0; i < olddata.length; i++) {
-            if (olddata[i] === data) {
-                duplicate = true
+        for (let i = 0; i < oldcart.length; i++) {
+            if (oldcart[i].id === data.id) {
+                flag = true
             }
         }
-        if (!duplicate) {
-            add.push(data)
-            setAdd(add)
-            localStorage.setItem('cartitems', JSON.stringify(add));
+        if (!flag) {
+            cart.push(data)
+            setWishlist1(cart)
+            localStorage.setItem('cartitems', JSON.stringify(cart))
         }
-        console.log(add)
+        console.log(wishlist1)
     }
 
     //----------------show selected size ----------------------------//
@@ -214,16 +215,29 @@ export default function Tshirt() {
         const value = "X";
         return value;
     };
-    const [value, setValue] = useState(getInitialState);
-    const handleChange = (e) => {
+    const [value, setValue] = useState('');
+    const size = (e) => {
         setValue(e.target.value);
     };
+    console.log(value);
+
 
 
     //-------------------Total price of product ---------------------//
-    const sendprice = (data) => {
-        console.log("Total Price", data * modal.price)
+    const [total, setTotal] = useState('')
+    const [after, setAfter] = useState([])
+    let temparray3 = useState([])
+
+    const sendprice = (data, b) => {
+        console.log(b * modal.price);
+        setTotal(b * modal.price)
+        setAfter(data)
+
+        //   window.location.href = "./order/" + data.id  
+
     }
+    console.log(after);
+    console.log(total);
 
 
     //-------------------Wishlist ------------------------------------//
@@ -269,9 +283,6 @@ export default function Tshirt() {
 
 
 
-    //-------------------------------search bar ------------------------------//
-
-    const [search, setSearch] = useState({});
 
     return (
         <>
@@ -306,7 +317,7 @@ export default function Tshirt() {
                                         <div class="product-content">
                                             <h3 class="title">{item.productname}</h3>
                                             <div class="price">₹{item.price}</div>
-                                            <a class="add-to-cart" onClick={() => addtocarts(item.id)} >add to cart</a>
+                                            <a class="add-to-cart" onClick={() => addtocarts(item)} >add to cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -346,7 +357,7 @@ export default function Tshirt() {
                                             </div>
                                             <div class="details col-md-6">
                                                 <h3 class="product-title">{modal.productname}</h3>
-                                                <h4 class="price"><span>₹{modal.price}</span></h4>
+                                                <h4 class="price"><span>MRP: ₹{modal.price}</span></h4>
                                                 <div class="product-info-button" onClick={setModalIsOpenToTrue}>Size chart →
 
                                                     <Modal isOpen={modalIsOpen} className="charts" onRequestClose={close}>
@@ -364,7 +375,7 @@ export default function Tshirt() {
                                                     )
                                                    
                                                 })} */}
-                                                    <select value={value} onChange={handleChange}>
+                                                    <select value={value} onChange={(e) => size(e)}>
                                                         <option value="X">X</option>
                                                         <option value="S">S</option>
                                                         <option value="M">M</option>
@@ -376,19 +387,11 @@ export default function Tshirt() {
                                                     <h4>{`You selected size ${value}`}</h4>
                                                 </div>
 
-                                                <div className="counter">
-                                                    <span className="counter__output">{counter}</span>
-                                                    <div className="btn__container">
-                                                        <button className="control__btn" onClick={decrease}>-</button>
-                                                        <button className="control__btn" onClick={increase}>+</button>
-                                                        <button className="reset" onClick={reset}>Reset</button>
-                                                        <button className='cfade1' value="Close modal" onClick={() => sendprice(counter)}>Add to Cart</button>
 
-                                                    </div>
-                                                </div>
                                                 <div className='adada1'>
-                                                    <button className='cfade1' value="Close modal">Add to Wishlist</button>
+                                                    <button className='cfade1' value="Close modal" onClick={() => addtocart(modal)}>Add to cart</button>
                                                 </div>
+
 
 
                                                 {/* <p class="product-description">{modal.description}</p> */}
@@ -420,3 +423,4 @@ export default function Tshirt() {
         </>
     )
 }
+

@@ -20,6 +20,8 @@ import Wishlist from "./wishlist";
 import Trending from "./Trending";
 import Forgotpass from "./forgotpass";
 import Sneaker from "./sneaker";
+import Cartcontext from "./cartcontext";
+import Order from "./order";
 
 
 export default function ReactRouter() {
@@ -41,6 +43,9 @@ export default function ReactRouter() {
                 <Route path="/trending" element={<Trending />}> </Route>
                 <Route path="/sneaker" element={<Sneaker />}> </Route>
                 <Route path="/forgot" element={<Forgotpass />}> </Route>
+                <Route path="/cartcontext" element={<Cartcontext />}> </Route>
+                <Route path="/order" element={<Order />}> </Route>
+                <Route path="/order/:id" element={<Order />}> </Route>
             </Routes>
         </BrowserRouter>
     )

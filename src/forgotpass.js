@@ -1,12 +1,29 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-
+import firebase from './firebase';
+import { click } from '@testing-library/user-event/dist/click';
 
 
 export default function Forgotpass() {
 
     
+//  const pressed = () => {
+//     let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha');
+//     let number = '+916353377827';
+//     firebase.auth().signInWithPhoneNumber(number,recaptcha).then(function(e){
+//         let code = prompt('enter the otp','');
+//         if(code == null) return;
+//         e.cofirm(code).then(function(result){
+//             console.log(result.user,'user');
+//             document.querySelector('lable').textContent = result.user.phoneNumber + "number verified";
+//         }).catch((error)=>{
+//             console.log(error);
+//         })
+//     })
+//  }
+    
+   
     const [email, setEmail] = useState('');
 
     const formik = useFormik({
@@ -22,7 +39,7 @@ export default function Forgotpass() {
         }),
 
         onSubmit: values => {
-               console.log(values)            
+            //   pressed();         
         }
     });
 

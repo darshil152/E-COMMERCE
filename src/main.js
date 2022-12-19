@@ -1,8 +1,9 @@
-import React from 'react'
+
 import {
     MDBCarousel,
     MDBCarouselItem,
 } from 'mdb-react-ui-kit';
+import { useEffect, useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import headerlogo from "./assets/headerlogo.svg"
@@ -21,24 +22,49 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import sneker from './assets/sneker.png'
 import apperal from './assets/appeal.png'
 import watch from './assets/watchjpg.jpg'
+import video from "./videos/video3mp4.mp4"
 
 
 
 
-let profilehandle = () => {
-    window.location.href = '/'
-}
 
-const tshirt = () => {
-    window.location.href = '/tshirt'
-}
-const  sneaker = () =>{
-    window.location.href = './sneaker'
-}
+export default function Main() {
+
+    let logindata = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')) : [];
+    let registerdata = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : [];
+    const [currentdata, setCurrentdata] = useState([]);
 
 
+    useEffect(() => {
+        for (let i = 0; i < logindata.length; i++) {
+            if (logindata[i].email == registerdata[i].email) {
+                setCurrentdata(registerdata[i])
+            }
+        }
+    }, [])
 
-export default function main() {
+    
+    
+
+
+    let getdata = JSON.parse(localStorage.getItem('featured'));
+    console.log(getdata);
+
+    let profilehandle = () => {
+        window.location.href = '/'
+    }
+
+    const tshirt = () => {
+        window.location.href = '/tshirt'
+    }
+    const sneaker = () => {
+        window.location.href = './sneaker'
+    }
+
+
+
+
+
     return (
         <div className='main'>
             <div class="container bg-white">
@@ -54,16 +80,40 @@ export default function main() {
                                 <NavDropdown title="Sneakers" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">All Sneakers</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">
-                                        Yezzy 
+                                        Yezzy
                                     </NavDropdown.Item>
                                     <NavDropdown.Item >Jordans</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.3">Dunks</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.3">Grails</NavDropdown.Item>
                                 </NavDropdown>
 
-                                <a class="nav-link active" aria-current="page" href="#">All</a>
-                                <a class="nav-link" href="#">Women's</a>
-                                <a class="nav-link" href="#">Men's</a>
+                                <NavDropdown title="Men's" id="basic-nav-dropdown">
+                                    <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.2">
+                                        Clothing
+                                        <NavDropdown.Item href="https://www.google.com/">Sweatshirts</NavDropdown.Item>
+                                        <NavDropdown.Item href="http://localhost:3000/tshirt">Tshirt</NavDropdown.Item>
+                                        <NavDropdown.Item >shirts</NavDropdown.Item>
+                                        <NavDropdown.Item >Polo tshirt</NavDropdown.Item>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item >Dresses</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Skirts</NavDropdown.Item>
+                                </NavDropdown>
+
+                                <NavDropdown title="Women's" id="basic-nav-dropdown">
+                                    <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.2">
+                                        Clothing
+                                        <NavDropdown.Item href="https://www.google.com/">Sweatshirts</NavDropdown.Item>
+                                        <NavDropdown.Item href="http://localhost:3000/tshirt">Tshirt</NavDropdown.Item>
+                                        <NavDropdown.Item >shirts</NavDropdown.Item>
+                                        <NavDropdown.Item >Polo tshirt</NavDropdown.Item>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item >Jordans</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Dunks</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Grails</NavDropdown.Item>
+                                </NavDropdown>
+
                                 <a class="nav-link" href="#">Kid's</a>
                                 <a class="nav-link" href="#">Accessories</a>
                                 <a class="nav-link" href="#">Cosmetics</a>
@@ -72,7 +122,7 @@ export default function main() {
                     </div>
                     <ul class="navbar-nav icons ms-auto mb-2 mb-lg-0">
                         <li class=" nav-item pe-3">
-                            <img src={profile} className="profile" onClick={profilehandle} />
+                            <img src={currentdata.file} className="profile" onClick={profilehandle} style={{borderRadius:"15px"}} />
                         </li>
                         <li class=" nav-item pe-3">
                             <img src={cart} className="cart" />
@@ -82,7 +132,26 @@ export default function main() {
                 </nav>
             </div>
 
-            <MDBCarousel showIndicators showControls fade>
+            <div className='video'>
+                <video src={video} width="600" height="300" controls="controls" autoplay="true" />
+            </div>
+            {/* 
+            <div className='container'>
+                <div className='row'>
+                    {
+                        getdata.length > 0 && getdata.map((items) => {
+                            return (
+                                <div className='feature'>
+                                    <img src={items.file[0]} style={{width:"100px"}}/>
+                                    <h1>{items.productname}</h1>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div> */}
+
+            {/* <MDBCarousel showIndicators showControls fade>
                 <MDBCarouselItem
                     className='w-100 d-block bannerimage'
                     itemId={1}
@@ -128,7 +197,7 @@ export default function main() {
                         <button className='cfade'>Collections</button>
                     </div>
                 </MDBCarouselItem>
-            </MDBCarousel>
+            </MDBCarousel> */}
 
 
             <main class="grid">

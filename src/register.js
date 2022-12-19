@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { DataArray } from '@mui/icons-material';
 
 
 
@@ -32,11 +33,34 @@ export default function Register() {
             console.log(newregister)
             if (newregister) {
                 registararray = newregister
-                setNewData(newregister)
-                console.log(newregister);
+                setNewData(registararray)
             }
         }
-    }, [[registararray]])
+    }, [registararray]);
+
+
+
+    let arraya = [];
+    const [picure, setPicture] = useState(arraya);
+    const [file, setFile] = useState("")
+
+
+    const getBase64 = (file) => {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            arraya.push(reader.result)
+            console.log(arraya);
+        }
+        setPicture(arraya);
+    }
+
+
+    const uploadImage = (images) => {
+        for (let i = 0; i < images.length; i++) {
+            getBase64(images[i])
+        }
+    }
 
 
     const [name, setName] = useState('')
@@ -44,25 +68,38 @@ export default function Register() {
     const [password, setPassword] = useState('')
     const [cpassword, setCpassword] = useState('')
     const [id, setId] = useState()
-    const [savedata, setNewData] = useState([])
+    const [savedata, setNewData] = useState([]);
+
+    const olddatas = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : []
+    let oldflag = false
 
     const getData = (data) => {
         console.log(data)
         setName(data.name)
+        setFile(data.file)
         setEmail(data.email)
         setPassword(data.password)
         setCpassword(data.confirmpassword)
         setId(data.id)
 
-        let savedata = { name: data.name, email: data.email, password: data.password, cpassword: data.confirmpassword, id: Date.now() }
-        registararray.push(savedata)
-        console.log(registararray)
-        localStorage.setItem('Register', JSON.stringify(registararray));
-        window.location = './'
-        setName('')
-        setEmail('')
-        setPassword('')
-        setCpassword('')
+        let savedata = { name: data.name, email: data.email, password: data.password, cpassword: data.confirmpassword, id: Date.now(), file: arraya }
+        console.log(savedata);
+
+        for (let i = 0; i < olddatas.length; i++) {
+            if (olddatas[i].email == data.email && olddatas[i].name == data.name) {
+                oldflag = true;
+            }
+        }
+
+        if (oldflag) {
+            alert('Please try unique email and name');
+            window.location.href = './register';
+        } else {
+            registararray.push(savedata)
+            setNewData(registararray);
+            localStorage.setItem('Register', JSON.stringify(registararray));
+            window.location = './'
+        }
 
     }
 
@@ -76,7 +113,7 @@ export default function Register() {
             <div className="row">
                 <div className="col-lg-12">
                     <Formik
-                        initialValues={{ name: "", email: "", password: "", confirmpassword: "", }}
+                        initialValues={{ name: "", email: "", password: "", confirmpassword: "", file: arraya, }}
                         validationSchema={LoginSchema}
                         onSubmit={(values, { setSubmitting }) => {
                             getData(values)
@@ -149,6 +186,29 @@ export default function Register() {
                                         {errors.confirmpassword}
                                     </span>
                                 </div>
+
+
+                                <div className="form-group">
+                                    <lable>Profile picture</lable>
+                                    <input id="file" name="file" className={`form-control ${touched.file && errors.file ? "is-invalid" : ""
+                                        }`} type="file" onChange={(event) => {
+                                            uploadImage(event.target.files);
+                                        }} multiple />
+                                    <div className="showimgae">
+                                        {/* {console.log('first', showpreview)} */}
+                                        {/* {
+                                            picure.map((items, i) => {
+                                                return (
+                                                    <>
+                                                        <img src={items} style={{ height: "100px" }} alt='noe' />
+                                                    </>
+                                                )
+                                            })
+                                        }  */}
+                                    </div>
+                                </div>
+
+
 
                                 <button
                                     type="submit"
