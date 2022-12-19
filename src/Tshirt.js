@@ -25,7 +25,7 @@ import Trending from "./Trending";
 import { faL } from "@fortawesome/free-solid-svg-icons";
 import { lightGreen } from "@mui/material/colors";
 
-
+let cart = []
 
 export default function Tshirt() {
 
@@ -190,24 +190,29 @@ export default function Tshirt() {
 
 
     //-------------------add to cart /state lifting---------------//
-    const [cart, setCart] = useState([])
+
     const addtocarts = (data) => {
+        console.log(data)
 
         let oldcart = localStorage.getItem("cartitems") ? JSON.parse(localStorage.getItem('cartitems')) : [];
-
-        let flag = false;
+        console.log('old :: ', oldcart)
+        let ismatched = false;
 
         for (let i = 0; i < oldcart.length; i++) {
-            if (oldcart[i].id === data.id) {
-                flag = true
+            if (oldcart[i] == data) {
+                ismatched = true
+                console.log('come')
             }
         }
-        if (!flag) {
+        if (ismatched) {
+            alert('already added')
+        } else {
             cart.push(data)
             setWishlist1(cart)
+            console.log('cart :: ', cart)
             localStorage.setItem('cartitems', JSON.stringify(cart))
         }
-        console.log(wishlist1)
+        console.log(cart, '-----')
     }
 
     //----------------show selected size ----------------------------//
@@ -219,7 +224,7 @@ export default function Tshirt() {
     const size = (e) => {
         setValue(e.target.value);
     };
-    console.log(value);
+    // console.log(value);
 
 
 
@@ -236,8 +241,8 @@ export default function Tshirt() {
         //   window.location.href = "./order/" + data.id  
 
     }
-    console.log(after);
-    console.log(total);
+    // console.log(after);
+    // console.log(total);
 
 
     //-------------------Wishlist ------------------------------------//
@@ -317,7 +322,7 @@ export default function Tshirt() {
                                         <div class="product-content">
                                             <h3 class="title">{item.productname}</h3>
                                             <div class="price">₹{item.price}</div>
-                                            <a class="add-to-cart" onClick={() => addtocarts(item)} >add to cart</a>
+                                            <a class="add-to-cart" onClick={() => addtocarts(item.id)} >add to cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -423,4 +428,3 @@ export default function Tshirt() {
         </>
     )
 }
-

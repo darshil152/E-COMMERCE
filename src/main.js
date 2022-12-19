@@ -43,8 +43,6 @@ export default function Main() {
         }
     }, [])
 
-    
-    
 
 
     let getdata = JSON.parse(localStorage.getItem('featured'));
@@ -122,7 +120,7 @@ export default function Main() {
                     </div>
                     <ul class="navbar-nav icons ms-auto mb-2 mb-lg-0">
                         <li class=" nav-item pe-3">
-                            <img src={currentdata.file} className="profile" onClick={profilehandle} style={{borderRadius:"15px"}} />
+                            <img src={currentdata.file} className="profile" onClick={profilehandle} style={{ borderRadius: "15px" }} />
                         </li>
                         <li class=" nav-item pe-3">
                             <img src={cart} className="cart" />

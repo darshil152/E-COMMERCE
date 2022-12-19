@@ -45,6 +45,7 @@ export default function ReactRouter() {
                 <Route path="/forgot" element={<Forgotpass />}> </Route>
                 <Route path="/cartcontext" element={<Cartcontext />}> </Route>
                 <Route path="/order" element={<Order />}> </Route>
+                <Route path="/cart" element={<Cart />}> </Route>
                 <Route path="/order/:id" element={<Order />}> </Route>
             </Routes>
         </BrowserRouter>
