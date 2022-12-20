@@ -26,6 +26,7 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 import { lightGreen } from "@mui/material/colors";
 
 
+let cart =  [];
 
 export default function Tshirt() {
 
@@ -190,24 +191,29 @@ export default function Tshirt() {
 
 
     //-------------------add to cart /state lifting---------------//
-    const [cart, setCart] = useState([])
+   
     const addtocarts = (data) => {
+        console.log(data)
 
         let oldcart = localStorage.getItem("cartitems") ? JSON.parse(localStorage.getItem('cartitems')) : [];
-
-        let flag = false;
+        console.log('old :: ', oldcart)
+        let ismatched = false;
 
         for (let i = 0; i < oldcart.length; i++) {
-            if (oldcart[i].id === data.id) {
-                flag = true
+            if (oldcart[i] == data) {
+                ismatched = true
+                console.log('come')
             }
         }
-        if (!flag) {
+        if (ismatched) {
+            alert('already added')
+        } else {
             cart.push(data)
             setWishlist1(cart)
+            console.log('cart :: ', cart)
             localStorage.setItem('cartitems', JSON.stringify(cart))
         }
-        console.log(wishlist1)
+        console.log(cart, '-----')
     }
 
     //----------------show selected size ----------------------------//
@@ -287,7 +293,7 @@ export default function Tshirt() {
     return (
         <>
             <div className='container'>
-                <div class="row">
+                <div class="row abcd">
                     <h1 className='heading1'>Tshirts</h1>
                     <div className="soring">
                         <label className="price">Price:</label>
@@ -317,7 +323,7 @@ export default function Tshirt() {
                                         <div class="product-content">
                                             <h3 class="title">{item.productname}</h3>
                                             <div class="price">₹{item.price}</div>
-                                            <a class="add-to-cart" onClick={() => addtocarts(item)} >add to cart</a>
+                                            <a class="add-to-cart" onClick={() => addtocarts(item.id)} >add to cart</a>
                                         </div>
                                     </div>
                                 </div>

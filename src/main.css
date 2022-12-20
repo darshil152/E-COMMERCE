@@ -215,3 +215,20 @@ video {
   height: 100%;
   width: 100%;
 }
+/* 
+.row>* {
+  height: 490px;
+  flex-shrink: 0;
+  width: 25%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * .5);
+  padding-left: calc(var(--bs-gutter-x) * .5);
+  margin-top: var(--bs-gutter-y);
+} */
+
+h1.added{
+  margin-bottom: 35px;
+}
+.container-fluid{
+  margin-bottom: 30px;
+}

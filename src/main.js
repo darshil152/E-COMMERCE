@@ -32,6 +32,7 @@ export default function Main() {
 
     let logindata = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')) : [];
     let registerdata = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : [];
+    let containdata = localStorage.getItem('productdetail') ? JSON.parse(localStorage.getItem('productdetail')) : [];
     const [currentdata, setCurrentdata] = useState([]);
 
 
@@ -43,8 +44,8 @@ export default function Main() {
         }
     }, [])
 
-    
-    
+
+
 
 
     let getdata = JSON.parse(localStorage.getItem('featured'));
@@ -58,10 +59,8 @@ export default function Main() {
         window.location.href = '/tshirt'
     }
     const sneaker = () => {
-        window.location.href = './sneaker'
+        window.location.href = './shoes'
     }
-
-
 
 
 
@@ -122,7 +121,7 @@ export default function Main() {
                     </div>
                     <ul class="navbar-nav icons ms-auto mb-2 mb-lg-0">
                         <li class=" nav-item pe-3">
-                            <img src={currentdata.file} className="profile" onClick={profilehandle} style={{borderRadius:"15px"}} />
+                            <img src={currentdata.file} className="profile" onClick={profilehandle} style={{ borderRadius: "15px" }} />
                         </li>
                         <li class=" nav-item pe-3">
                             <img src={cart} className="cart" />
@@ -234,6 +233,26 @@ export default function Main() {
                     </a>
                 </section>
             </main>
+
+
+            {/* <div className='latest'>
+            <h1 className='added'>Latest added</h1>
+                <div className='container-fluid'>
+                    <div className='row' >
+                        {
+                            containdata.length > 0 && containdata.reverse().map((items) => {
+                                return (
+                            <div className='col-sm'>
+                                    <img src={items.file[0]} />
+                            </div>
+                                )
+                            })
+                        }
+                    </div>
+
+                </div>
+            </div> */}
+
 
             <div class="slider">
                 <div class="slide-track">

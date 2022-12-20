@@ -11,6 +11,7 @@ import './shoes.css';
 import './cart.css';
 import './sneaker.css'
 import './order.css'
+import './view.css'
 
 
 function App() {

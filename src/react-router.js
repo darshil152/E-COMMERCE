@@ -22,6 +22,8 @@ import Forgotpass from "./forgotpass";
 import Sneaker from "./sneaker";
 import Cartcontext from "./cartcontext";
 import Order from "./order";
+import View from "./view";
+
 
 
 export default function ReactRouter() {
@@ -46,6 +48,7 @@ export default function ReactRouter() {
                 <Route path="/cartcontext" element={<Cartcontext />}> </Route>
                 <Route path="/order" element={<Order />}> </Route>
                 <Route path="/order/:id" element={<Order />}> </Route>
+                <Route path="/view/:id" element={<View />}> </Route>
             </Routes>
         </BrowserRouter>
     )
