@@ -24,6 +24,7 @@ import Cartcontext from "./cartcontext";
 import Order from "./order";
 import View from "./view";
 import Header2 from "./header2";
+import New from "./new";
 
 
 
@@ -34,6 +35,7 @@ export default function ReactRouter() {
                 <Route path="/" element={<Login />}> </Route>
                 <Route path="/register" element={<Register />}> </Route>
                 <Route path="/table" element={<Table />}> </Route>
+                <Route path="/new" element={<New />}> </Route>
                 <Route path="/admin" element={<Admin />}> </Route>
                 <Route path="/producttable" element={<Producttable />}> </Route>
                 <Route path="/addproduct/:id" element={<Addproduct />}> </Route>

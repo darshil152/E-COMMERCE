@@ -1,10 +1,14 @@
 import { CardTravelSharp, CloseFullscreen, ImportExport } from '@mui/icons-material'
 import { iconButtonClasses } from '@mui/material';
 import React, { useState, useEffect } from 'react'
+import { createContext } from 'react';
 import Table from 'react-bootstrap/Table';
 
 
 export default function Cart() {
+
+
+  const cartcontext = React.createContext()
 
   const newdata = localStorage.getItem('cartitems') ? JSON.parse(localStorage.getItem('cartitems')) : [];
   const olddata = localStorage.getItem('productdetail') ? JSON.parse(localStorage.getItem('productdetail')) : [];
@@ -21,7 +25,7 @@ export default function Cart() {
       }
     }
   }, [])
-  
+
   console.log(data)
 
   // const decreaseQty = (data) => {
@@ -96,6 +100,10 @@ export default function Cart() {
           })
         }
       </div> */}
+
+      <cartcontext.Provider value={data}>
+
+      </cartcontext.Provider>
     </>
   )
 }

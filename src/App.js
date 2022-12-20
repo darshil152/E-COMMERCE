@@ -13,12 +13,15 @@ import './cart.css';
 import './sneaker.css'
 import './order.css'
 import './view.css'
+import { ContextStore } from './cartcontext';
 
 
 function App() {
   return (
     <div className="App">
-      <ReactRouter />
+      <ContextStore>
+        <ReactRouter />
+      </ContextStore>
     </div>
   );
 }
