@@ -46,8 +46,6 @@ export default function Main() {
 
 
 
-
-
     let getdata = JSON.parse(localStorage.getItem('featured'));
     console.log(getdata);
 

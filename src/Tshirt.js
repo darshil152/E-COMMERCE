@@ -26,7 +26,6 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 import { lightGreen } from "@mui/material/colors";
 
 
-let cart =  [];
 
 export default function Tshirt() {
 
@@ -191,7 +190,7 @@ export default function Tshirt() {
 
 
     //-------------------add to cart /state lifting---------------//
-   
+    const [cart, setCart] = useState([])
     const addtocarts = (data) => {
         console.log(data)
 
@@ -225,7 +224,7 @@ export default function Tshirt() {
     const size = (e) => {
         setValue(e.target.value);
     };
-    console.log(value);
+    // console.log(value);
 
 
 
@@ -242,8 +241,8 @@ export default function Tshirt() {
         //   window.location.href = "./order/" + data.id  
 
     }
-    console.log(after);
-    console.log(total);
+    // console.log(after);
+    // console.log(total);
 
 
     //-------------------Wishlist ------------------------------------//
@@ -429,4 +428,3 @@ export default function Tshirt() {
         </>
     )
 }
-

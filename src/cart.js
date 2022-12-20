@@ -1,16 +1,40 @@
 import { CardTravelSharp, CloseFullscreen, ImportExport } from '@mui/icons-material'
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 
 
 export default function Cart() {
 
+  const items = localStorage.getItem('cartitems') ? JSON.parse(localStorage.getItem('cartitems')) : [];
+  const items1 = localStorage.getItem('productdetail') ? JSON.parse(localStorage.getItem('productdetail')) : [];
+  const [data, setData] = useState([]);
   const [counter, setCounter] = useState(1);
 
-  const newdata = localStorage.getItem('cartitems') ? JSON.parse(localStorage.getItem('cartitems')) : [];
-  const old = localStorage.getItem('productdetail') ? JSON.parse(localStorage.getItem('productdetail')) : [];
-  const [data, setData] = useState([])
-  const [currentdata, setCurrentdata] = useState([]);
+
+
+  useEffect(() => {
+    console.log(items1)
+    for (let i = 0; i < items.length; i++) {
+      if (items[i] == items1[i].id) {
+        setData(items1[i])
+        console.log(data)
+      }
+    }
+  }, [])
+
+
+  const decreaseQty = (data) => {
+    console.log(data);
+  }
+
+  //-----------------------increment decrement --------------------------//
+
+  const increase = (data) => {
+    setCounter(count => count + 1);
+
+    const totalPrice = data * (counter + 1)
+    console.log(totalPrice);
+  };
 
 
 
@@ -72,7 +96,7 @@ export default function Cart() {
     <>
       {/* <div>
         {
-          items.length > 0 && items.map((datas) => {
+          data.length > 0 && data.map((datas) => {
             return (
               <div className='container'>
                 <div className='row'>
