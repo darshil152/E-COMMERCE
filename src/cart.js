@@ -1,45 +1,60 @@
 import { CardTravelSharp, CloseFullscreen, ImportExport } from '@mui/icons-material'
-import React, { useState } from 'react'
+import { iconButtonClasses } from '@mui/material';
+import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 
 
 export default function Cart() {
 
-  const [items, setItems] = useState(localStorage.getItem('cartitems') ? JSON.parse(localStorage.getItem('cartitems')) : []);
+  const newdata = localStorage.getItem('cartitems') ? JSON.parse(localStorage.getItem('cartitems')) : [];
+  const olddata = localStorage.getItem('productdetail') ? JSON.parse(localStorage.getItem('productdetail')) : [];
+  const [data, setData] = useState({});
+  let ische = false
   const [counter, setCounter] = useState(1);
 
 
-  const decreaseQty = (data) => {
-    console.log(data);
-  }
+
+  useEffect(() => {
+    for (let i = 0; i < olddata.length; i++) {
+      if (newdata[i] == olddata[i].id) {
+        setData(olddata[i])
+      }
+    }
+  }, [])
+  
+  console.log(data)
+
+  // const decreaseQty = (data) => {
+  //   console.log(data);
+  // }
 
   //-----------------------increment decrement --------------------------//
 
-  const increase = (data) => {
-    setCounter(count => count + 1);
+  // const increase = (data) => {
+  //   setCounter(count => count + 1);
 
-    const totalPrice = data * (counter + 1)
-    console.log(totalPrice);
-  };
-
-
-  const decrease = (data) => {
-    if (counter > 0) {
-      setCounter(count => count - 1);
-      const totalPrice2 = data * (counter - 1)
-      console.log(totalPrice2);
-    }
-  };
-  const reset = (data) => {
-    setCounter(1)
-    const totalPrice3 = data * counter
-    console.log(totalPrice3);
-  }
+  //   const totalPrice = data * (counter + 1)
+  //   console.log(totalPrice);
+  // };
 
 
-  const sendprice = (data) => {
-    console.log("Total Price", data * items.price)
-  }
+  // const decrease = (data) => {
+  //   if (counter > 0) {
+  //     setCounter(count => count - 1);
+  //     const totalPrice2 = data * (counter - 1)
+  //     console.log(totalPrice2);
+  //   }
+  // };
+  // const reset = (data) => {
+  //   setCounter(1)
+  //   const totalPrice3 = data * counter
+  //   console.log(totalPrice3);
+  // }
+
+
+  // const sendprice = (data) => {
+  //   console.log("Total Price", data * items.price)
+  // }
 
 
   // const clear = (data) =>{
@@ -54,9 +69,9 @@ export default function Cart() {
 
   return (
     <>
-      <div>
+      {/* <div>
         {
-          items.length > 0 && items.map((datas) => {
+          data.length > 0 && data.map((datas) => {
             return (
               <div className='container'>
                 <div className='row'>
@@ -80,7 +95,7 @@ export default function Cart() {
             )
           })
         }
-      </div>
+      </div> */}
     </>
   )
 }

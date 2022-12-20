@@ -4,6 +4,7 @@ import ReactRouter from './react-router';
 import './login.css';
 import './admin.css';
 import './header.css';
+import './header2.css';
 import './addproduct.css';
 import './main.css';
 import './tshirt.css';

@@ -1,6 +1,7 @@
 import { WindowSharp } from '@mui/icons-material';
 import React from 'react'
 import { useState } from 'react'
+import Header2 from './header2';
 
 
 export default function Shoes() {
@@ -14,6 +15,9 @@ export default function Shoes() {
     console.log(shoesdata);
     return (
         <div className='abc'>
+        <Header2 >
+            
+        </Header2>
             <div className='grid'>
                 {
                     shoesdata.length > 0 && shoesdata.map((items) => {
