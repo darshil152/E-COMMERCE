@@ -1,0 +1,27 @@
+.images{
+    float:left; 
+    /* background:Green; */
+    width:50%;
+    height:280px;
+}
+.detail{
+    float:left;
+    /* background:blue; */
+    width:25%;
+    height:280px;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+h5.name{
+    font-size: 20px;
+}
+h5.sku{
+    font-size: 15px;
+}
+
+.conatainer.gth {
+    margin-top: 50px;
+}
+h1.bag{
+    margin-bottom: 50px;
+}

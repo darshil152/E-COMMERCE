@@ -1,12 +1,31 @@
-import { CurrencyRupee } from '@mui/icons-material';
+import { CurrencyRupee, MarkAsUnread } from '@mui/icons-material';
+import { margin } from '@mui/system';
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Zoom from 'react-medium-image-zoom'
 
+let newdata = []
+let count = 0
+let size  
 
 export default function View() {
 
     let [currentdata, setCurrentdata] = useState([]);
+    const [final, setFinal] = useState([]);
+
+
+    useEffect(() => {
+        count++
+        if (count == 1) {
+            const getdata = localStorage.getItem('sneakersdata') ? JSON.parse(localStorage.getItem('sneakersdata')) : [];
+            if (getdata) {
+                newdata = getdata
+                setFinal(newdata)
+            }
+        }
+    }, [newdata])
+
+
 
     useEffect(() => {
         let url = window.location.href
@@ -19,8 +38,21 @@ export default function View() {
                 setCurrentdata(retrivedata[i])
         }
     }, [])
-
     console.log(currentdata);
+
+
+
+    const snekerdata = (data) => {
+        newdata.push(data)
+        setFinal(newdata)
+        localStorage.setItem('sneakersdata', JSON.stringify(newdata))
+        console.log(final);
+    }
+
+
+    const choosesize = (e) => {
+        console.log(e);
+    }
 
     return (
         <div className='container-fluid'>
@@ -40,31 +72,37 @@ export default function View() {
                     <h4 className='sku'>SKU : {currentdata.sku}</h4>
                     <h1 className='size'>Us Size</h1>
 
+                    {/* 
+                    <div>
+                        <label for="size" className='choose'>Choose a size:</label>
+                        <select name="sizes" id="sizes">
+                            <option value="7">M 7 /W 7</option>
+                            <option value="7.5">M 7.5 /W 7.5</option>
+                            <option value="8">M 8 /W 8</option>
+                            <option value="8.5">M 8.5 /W 8.5</option>
+                            <option value="9">M 9 /W 9</option>
+                            <option value="9.5">M 9.5 /W .59</option>
+                            <option value="10">M 10 /W 10</option>
+                            <option value="10.5">M 10.5 /W 10.5</option>
+                            <option value="11">M 11 /W 11</option>
+                            <option value="11.5">M 11.5 /W 11.5</option>
+                        </select>
+                    </div> */}
 
-                    <div class="btn-group">
-                        <button className='men' value="M 7 / W 7" >M 7 / W 7</button>
-                        <button className='women' value="M 7 / W 7" >M 7.5 / W 7.5</button>
-                    </div>
-                    <div class="btn-group">
-                        <button className='men' value="M 8 / W ">M 8/ W 8</button>
-                        <button className='women' value="M 8.5 / W 8.5">M 8.5 / W 8.5</button>
-                    </div>
-                    <div class="btn-group">
-                        <button className='men' value="M 9 / W 9">M 9 / W 9</button>
-                        <button className='women' value="M 9.5 / W 9.5">M 9.5 / W 6.5</button>
-                    </div>
-                    <div class="btn-group">
-                        <button className='men' value="M 10 / W 10">M 10 / W 10</button>
-                        <button className='women' value="M 10.5 / W 10.5">M 10.5 / W 10.5</button>
-                    </div>
-                    <div class="btn-group">
-                        <button className='men' value="M 11 / W 11">M 11 / W 11</button>
-                        <button className='women' value="M 11.5 / W 11.5">M 11.5 / W 11.5</button>
-                    </div>
 
+                    <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
+                        <input type="radio" value="7" name="gender" /> Male
+                        <input type="radio" value="7.5" name="gender" /> Female
+                        <input type="radio" value="8" name="gender" /> Other
+                        <input type="radio" value="8.5" name="gender" /> Male
+                        <input type="radio" value="9" name="gender" /> Female
+                        <input type="radio" value="9.5" name="gender" /> Other
+                        <input type="radio" value="10" name="gender" /> Female
+                        <input type="radio" value="10." name="gender" /> Other
+                    </div>
 
                     <div class="mb6-sm prl0-lg fs14-sm">
-                        <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button ">₹{currentdata.price}</button>
+                        <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => snekerdata(currentdata)}>₹{currentdata.price}</button>
                     </div>
                 </div>
 

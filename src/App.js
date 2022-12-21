@@ -13,15 +13,18 @@ import './cart.css';
 import './sneaker.css'
 import './order.css'
 import './view.css'
-import { ContextStore } from './cartcontext';
+import './new.css'
+
+import { UserProvider } from './cartcontext';
+import {data} from './cartcontext';
 
 
 function App() {
   return (
     <div className="App">
-      <ContextStore>
+      <UserProvider value={[data]}>
         <ReactRouter />
-      </ContextStore>
+      </UserProvider>
     </div>
   );
 }

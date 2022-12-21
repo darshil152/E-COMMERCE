@@ -1,26 +1,11 @@
-import React, { Component } from 'react'
-const Context = React.createContext('1')
-export default class ContextStore extends Component {
-  constructor(props) {
-    super(props)
+import React from "react";
 
-    this.state = {
-      cartData: 'asdaghsdhs',
-    }
-  }
 
-  handleCart = (data) => {
-    console.log('come')
-    this.setState({ cartData: data })
-  }
+const UserContext = React.createContext()
 
-  render() {
-    return (
-      <div>
-        <Context.Provider value={{ ...this.state, handleCart: this.handleCart }} >
-          {this.props.children}
-        </Context.Provider>
-      </div>
-    )
-  }
-}
+const UserProvider = UserContext.Provider
+const UserConsumer = UserContext.Consumer
+
+const data= JSON.parse(localStorage.getItem('sneakersdata'))
+
+export {UserProvider,UserConsumer,data,UserContext}
