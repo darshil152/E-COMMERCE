@@ -6,7 +6,7 @@ import Zoom from 'react-medium-image-zoom'
 
 let newdata = []
 let count = 0
-let size  
+let size
 
 export default function View() {
 
@@ -43,17 +43,32 @@ export default function View() {
 
 
     const snekerdata = (data) => {
-        newdata.push(data)
-        setFinal(newdata)
-        localStorage.setItem('sneakersdata', JSON.stringify(newdata))
+        console.log(data);
+
+        const maindata = localStorage.getItem('sneakers') ? JSON.parse(localStorage.getItem('sneakers')) : [];
+        let ismatched = false;
+
+        for (let i = 0; i < maindata.length; i++) {
+            if (maindata[i].id == data.id) {
+                ismatched = true
+            }
+        } if (!ismatched) {
+            alert('You already added this prodect');
+        } else {
+            newdata.push(data)
+            setFinal(newdata)
+            localStorage.setItem('sneakersdata', JSON.stringify(newdata))
+        }
         console.log(final);
     }
+
 
 
     const choosesize = (e) => {
         console.log(e);
     }
 
+    
     return (
         <div className='container-fluid'>
             <div className='row abc'>
@@ -71,8 +86,8 @@ export default function View() {
                     <h4 className='description'>{currentdata.description}</h4>
                     <h4 className='sku'>SKU : {currentdata.sku}</h4>
                     <h1 className='size'>Us Size</h1>
-
-                    {/* 
+   
+                    {/*                     
                     <div>
                         <label for="size" className='choose'>Choose a size:</label>
                         <select name="sizes" id="sizes">
@@ -87,19 +102,19 @@ export default function View() {
                             <option value="11">M 11 /W 11</option>
                             <option value="11.5">M 11.5 /W 11.5</option>
                         </select>
-                    </div> */}
+                    </div>  */}
 
 
-                    <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
-                        <input type="radio" value="7" name="gender" /> Male
-                        <input type="radio" value="7.5" name="gender" /> Female
-                        <input type="radio" value="8" name="gender" /> Other
-                        <input type="radio" value="8.5" name="gender" /> Male
-                        <input type="radio" value="9" name="gender" /> Female
-                        <input type="radio" value="9.5" name="gender" /> Other
-                        <input type="radio" value="10" name="gender" /> Female
-                        <input type="radio" value="10." name="gender" /> Other
-                    </div>
+                     <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
+                        <input type="radio" value="7" name="gender" />   7 Us
+                        <input type="radio" value="7.5" name="gender"/>  7.5 Us
+                        <input type="radio" value="8" name="gender" />   8 Us
+                        <input type="radio" value="8.5" name="gender"/>  8.5 Us
+                        <input type="radio" value="9" name="gender"/>    9 US
+                        <input type="radio" value="9.5" name="gender"/>  9.5 Us
+                        <input type="radio" value="10" name="gender"/>   10 Us
+                        <input type="radio" value="10.5" name="gender"/> 10.5 US
+                    </div>  
 
                     <div class="mb6-sm prl0-lg fs14-sm">
                         <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => snekerdata(currentdata)}>₹{currentdata.price}</button>

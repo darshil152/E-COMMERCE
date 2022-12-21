@@ -12,6 +12,7 @@ export default class New extends Component {
         }
     }
 
+
     click = (id) => {
         const newPeople = this.state.people.filter((items) => items.id !== id);
         this.setState({ people: newPeople })
@@ -19,10 +20,10 @@ export default class New extends Component {
         // window.location.href = './new'
     }
 
+    
     render() {
         return (
             <>
-
                 <div className='conatainer gth'>
                     <div className='row'>
                         <div className='col-sm'>
