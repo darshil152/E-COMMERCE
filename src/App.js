@@ -14,17 +14,15 @@ import './sneaker.css'
 import './order.css'
 import './view.css'
 import './new.css'
-
-import { UserProvider } from './cartcontext';
-import {data} from './cartcontext';
-
+import Cartcontext from './cartcontext';
 
 function App() {
   return (
     <div className="App">
-      <UserProvider value={[data]}>
+      <Cartcontext>
         <ReactRouter />
-      </UserProvider>
+      </Cartcontext>
+
     </div>
   );
 }

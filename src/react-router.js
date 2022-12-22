@@ -20,7 +20,7 @@ import Wishlist from "./wishlist";
 import Trending from "./Trending";
 import Forgotpass from "./forgotpass";
 import Sneaker from "./sneaker";
-// import UserConsumer from "./cartcontext
+import Cartcontext from "./cartcontext";
 import Order from "./order";
 import View from "./view";
 import Header2 from "./header2";
@@ -48,13 +48,13 @@ export default function ReactRouter() {
                 <Route path="/trending" element={<Trending />}> </Route>
                 <Route path="/sneaker" element={<Sneaker />}> </Route>
                 <Route path="/forgot" element={<Forgotpass />}> </Route>
-                {/* <Route path="/cartcontext" element={<Cartcontext />}> </Route> */}
+                <Route path="/cartcontext" element={<Cartcontext />}> </Route>
                 <Route path="/order" element={<Order />}> </Route>
                 <Route path="/cart" element={<Cart />}> </Route>
                 <Route path="/Header2" element={<Header2 />}> </Route>
                 <Route path="/order/:id" element={<Order />}> </Route>
                 <Route path="/view/:id" element={<View />}> </Route>
-                
+
             </Routes>
         </BrowserRouter>
     )
