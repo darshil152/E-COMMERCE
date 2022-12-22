@@ -1,30 +1,18 @@
-import { CurrencyRupee, MarkAsUnread } from '@mui/icons-material';
+import { faL } from '@fortawesome/free-solid-svg-icons';
+import { AltRoute, CurrencyRupee, MarkAsUnread } from '@mui/icons-material';
 import { margin } from '@mui/system';
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Zoom from 'react-medium-image-zoom'
 
-let newdata = []
-let count = 0
-let size
 
+
+let cartdata = [];
+let count = 0;
 export default function View() {
 
     let [currentdata, setCurrentdata] = useState([]);
     const [final, setFinal] = useState([]);
-
-
-    useEffect(() => {
-        count++
-        if (count == 1) {
-            const getdata = localStorage.getItem('sneakersdata') ? JSON.parse(localStorage.getItem('sneakersdata')) : [];
-            if (getdata) {
-                newdata = getdata
-                setFinal(newdata)
-            }
-        }
-    }, [newdata])
-
 
 
     useEffect(() => {
@@ -38,36 +26,45 @@ export default function View() {
                 setCurrentdata(retrivedata[i])
         }
     }, [])
-    console.log(currentdata);
 
 
 
-    const snekerdata = (data) => {
-        console.log(data);
-
-        const maindata = localStorage.getItem('sneakers') ? JSON.parse(localStorage.getItem('sneakers')) : [];
-        let ismatched = false;
-
-        for (let i = 0; i < maindata.length; i++) {
-            if (maindata[i].id == data.id) {
-                ismatched = true
-            }
-        } if (!ismatched) {
-            alert('You already added this prodect');
-        } else {
-            newdata.push(data)
-            setFinal(newdata)
-            localStorage.setItem('sneakersdata', JSON.stringify(newdata))
+    useEffect(() => {
+        count++
+        if (count == 1) {
+            let abc = JSON.parse(localStorage.getItem('finaldata'))
+            if (abc) {
+                cartdata = abc
+                setFinal(cartdata)
+                console.log(final);
+            } 
         }
-        console.log(final);
+    }, [cartdata])
+
+
+    const sendtocart = (data) => {
+
+        let retry = localStorage.getItem('sneakers') ? localStorage.getItem('sneakers') : [];
+        let che = false;
+
+        for (let i = 0; i < retry.length; i++) {
+            if (retry[i].id === data) {
+                che = true;
+            }
+        } if (!che) {
+            cartdata.push(data)
+            setFinal(cartdata)
+            localStorage.setItem('finaldata', JSON.stringify(cartdata));
+        } else {
+            alert('ajsdajkfhg')
+        }
     }
 
-
-
-    const choosesize = (e) => {
-        console.log(e);
+    const [value, setValue] = React.useState('');
+    const sizechange = (event) => {
+        setValue(event.target.value)
     }
-
+    console.log(value);
     
     return (
         <div className='container-fluid'>
@@ -86,38 +83,39 @@ export default function View() {
                     <h4 className='description'>{currentdata.description}</h4>
                     <h4 className='sku'>SKU : {currentdata.sku}</h4>
                     <h1 className='size'>Us Size</h1>
-   
-                    {/*                     
+
+
                     <div>
                         <label for="size" className='choose'>Choose a size:</label>
-                        <select name="sizes" id="sizes">
+                        <select name="sizes" id="sizes" value={value}  onChange={sizechange}>
                             <option value="7">M 7 /W 7</option>
                             <option value="7.5">M 7.5 /W 7.5</option>
                             <option value="8">M 8 /W 8</option>
                             <option value="8.5">M 8.5 /W 8.5</option>
                             <option value="9">M 9 /W 9</option>
-                            <option value="9.5">M 9.5 /W .59</option>
+                            <option value="9.5">M 9.5 /W 9.5</option>
                             <option value="10">M 10 /W 10</option>
                             <option value="10.5">M 10.5 /W 10.5</option>
                             <option value="11">M 11 /W 11</option>
                             <option value="11.5">M 11.5 /W 11.5</option>
                         </select>
-                    </div>  */}
+                        <p style={{color:"black"}}>You Select {value} Us Size</p>
+                    </div>
 
 
-                     <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
+                    {/* <div className='ussize' onChange={sizechange}>
                         <input type="radio" value="7" name="gender" />   7 Us
-                        <input type="radio" value="7.5" name="gender"/>  7.5 Us
+                        <input type="radio" value="7.5" name="gender" />  7.5 Us
                         <input type="radio" value="8" name="gender" />   8 Us
-                        <input type="radio" value="8.5" name="gender"/>  8.5 Us
-                        <input type="radio" value="9" name="gender"/>    9 US
-                        <input type="radio" value="9.5" name="gender"/>  9.5 Us
-                        <input type="radio" value="10" name="gender"/>   10 Us
-                        <input type="radio" value="10.5" name="gender"/> 10.5 US
-                    </div>  
+                        <input type="radio" value="8.5" name="gender" />  8.5 Us
+                        <input type="radio" value="9" name="gender" />    9 US
+                        <input type="radio" value="9.5" name="gender" />  9.5 Us
+                        <input type="radio" value="10" name="gender" />   10 Us
+                        <input type="radio" value="10.5" name="gender" /> 10.5 US
+                    </div> */}
 
                     <div class="mb6-sm prl0-lg fs14-sm">
-                        <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => snekerdata(currentdata)}>₹{currentdata.price}</button>
+                        <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => sendtocart(currentdata.id)}>₹{currentdata.price}</button>
                     </div>
                 </div>
 

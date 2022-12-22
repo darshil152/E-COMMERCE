@@ -1,11 +1,23 @@
-import React from "react";
+import React, { Component } from 'react'
+
+export const UserContext = React.createContext()
+
+export default class Cartcontext extends Component {
+
+  state = {
+    data: localStorage.getItem('sneakers') ? localStorage.getItem('sneakers') : [],
+  }
 
 
-const UserContext = React.createContext()
 
-const UserProvider = UserContext.Provider
-const UserConsumer = UserContext.Consumer
-
-const data= JSON.parse(localStorage.getItem('sneakersdata'))
-
-export {UserProvider,UserConsumer,data,UserContext}
+  render() {
+    return (
+      <>
+        <UserContext.Provider
+          value={{ ...this.state }}>
+          {this.props.children}
+        </UserContext.Provider>
+      </>
+    )
+  }
+}

@@ -247,23 +247,23 @@ export default function Tshirt() {
 
     //-------------------Wishlist ------------------------------------//
     const [wishlist1, setWishlist1] = useState([])
-    const addto = (data) => {
+    // const addto = (data) => {
 
-        let oldwishlsit = localStorage.getItem("wishlist") ? JSON.parse(localStorage.getItem('wishlist')) : []
-        let flag = false;
+    //     let oldwishlsit = localStorage.getItem("wishlist") ? JSON.parse(localStorage.getItem('wishlist')) : []
+    //     let flag = false;
 
-        for (let i = 0; i < oldwishlsit.length; i++) {
-            if (oldwishlsit[i].id === data.id) {
-                flag = true
-            }
-        }
-        if (!flag) {
-            wishlist1.push(data)
-            setWishlist1(wishlist1)
-            localStorage.setItem('wishlist', JSON.stringify(wishlist1))
-        }
-        console.log(wishlist1)
-    }
+    //     for (let i = 0; i < oldwishlsit.length; i++) {
+    //         if (oldwishlsit[i].id === data.id) {
+    //             flag = true
+    //         }
+    //     }
+    //     if (!flag) {
+    //         wishlist1.push(data)
+    //         setWishlist1(wishlist1)
+    //         localStorage.setItem('wishlist', JSON.stringify(wishlist1))
+    //     }
+    //     console.log(wishlist1)
+    // }
     //------------------------Trending-------------------------------//
     // const [trending, setTrending] = useState([])
     // const [flag,setFlag] = useState(false)
@@ -315,7 +315,7 @@ export default function Tshirt() {
                                             </a>
                                             <span class="product-discount-label">{item.discount}%</span>
                                             <ul class="product-links">
-                                                <li><a href="#" data-tip="Add to Wishlist" onClick={() => addto(item)}><i class="fas fa-heart" ></i></a></li>
+                                                <li><a href="#" data-tip="Add to Wishlist" ><i class="fas fa-heart" ></i></a></li>
                                                 <li><a href="#" data-tip="Quick View" value="related" onClick={() => openModal(item)}><i class="fa fa-search" ></i></a></li>
                                             </ul>
                                         </div>
