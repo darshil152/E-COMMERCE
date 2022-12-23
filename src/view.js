@@ -4,7 +4,8 @@ import { margin } from '@mui/system';
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Zoom from 'react-medium-image-zoom'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 let cartdata = [];
@@ -28,7 +29,6 @@ export default function View() {
     }, [])
 
 
-
     useEffect(() => {
         count++
         if (count == 1) {
@@ -37,35 +37,38 @@ export default function View() {
                 cartdata = abc
                 setFinal(cartdata)
                 console.log(final);
-            } 
+            }
         }
     }, [cartdata])
 
 
     const sendtocart = (data) => {
-
-        let retry = localStorage.getItem('sneakers') ? localStorage.getItem('sneakers') : [];
+        let jodddd = localStorage.getItem('finaldata') ? JSON.parse(localStorage.getItem('finaldata')) : [];
         let che = false;
+        console.log(jodddd);
 
-        for (let i = 0; i < retry.length; i++) {
-            if (retry[i].id === data) {
+        for (let i = 0; i < jodddd.length; i++) {
+            if (jodddd[i] == data) {
                 che = true;
             }
-        } if (!che) {
+        } if (che) {
+            alert('This product is already added to cart !');
+        } else {
             cartdata.push(data)
             setFinal(cartdata)
             localStorage.setItem('finaldata', JSON.stringify(cartdata));
-        } else {
-            alert('ajsdajkfhg')
         }
     }
 
-    const [value, setValue] = React.useState('');
+
+
+    const [value, setValue] = useState('');
     const sizechange = (event) => {
         setValue(event.target.value)
     }
     console.log(value);
-    
+
+
     return (
         <div className='container-fluid'>
             <div className='row abc'>
@@ -87,7 +90,7 @@ export default function View() {
 
                     <div>
                         <label for="size" className='choose'>Choose a size:</label>
-                        <select name="sizes" id="sizes" value={value}  onChange={sizechange}>
+                        <select name="sizes" id="sizes" value={value} onChange={sizechange}>
                             <option value="7">M 7 /W 7</option>
                             <option value="7.5">M 7.5 /W 7.5</option>
                             <option value="8">M 8 /W 8</option>
@@ -99,7 +102,7 @@ export default function View() {
                             <option value="11">M 11 /W 11</option>
                             <option value="11.5">M 11.5 /W 11.5</option>
                         </select>
-                        <p style={{color:"black"}}>You Select {value} Us Size</p>
+                        <p style={{ color: "black" }}>You Select {value} Us Size</p>
                     </div>
 
 
