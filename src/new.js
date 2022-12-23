@@ -9,7 +9,7 @@ export default function New() {
                     return (
                         value.state.data.map((items) => {
                             <div>
-                                <h1>{items.name}</h1>
+                                <h1>{items}</h1>
                             </div>
                         })
                     )

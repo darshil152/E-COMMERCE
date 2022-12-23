@@ -11,7 +11,6 @@ import Addproduct from "./addproduct";
 import Main from "./main";
 import Tshirt from "./Tshirt";
 import Showproduct from "./showproduct";
-import Cart from "./cart";
 import Register from "./register";
 import Table from "./table";
 import Producttable from "./producttable";
@@ -25,6 +24,7 @@ import Order from "./order";
 import View from "./view";
 import Header2 from "./header2";
 import New from "./new";
+import Cart from "./cart";
 
 
 
@@ -43,7 +43,6 @@ export default function ReactRouter() {
                 <Route path="/main" element={<Main />}> </Route>
                 <Route path="/tshirt" element={<Tshirt />}> </Route>
                 <Route path="/wishlist" element={<Wishlist />}> </Route>
-                <Route path="/cart" element={<Cart />}> </Route>
                 <Route path="/shoes" element={<Shoes />}> </Route>
                 <Route path="/trending" element={<Trending />}> </Route>
                 <Route path="/sneaker" element={<Sneaker />}> </Route>

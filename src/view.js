@@ -15,16 +15,7 @@ export default function View() {
     const [final, setFinal] = useState([]);
 
 
-    useEffect(() => {
-        count++
-        if (count == 1) {
-            const getdata = localStorage.getItem('sneakersdata') ? JSON.parse(localStorage.getItem('sneakersdata')) : [];
-            if (getdata) {
-                newdata = getdata
-                setFinal(newdata)
-            }
-        }
-    }, [newdata])
+
 
 
 
@@ -42,27 +33,6 @@ export default function View() {
     console.log(currentdata);
 
 
-
-    const snekerdata = (data) => {
-        console.log(data);
-
-        const maindata = localStorage.getItem('sneakersdata') ? JSON.parse(localStorage.getItem('sneakersdata')) : [];
-        let ismatched = false;
-        console.log(maindata)
-        for (let i = 0; i < maindata.length; i++) {
-            console.log(maindata[i], '--', data)
-            if (maindata[i] == data) {
-                ismatched = true
-            }
-        } if (ismatched) {
-            alert('You already added this prodect');
-        } else {
-            console.log('done')
-            newdata.push(data)
-            setFinal(newdata)
-            localStorage.setItem('sneakersdata', JSON.stringify(newdata))
-        }
-    }
 
 
 
@@ -124,7 +94,7 @@ export default function View() {
                                 </div>
 
                                 <div class="mb6-sm prl0-lg fs14-sm">
-                                    <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => snekerdata(currentdata.id)}>₹{currentdata.price}</button>
+                                    <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => value.snekerdata(currentdata.id)}>₹{currentdata.price}</button>
                                 </div>
                             </div>
 
