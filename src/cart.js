@@ -1,34 +1,45 @@
-import { FlareSharp } from '@mui/icons-material';
 import React from 'react'
-import { useEffect } from 'react';
+import { useState } from 'react';
+import { json } from 'react-router';
+
+let uniquedatas = (localStorage.getItem('finaldata')) ? JSON.parse(localStorage.getItem('finaldata')) : [];
 
 export default function Cart() {
 
-
-  const data = localStorage.getItem('finaldata') ? localStorage.getItem('finaldata') : [];
-  const mixdata = localStorage.getItem('sneakers') ? JSON.parse(localStorage.getItem('sneakers')) : [];
-  let [currentdata, setCurrentdata] = [];
+  const [abc,setAbc] = useState([]);
 
 
-  console.log(data, '--------------------', mixdata);
-  
+  const deleteid = (data) =>{
+    let filter = uniquedatas.filter((uniquedatas=> uniquedatas !== data));
+    window.location.href = "./cart"
+    setAbc(filter)
+    localStorage.setItem('finaldata',JSON.stringify(filter))
+    console.log(filter);
+  } 
 
-  useEffect(() => {
-    console.log(data);
-    for (let i = 0; i < mixdata.length; i++) {
-      console.log('asdashgdjhgj');
-      if (mixdata[i].id == data) {
-        setCurrentdata(mixdata[i].id)
-      }
-    }
-    console.log(currentdata);
-  }, [currentdata])
+
+//   const ondelete = (data) =>{
+//     console.log("i",data)
+//     const filteredPeople = abc.filter((abc =>abc.id !== data));
+//     setAbc(filteredPeople)
+//     localStorage.setItem("productdetail", JSON.stringify(filteredPeople));
+//     console.log(filteredPeople)
+// }
 
 
 
   return (
-    <div>
-
-    </div>
+    <>
+      {
+        uniquedatas.map((items) => {
+          return (
+            <div className='sadasdsadasd'>
+              <h3>{items}</h3>
+              <button onClick={()=>deleteid(items)}>Delete</button>
+            </div>
+          )
+        })
+      }
+    </>
   )
 }

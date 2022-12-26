@@ -25,6 +25,9 @@ import View from "./view";
 import Header2 from "./header2";
 import New from "./new";
 import Cartcontext from "./cartcontext";
+import Upcomming from "./upcomming";
+import Upcommingview from "./upcommingview";
+import View1 from "./view1";
 
 
 
@@ -50,11 +53,14 @@ export default function ReactRouter() {
                 <Route path="/forgot" element={<Forgotpass />}> </Route>
                 <Route path="/cartcontext" element={<Cartcontext />}> </Route>
                 <Route path="/order" element={<Order />}> </Route>
-                <Route path="/cart" element={<Cart />}> </Route>
                 <Route path="/Header2" element={<Header2 />}> </Route>
                 <Route path="/order/:id" element={<Order />}> </Route>
                 <Route path="/view/:id" element={<View />}> </Route>
-                
+                <Route path="/upcomming" element={<Upcomming />}> </Route>
+                <Route path="/upcommingview" element={<Upcommingview />}> </Route>
+                <Route path="/view1/:id" element={<View1 />}> </Route>
+
+
             </Routes>
         </BrowserRouter>
     )

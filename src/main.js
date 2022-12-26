@@ -36,13 +36,13 @@ export default function Main() {
     const [currentdata, setCurrentdata] = useState([]);
 
 
-    useEffect(() => {
-        for (let i = 0; i < logindata.length; i++) {
-            if (logindata[i].email == registerdata[i].email) {
-                setCurrentdata(registerdata[i])
-            }
-        }
-    }, [])
+    // useEffect(() => {
+    //     for (let i = 0; i < logindata.length; i++) {
+    //         if (logindata[i].email == registerdata[i].email) {
+    //             setCurrentdata(registerdata[i])
+    //         }
+    //     }
+    // }, [])
 
 
 

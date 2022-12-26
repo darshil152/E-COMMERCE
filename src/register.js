@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { DataArray } from '@mui/icons-material';
+import { dataRef } from './firebase';
 
 
 
@@ -73,6 +74,11 @@ export default function Register() {
     const olddatas = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : []
     let oldflag = false
 
+
+
+
+
+
     const getData = (data) => {
         console.log(data)
         setName(data.name)
@@ -90,7 +96,6 @@ export default function Register() {
                 oldflag = true;
             }
         }
-
         if (oldflag) {
             alert('Please try unique email and name');
             window.location.href = './register';
@@ -102,6 +107,17 @@ export default function Register() {
         }
 
     }
+
+
+    // const acvxd = (data) => {
+    //     dataRef.ref('Login User').set({
+    //         name: data.name,
+    //         email: data.email,
+    //     }).catch(alert);
+    // }
+
+
+
 
     return (
         <div className="container">
@@ -116,8 +132,8 @@ export default function Register() {
                         initialValues={{ name: "", email: "", password: "", confirmpassword: "", file: arraya, }}
                         validationSchema={LoginSchema}
                         onSubmit={(values, { setSubmitting }) => {
-                            getData(values)
-
+                            getData(values);
+                            // acvxd(values);
                         }}
                     >
                         {({ touched, errors, isSubmitting, values, handleChange, handleBlur, }) => (

@@ -206,7 +206,7 @@ export default function Tshirt() {
         }
         if (ismatched) {
             alert('already added')
-        } else { 
+        } else {
             cart.push(data)
             setWishlist1(cart)
             console.log('cart :: ', cart)

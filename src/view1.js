@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 let cartdata = [];
 let count = 0;
-export default function View() {
+export default function View1() {
 
     let [currentdata, setCurrentdata] = useState([]);
     const [final, setFinal] = useState([]);
@@ -19,7 +19,7 @@ export default function View() {
     useEffect(() => {
         let url = window.location.href
         let id = url.substring(url.lastIndexOf('/') + 1)
-        let retrivedata = localStorage.getItem('sneakers') ? JSON.parse(localStorage.getItem('sneakers')) : [];
+        let retrivedata = localStorage.getItem('upcommingsneakers') ? JSON.parse(localStorage.getItem('upcommingsneakers')) : [];
 
 
         for (let i = 0; i < retrivedata.length; i++) {
@@ -119,7 +119,7 @@ export default function View() {
                     </div> */}
 
                     <div class="mb6-sm prl0-lg fs14-sm">
-                        <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => sendtocart(currentdata.id)}>₹{currentdata.price}</button>
+                        <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " >Notify Me</button>
                     </div>
                 </div>
 
