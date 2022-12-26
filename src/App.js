@@ -23,7 +23,7 @@ function App() {
         <ReactRouter />
       </Cartcontext>
 
-    </div>
+    </div >
   );
 }
 

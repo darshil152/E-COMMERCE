@@ -15,9 +15,9 @@ let count = 0;
 
 export default function Addproduct() {
 
-    
-const [array, setArray] = useState([]);
-let flag = false;
+
+  const [array, setArray] = useState([]);
+  let flag = false;
 
   useEffect(() => {
     count++
@@ -31,7 +31,7 @@ let flag = false;
     }
   }, [temparray1]);
 
-  
+
   useEffect(() => {
     count++
     if (count == 1) {
@@ -106,7 +106,7 @@ let flag = false;
   });
 
 
-  
+
   const getBase64 = (file) => {
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -119,19 +119,18 @@ let flag = false;
   }
 
 
-  
 
-  const uploadImage = (images) => { 
+  const uploadImage = (images) => {
     for (let i = 0; i < images.length; i++) {
       getBase64(images[i])
     }
   }
 
 
- 
+
   const getData1 = (data) => {
 
-    setProductname(data.productname);   
+    setProductname(data.productname);
     setSkucode(data.skucode);
     setcategory(data.category);
     setStyle(data.style);

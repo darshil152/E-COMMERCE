@@ -285,10 +285,6 @@ export default function Tshirt() {
 
 
 
-
-
-
-
     return (
         <>
             <div className='container'>

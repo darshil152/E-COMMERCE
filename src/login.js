@@ -35,16 +35,14 @@ export default function Login() {
     const getData = (data) => {
         for (let i = 0; i < match.length; i++) {
             if (data.email === match[i].email && data.password === match[i].password) {
-               flags = true;
+                flags = true;
             }
         }
         if (flags) {
             window.location.href = "./main"
-            
-        } else {              
-             alert('Please enter valid credential');
+        } else {
+            alert('Please enter valid credential');
         }
-
 
         setEmail(data.email)
         setPassword(data.password)
@@ -62,10 +60,10 @@ export default function Login() {
 
     }
 
-    const toforgot = () =>{
+    const toforgot = () => {
         window.location.href = '/forgot'
     }
-    
+
 
     const formik = useFormik({
         initialValues: {
