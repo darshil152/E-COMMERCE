@@ -1,6 +1,14 @@
 import React from 'react'
 import logos from './assets/snkrs.png'
 export default function Header2() {
+
+    const getto = () =>{
+        window.location.href = "./upcommingview"
+    }
+
+    const getto1 = () =>{
+        window.location.href = "./shoes"
+    }
     return (
         
          <div className='container'>
@@ -10,8 +18,8 @@ export default function Header2() {
                 </div>
                 <div className='col-sm abr'>
                     <a href='#'>feed</a>
-                    <a href='#'>In stock</a>
-                    <a href='#'>Upcoming</a>
+                    <a href='#'  onClick={getto1}>In stock</a>
+                    <a href='#' onClick={getto}>Upcoming</a>
                 </div>
                 <div className='col-sm'>
                 </div>

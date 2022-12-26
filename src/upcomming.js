@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -6,6 +5,8 @@ import { red } from '@material-ui/core/colors';
 import { useState } from 'react';
 import { UploadFile } from '@mui/icons-material';
 import { width } from '@mui/system';
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 let count = 0
 let array1 = [];
@@ -14,13 +15,13 @@ let array2 = [];
 
 
 
-export default function Sneaker() {
+export default function Upcomming() {
 
 
     useEffect(() => {
         count++
         if (count == 1) {
-            const addeddata = JSON.parse(localStorage.getItem('sneakers'));
+            const addeddata = JSON.parse(localStorage.getItem('upcommingsneakers'));
             // console.log(addeddata);
             if (addeddata) {
                 array1 = addeddata
@@ -56,23 +57,43 @@ export default function Sneaker() {
     const [file, setFile] = useState('');
     const [description, setDescription] = useState('');
     const [sku, setSku] = useState('')
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(Date.now());
+    const [date, setDate] = useState('')
     const [id, setId] = useState(Date.now());
+    // const todaysDate = new Date();
+    let currentDate = Date.now();
+
+
+    console.log(currentDate)
+
+
+
 
     const getdata = (data) => {
         setName(data.name);
         setPrice(data.price);
         setFile(data.file);
+        setSku(data.sku);
         setDescription(data.description);
-        const newshoesdata = { name: data.name, price: data.price, file: array2, sku: data.sku, id: id, description: data.description }
-        array1.push(newshoesdata)
-        setData(array1)
-        console.log(array1);
-        localStorage.setItem('sneakers', JSON.stringify(array1))
+        setDate(data.date);
+        const newshoesdata = { name: data.name, price: data.price, file: array2, sku: data.sku, id: id, description: data.description, date: data.date }
+
+        // if (currentDate == date) {
+        //     console.log('asdkljasdjklh')
+        // }
+
+        console.log(currentDate)
+        console.log(data.date)
+
+        // array1.push(newshoesdata)
+        // setData(array1)
+        // console.log(array1);
+        // localStorage.setItem('upcommingsneakers', JSON.stringify(array1))
     }
 
+
     const upcomming = () => {
-          window.location.href = './upcomming'
+        window.location.href = './upcomming'
     }
 
     return (
@@ -82,10 +103,10 @@ export default function Sneaker() {
                 <h1 onClick={upcomming}>Upcomming Shoes form</h1>
             </div>
             <Formik
-                initialValues={{ name: "", price: "", file: array2, description: "", sku: "", data: [] }}
+                initialValues={{ name: "", price: "", file: array2, description: "", sku: "", date: "", data: [] }}
                 onSubmit={(values, { setSubmitting }) => {
                     getdata(values);
-                    window.location.href = './sneaker'
+                    // window.location.href = './upcomming'
                 }}
                 validationSchema={Yup.object().shape({
                     name: Yup.string()
@@ -156,6 +177,20 @@ export default function Sneaker() {
                                 />
                                 {errors.price && touched.price && (
                                     <div className="input feedback">{errors.price}</div>
+                                )}
+
+                                <label htmlFor="price">launching Date</label>
+                                <input
+                                    name="date"
+                                    type="date"
+                                    placeholder="Enter your price"
+                                    value={values.date}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    className={errors.date && touched.date && "error"}
+                                />
+                                {errors.date && touched.date && (
+                                    <div className="input feedback">{errors.date}</div>
                                 )}
 
 

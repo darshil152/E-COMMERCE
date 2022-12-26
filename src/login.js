@@ -5,6 +5,8 @@ import { json } from 'react-router';
 import Spinner from "react-spinkit";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { dataRef } from './firebase';
+import { FireHydrantAltTwoTone } from '@mui/icons-material';
 
 
 let loginarray = []
@@ -59,6 +61,15 @@ export default function Login() {
         setPassword('')
 
     }
+  
+    // const  firedatas = (data) =>{
+    //     dataRef.ref('Login User').set({
+    //         email:data.email,
+    //         password:data.password,
+    //     }).catch(alert);
+    // }
+  
+
 
     const toforgot = () => {
         window.location.href = '/forgot'
@@ -79,8 +90,12 @@ export default function Login() {
                 .required("Required!"),
         }),
 
+
+
+
         onSubmit: values => {
             getData(values);
+            // firedatas(values)
             // localStorage.setItem('items', JSON.stringify(value))
         }
     });
