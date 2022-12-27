@@ -31,6 +31,7 @@ import View1 from "./view1";
 
 
 
+
 export default function ReactRouter() {
     return (
         <BrowserRouter>
@@ -59,8 +60,6 @@ export default function ReactRouter() {
                 <Route path="/upcomming" element={<Upcomming />}> </Route>
                 <Route path="/upcommingview" element={<Upcommingview />}> </Route>
                 <Route path="/view1/:id" element={<View1 />}> </Route>
-
-
             </Routes>
         </BrowserRouter>
     )

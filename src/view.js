@@ -3,6 +3,7 @@ import { margin } from '@mui/system';
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 import { UserContext } from './cartcontext';
 
 let newdata = []
@@ -32,8 +33,6 @@ export default function View() {
         let url = window.location.href
         let id = url.substring(url.lastIndexOf('/') + 1)
         let retrivedata = localStorage.getItem('sneakers') ? JSON.parse(localStorage.getItem('sneakers')) : [];
-
-
         for (let i = 0; i < retrivedata.length; i++) {
             if (retrivedata[i].id == id)
                 setCurrentdata(retrivedata[i])
@@ -46,22 +45,22 @@ export default function View() {
     const snekerdata = (data) => {
         console.log(data);
 
-        const maindata = localStorage.getItem('sneakersdata') ? JSON.parse(localStorage.getItem('sneakersdata')) : [];
-        let ismatched = false;
-        console.log(maindata)
-        for (let i = 0; i < maindata.length; i++) {
-            console.log(maindata[i], '--', data)
-            if (maindata[i].id == data) {
-                ismatched = true
-            }
-        } if (ismatched) {
-            alert('You already added this prodect');
-        } else {
-            console.log('done')
-            newdata.push(data)
-            setFinal(newdata)
-            localStorage.setItem('sneakersdata', JSON.stringify(newdata))
-        }
+        // const maindata = localStorage.getItem('sneakersdata') ? JSON.parse(localStorage.getItem('sneakersdata')) : [];
+        // let ismatched = false;
+        // console.log(maindata)
+        // for (let i = 0; i < maindata.length; i++) {
+        //     console.log(maindata[i], '--', data)
+        //     if (maindata[i].id == data) {
+        //         ismatched = true
+        //     }
+        // } if (ismatched) {
+        //     alert('You already added this prodect');
+        // } else {
+        //     console.log('done')
+        //     newdata.push(data)
+        //     setFinal(newdata)
+        //     localStorage.setItem('sneakersdata', JSON.stringify(newdata))
+        // }
     }
 
 
@@ -83,7 +82,9 @@ export default function View() {
 
                                 {currentdata.file?.length > 0 && currentdata?.file.map((items) => {
                                     return (
-                                        <img src={items} className="top" />
+                                        <Zoom>
+                                            <img src={items} className="top" />
+                                        </Zoom>
                                     )
                                 })}
                             </div>

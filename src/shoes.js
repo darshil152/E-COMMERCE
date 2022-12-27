@@ -15,14 +15,13 @@ export default function Shoes() {
     console.log(shoesdata);
     return (
         <div className='abc'>
-        <Header2 >
-            
-        </Header2>
+            <Header2 >
+            </Header2>
             <div className='grid'>
                 {
                     shoesdata.length > 0 && shoesdata.map((items) => {
                         return (
-                            <div class="item" onClick={()=>viewdata(items.id)}>
+                            <div class="item" onClick={() => viewdata(items.id)}>
                                 <img className="dunk" src={items.file[0]} />
                             </div>
                         )

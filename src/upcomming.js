@@ -9,9 +9,11 @@ import { width } from '@mui/system';
 // import "react-datepicker/dist/react-datepicker.css";
 
 let count = 0
+
+let count1 = 0
 let array1 = [];
 let array2 = [];
-// let array3 = [];  
+let array3 = [];
 
 
 
@@ -29,6 +31,20 @@ export default function Upcomming() {
             }
         }
     }, [array1])
+
+
+
+    useEffect(() => {
+        count++
+        if (count1 == 1) {
+            const addeddata2 = JSON.parse(localStorage.getItem('sneakers'));
+            // console.log(addeddata);
+            if (addeddata2) {
+                array3 = addeddata2
+                setData1(array3)
+            }
+        }
+    }, [array3])
 
 
 
@@ -57,15 +73,12 @@ export default function Upcomming() {
     const [file, setFile] = useState('');
     const [description, setDescription] = useState('');
     const [sku, setSku] = useState('')
-    const [data, setData] = useState(Date.now());
+    const [data, setData] = useState();
+    const [data1, setData1] = useState();
     const [date, setDate] = useState('')
     const [id, setId] = useState(Date.now());
     // const todaysDate = new Date();
     let currentDate = Date.now();
-
-
-    console.log(currentDate)
-
 
 
 
@@ -77,18 +90,32 @@ export default function Upcomming() {
         setDescription(data.description);
         setDate(data.date);
         const newshoesdata = { name: data.name, price: data.price, file: array2, sku: data.sku, id: id, description: data.description, date: data.date }
+        const seconddata = { name: data.name, price: data.price, file: array2, sku: data.sku, id: id, description: data.description }
 
-        // if (currentDate == date) {
-        //     console.log('asdkljasdjklh')
-        // }
 
+
+
+        const str = data.date;
+        const date = new Date(str);
+        // ✅ Get timestamp in Milliseconds
+        const timestamp = date.getTime();
+        console.log(timestamp); // 👉️ 1650931200000
+        // ✅ If you need to convert to Seconds
+        const timestampSeconds = Math.floor(date.getTime() / 1);
+        console.log(timestampSeconds);
         console.log(currentDate)
-        console.log(data.date)
 
-        // array1.push(newshoesdata)
-        // setData(array1)
-        // console.log(array1);
-        // localStorage.setItem('upcommingsneakers', JSON.stringify(array1))
+        if (currentDate < timestampSeconds) {
+            array1.push(newshoesdata)
+            setData(array1)
+            console.log(array1);
+            localStorage.setItem('upcommingsneakers', JSON.stringify(array1))
+        } else {
+            array3.push(seconddata)
+            setData1(array3)
+            console.log(array3);
+            localStorage.setItem('sneakers', JSON.stringify(array3))
+        }
     }
 
 

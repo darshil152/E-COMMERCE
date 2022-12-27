@@ -119,6 +119,7 @@ export default function Addproduct() {
   }
 
 
+  
 
   const uploadImage = (images) => {
     for (let i = 0; i < images.length; i++) {
@@ -193,7 +194,7 @@ export default function Addproduct() {
           <div className="col-lg-12">
             <Formik
               initialValues={{
-                productname: "",
+                productname: "  ",
                 skucode: "",
                 price: "",
                 discount: "",

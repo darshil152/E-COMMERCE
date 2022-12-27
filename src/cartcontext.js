@@ -1,3 +1,4 @@
+import { CloudDone } from '@mui/icons-material'
 import React, { Component } from 'react'
 
 export const UserContext = React.createContext()
@@ -24,7 +25,7 @@ export default class Cartcontext extends Component {
   // }
 
 
-  // componentDidMount() {
+  //  snekerdata = (data) =>  {
   //   let jodddd = localStorage.getItem('finaldata') ? JSON.parse(localStorage.getItem('finaldata')) : [];
   //   let cartdata = [];
   //   let che = false;
@@ -43,6 +44,11 @@ export default class Cartcontext extends Component {
   //   }
   // }
 
+  snekerdata = (data) => {
+    console.log(data);
+  }
+
+
 
   handlecart = (data) => {
     this.setState({ ...this.state, handlecart: this.handlecart })
@@ -51,10 +57,10 @@ export default class Cartcontext extends Component {
   render() {
     return (
       <>
-        {/* <UserContext.Provider
-          value={{ ...this.state, handlecart: data }}>
+        <UserContext.Provider
+          value={{ ...this.state,...this.snekerdata}}>
           {this.props.children}
-        </UserContext.Provider> */}
+        </UserContext.Provider>
       </>
     )
   }

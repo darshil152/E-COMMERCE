@@ -3,9 +3,10 @@ import { AltRoute, CurrencyRupee, MarkAsUnread } from '@mui/icons-material';
 import { margin } from '@mui/system';
 import React from 'react'
 import { useEffect, useState } from 'react'
-import Zoom from 'react-medium-image-zoom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 
 let cartdata = [];
@@ -77,7 +78,9 @@ export default function View1() {
 
                     {currentdata.file?.length > 0 && currentdata?.file.map((items) => {
                         return (
-                            <img src={items} className="top" />
+                            <Zoom>
+                                <img src={items} className="top" />
+                            </Zoom>
                         )
                     })}
                 </div>

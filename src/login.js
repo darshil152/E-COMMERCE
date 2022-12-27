@@ -71,8 +71,8 @@ export default function Login() {
   
 
 
-    const toforgot = () => {
-        window.location.href = '/forgot'
+    const toregister = () => {
+        window.location.href = "/register"
     }
 
 
@@ -132,7 +132,7 @@ export default function Login() {
                     </div>
 
                     <div>
-                        <a href='forgot' onClick={toforgot} >Forgot password</a>
+                        <a onClick={toregister} >If you don't have an account</a>
                     </div>
 
                     <div>
