@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "./layout";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -15,6 +15,8 @@ let count = 0;
 
 export default function Addproduct() {
 
+
+  const formcontainer = useRef('');
 
   const [array, setArray] = useState([]);
   let flag = false;
@@ -53,7 +55,7 @@ export default function Addproduct() {
   useEffect(() => {
     let url = window.location.href;
     let ids = url.substring(url.lastIndexOf('/') + 1);
-    console.log(ids)
+    console.log(ids, formcontainer)
     setIds(ids)
 
     let olddata = localStorage.getItem("productdetail") ? JSON.parse(localStorage.getItem('productdetail')) : []
@@ -64,11 +66,21 @@ export default function Addproduct() {
         currentdata = olddata[i];
         if (olddata[i].gender)
           console.log(currentdata)
+        formcontainer.current.initialValues.productname = currentdata.productname;
+        formcontainer.current.initialValues.skucode = currentdata.skucode;
+        formcontainer.current.initialValues.discount = currentdata.discount;
+        formcontainer.current.initialValues.price = currentdata.price;
+        formcontainer.current.initialValues.category = currentdata.category;
+        formcontainer.current.initialValues.gender = currentdata.gender;
+        formcontainer.current.initialValues.description = currentdata.description;
+        formcontainer.current.initialValues.trending = currentdata.trending;
+        formcontainer.current.initialValues.file = currentdata.file;
+
         setXyz(currentdata)
       }
       // setCurrentdata({currentdata, productname:currentdata.productname})
     }
-  })
+  }, [ids])
 
   const [productname, setProductname] = useState("");
   const [skucode, setSkucode] = useState("");
@@ -119,7 +131,7 @@ export default function Addproduct() {
   }
 
 
-  
+
 
   const uploadImage = (images) => {
     for (let i = 0; i < images.length; i++) {
@@ -193,8 +205,9 @@ export default function Addproduct() {
         <div className="row">
           <div className="col-lg-12">
             <Formik
+              innerRef={formcontainer}
               initialValues={{
-                productname: "  ",
+                productname: '',
                 skucode: "",
                 price: "",
                 discount: "",
@@ -225,9 +238,10 @@ export default function Addproduct() {
                 <Form>
                   <div className="form-group">
                     <label htmlFor="productname">Productname</label>
-                    <Field
+                    <input
                       type="text"
                       value={xyz.productname}
+                      onChange={handleChange}
                       name="productname"
                       placeholder="Enter productname"
                       className={`form-control ${touched.productname && errors.productname
@@ -244,7 +258,7 @@ export default function Addproduct() {
 
                   <div className="form-group">
                     <label htmlFor="skucode">Skucode</label>
-                    <Field
+                    <input
                       type="text"
                       name="skucode"
                       value={xyz.skucode}
@@ -259,7 +273,7 @@ export default function Addproduct() {
                     />
                   </div>
 
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <label htmlFor="trending">trending</label>
                     <Switch
                       name="trending"
@@ -269,39 +283,39 @@ export default function Addproduct() {
                         setFieldValue("trending", checked ? "Y" : "N");
                       }}
                     />
-                  </div>
+                  </div> */}
 
                   <div id="checkbox-group">Size</div>
                   <div role="group" aria-labelledby="checkbox-group">
                     <label>
-                      <Field type="checkbox" className="s" name="checked" value="S" />
+                      <input type="checkbox" className="s" name="checked" value="S" />
                       S
                     </label>
                     <label>
-                      <Field type="checkbox" className="m" name="checked" value="M" />
+                      <input type="checkbox" className="m" name="checked" value="M" />
                       M
                     </label>
                     <label>
-                      <Field type="checkbox" className="l" name="checked" value="L" />
+                      <input type="checkbox" className="l" name="checked" value="L" />
                       L
                     </label>
                     <label>
-                      <Field type="checkbox" className="xl" name="checked" value="XL" />
+                      <input type="checkbox" className="xl" name="checked" value="XL" />
                       XL
                     </label>
                     <label>
-                      <Field type="checkbox" className="xxl" name="checked" value="XXL" />
+                      <input type="checkbox" className="xxl" name="checked" value="XXL" />
                       XXL
                     </label>
                     <label>
-                      <Field type="checkbox" className="xxxl" name="checked" value="XXXL" />
+                      <input type="checkbox" className="xxxl" name="checked" value="XXXL" />
                       XXXL
                     </label>
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="price">price</label>
-                    <Field
+                    <input
                       type="number"
                       value={xyz.price}
                       name="price"
@@ -318,7 +332,7 @@ export default function Addproduct() {
 
                   <div className="form-group">
                     <label htmlFor="discount">discount</label>
-                    <Field
+                    <input
                       type="text"
                       value={xyz.discount}
                       name="discount"
