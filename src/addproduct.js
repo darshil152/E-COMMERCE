@@ -65,6 +65,7 @@ export default function Addproduct() {
       if (olddata[i].id == ids) {
         currentdata = olddata[i];
         if (olddata[i].gender)
+
           console.log(currentdata)
         formcontainer.current.initialValues.productname = currentdata.productname;
         formcontainer.current.initialValues.skucode = currentdata.skucode;
@@ -75,7 +76,6 @@ export default function Addproduct() {
         formcontainer.current.initialValues.description = currentdata.description;
         formcontainer.current.initialValues.trending = currentdata.trending;
         formcontainer.current.initialValues.file = currentdata.file;
-
         setXyz(currentdata)
       }
       // setCurrentdata({currentdata, productname:currentdata.productname})
@@ -131,14 +131,34 @@ export default function Addproduct() {
   }
 
 
-
-
   const uploadImage = (images) => {
     for (let i = 0; i < images.length; i++) {
       getBase64(images[i])
     }
   }
 
+  const namehandleChange = (e) => {
+    setProductname(e.target.value);
+  }
+  const skucodehandleChange = (e) => {
+    setSkucode(e.target.value);
+  }
+  const categoryhandleChange = (e) => {
+    setcategory(e.target.value);
+    console.log(e.target.value);
+  }
+  const pricehandleChange = (e) => {
+    setPrice(e.target.value);
+  }
+  const discounthandleChange = (e) => {
+    setDiscount(e.target.value);
+  }
+  const stylehandleChange = (e) => {
+    setStyle(e.target.value);
+  }
+  const descriptionhandle = (e) => {
+    setDescription(e.target.value);
+  }
 
 
   const getData1 = (data) => {
@@ -240,8 +260,8 @@ export default function Addproduct() {
                     <label htmlFor="productname">Productname</label>
                     <input
                       type="text"
-                      value={xyz.productname}
-                      onChange={handleChange}
+                      defaultValue={xyz.productname}
+                      onChange={(e) => namehandleChange(e)}
                       name="productname"
                       placeholder="Enter productname"
                       className={`form-control ${touched.productname && errors.productname
@@ -261,7 +281,8 @@ export default function Addproduct() {
                     <input
                       type="text"
                       name="skucode"
-                      value={xyz.skucode}
+                      defaultValue={xyz.skucode}
+                      onChange={(e) => skucodehandleChange(e)}
                       placeholder="Enter skucode"
                       className={`form-control ${touched.skucode && errors.skucode ? "is-invalid" : ""
                         }`}
@@ -317,7 +338,8 @@ export default function Addproduct() {
                     <label htmlFor="price">price</label>
                     <input
                       type="number"
-                      value={xyz.price}
+                      defaultValue={xyz.price}
+                      onChange={(e) => pricehandleChange(e)}
                       name="price"
                       placeholder="Ex: $5"
                       className={`form-control ${touched.price && errors.price ? "is-invalid" : ""
@@ -334,7 +356,8 @@ export default function Addproduct() {
                     <label htmlFor="discount">discount</label>
                     <input
                       type="text"
-                      value={xyz.discount}
+                      defaultValue={xyz.discount}
+                      onChange={(e) => discounthandleChange(e)}
                       name="discount"
                       placeholder="Enter discount"
                       className={`form-control ${touched.discount && errors.discount ? "is-invalid" : ""
@@ -353,25 +376,25 @@ export default function Addproduct() {
                     </label>
                     <select
                       name="category"
-                      value={values.category}
-                      onChange={handleChange}
+                      defaultValue={values.category}
+                      onChange={(e) => categoryhandleChange(e)}
                       onBlur={handleBlur}
                       style={{ display: "block" }}
                       className={`form-control ${touched.category && errors.category ? "is-invalid" : ""
                         }`}
                     >
-                      <option value="" label="Select a category">
+                      <option defaultValue="" label="Select a category">
                         Select a category{" "}
                       </option>
-                      <option value={"Cloths"} label="Cloths">
+                      <option defaultValue={"Cloths"} label="Cloths">
                         {" "}
                         Cloths
                       </option>
-                      <option value="Electronics" label="Electronics">
+                      <option defaultValue="Electronics" label="Electronics">
                         Electronics
                       </option>
 
-                      <option value="Footware" label="Footware">
+                      <option defaultValue="Footware" label="Footware">
                         Footware
                       </option>
                     </select>
@@ -390,26 +413,26 @@ export default function Addproduct() {
                     </label>
                     <select
                       name="style"
-                      value={values.style}
-                      onChange={handleChange}
+                      defaultValue={values.style}
+                      onChange={(e) => stylehandleChange(e)}
                       onBlur={handleBlur}
                       style={{ display: "block" }}
                       className={`form-control ${touched.style && errors.style ? "is-invalid" : ""
                         }`}
                     >
-                      <option value="" label="Select a style">
+                      <option defaultValue="" label="Select a style">
                         Select a style{" "}
                       </option>
-                      <option value="trending" label="trending">
+                      <option defaultValue="trending" label="trending">
                         trending
                       </option>
-                      <option value="newarrivle" label="newarrivle">
+                      <option defaultValue="newarrivle" label="newarrivle">
                         newarrivle
                       </option>
-                      <option value="featured" label="featured">
+                      <option defaultValue="featured" label="featured">
                         featured
                       </option>
-                      <option value="latestlook" label="latestlook">
+                      <option defaultValue="latestlook" label="latestlook">
                         latestlook
                       </option>
                     </select>
@@ -430,7 +453,7 @@ export default function Addproduct() {
                       <input
                         type="radio"
                         name="gender"
-                        value="Male"
+                        defaultValue="Male"
                         checked={values.gender === "Male"}
                         onChange={() => setFieldValue("gender", "Male")}
                       />
@@ -440,7 +463,7 @@ export default function Addproduct() {
                       <input
                         type="radio"
                         name="gender"
-                        value="Female"
+                        defaultValue="Female"
                         checked={values.gender === "Female"}
                         onChange={() => setFieldValue("gender", "Female")}
 
@@ -453,7 +476,7 @@ export default function Addproduct() {
                     <input id="file" name="file" className={`form-control ${touched.file && errors.file ? "is-invalid" : ""
                       }`} type="file" onChange={(event) => {
                         uploadImage(event.target.files);
-                      }} multiple />
+                      }} multiple defaultvalue={xyz.file} />
                     <div className="showimgae">
                       {/* {console.log('first', showpreview)} */}
                       {
@@ -474,8 +497,9 @@ export default function Addproduct() {
                     <label htmlFor="description">description</label>
                     <Field
                       as="textarea"
-                      value={xyz.description}
+                      defaultValue={xyz.description}
                       name="description"
+                      onChange={(e) => descriptionhandle(e)}
                       placeholder="Enter description"
                       className={`form-control ${touched.description && errors.description ? "is-invalid" : ""
                         }`}
