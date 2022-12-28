@@ -74,17 +74,17 @@ export default function Producttable() {
                 sort: false,
             }
         },
-        // {
-        //     name: "file",
-        //     label: "file",
-        //     options: {
-        //         filter: true,
-        //         sort: false,
-        //         customBodyRender: (value, tableMeta, updateValue) => (
-        //             <img src={value}  />
-        //         )
-        //     }
-        // },
+        {
+            name: "file",
+            label: "file",
+            options: {
+                filter: true,
+                sort: false,
+                customBodyRender: (value, tableMeta, updateValue) => (
+                    <img src={value} />
+                )
+            }
+        },
         // {
         //     name: "data",
         //     label: "Edit",
@@ -123,20 +123,20 @@ export default function Producttable() {
     ];
 
     const [abc, setAbc] = useState(JSON.parse(localStorage.getItem('productdetail')));
-    const [data,setData] = useState([])
+    const [data, setData] = useState([])
     // const [viewmodal, setViewmodal] = useState(false);
-   
+
 
     const handleShow = (data) => {
         window.location.href = '/addproduct/' + data;
-      console.log(data)
-      setData(data)
-    //   setViewmodal(true)
+        console.log(data)
+        setData(data)
+        //   setViewmodal(true)
     }
 
-    const ondelete = (data) =>{
-        console.log("i",data)
-        const filteredPeople = abc.filter((abc =>abc.id !== data));
+    const ondelete = (data) => {
+        console.log("i", data)
+        const filteredPeople = abc.filter((abc => abc.id !== data));
         setAbc(filteredPeople)
         localStorage.setItem("productdetail", JSON.stringify(filteredPeople));
         console.log(filteredPeople)
@@ -145,8 +145,8 @@ export default function Producttable() {
 
     return (
 
-        <div>    
-        {/* <Modal show={viewmodal}>
+        <div>
+            {/* <Modal show={viewmodal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>

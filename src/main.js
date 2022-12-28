@@ -26,8 +26,6 @@ import video from "./videos/video3mp4.mp4"
 
 
 
-
-
 export default function Main() {
 
     let logindata = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')) : [];
@@ -75,7 +73,7 @@ export default function Main() {
                         <div class="collapse navbar-collapse" id="myNav">
                             <div class="navbar-nav ms-auto">
                                 <NavDropdown title="Sneakers" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">All Sneakers</NavDropdown.Item>
+                                    <NavDropdown.Item href="http://localhost:3000/upcommingview">All Sneakers</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">
                                         Yezzy
                                     </NavDropdown.Item>

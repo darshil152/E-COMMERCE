@@ -99,22 +99,22 @@ export default function Addproduct() {
   const [data, setData] = useState([]);
 
   const LoginSchema = Yup.object().shape({
-    productname: Yup.string().required("productname is required"),
-    skucode: Yup.string()
-      .min(6, "skucode must be 6 characters at minimum")
-      .required("skucode is required"),
-    category: Yup.string()
-      .required("product category is required!"),
-    gender: Yup.string()
-      .required("Gender is required!"),
-    // description:Yup.string()
-    // .required('Description in reuired'),
-    price: Yup.string()
-      .required("Price is required"),
-    description: Yup.string()
-      .required("Description is required"),
-    style: Yup.string()
-      .required("style is required"),
+    // productname: Yup.string().required("productname is required"),
+    // skucode: Yup.string()
+    //   .min(6, "skucode must be 6 characters at minimum")
+    //   .required("skucode is required"),
+    // // category: Yup.string()
+    // //   .required("product category is required!"),
+    // // gender: Yup.string()
+    // //   .required("Gender is required!"),
+    // // description:Yup.string()
+    // // .required('Description in reuired'),
+    // price: Yup.string()
+    //   .required("Price is required"),
+    // description: Yup.string()
+    //   .required("Description is required"),
+    // // style: Yup.string()
+    // //   .required("style is required"),
   });
 
 
@@ -162,22 +162,23 @@ export default function Addproduct() {
 
 
   const getData1 = (data) => {
+    console.log(data)
 
-    setProductname(data.productname);
-    setSkucode(data.skucode);
-    setcategory(data.category);
-    setStyle(data.style);
-    setGender(data.gensd);
-    setPrice(data.price);
-    setChecked(data.checked)
-    setDiscount(data.discount)
-    setDescription(data.description);
-    setfile(data.file);
-    setTrending(data.trending)
+    // setProductname(data.productname);
+    // setSkucode(data.skucode);
+    // setcategory(data.category);
+    // setStyle(data.style);
+    // setGender(data.gensd);
+    // setPrice(data.price);
+    // setChecked(data.checked)
+    // setDiscount(data.discount)
+    // setDescription(data.description);
+    // setfile(data.file);
+    // setTrending(data.trending)
 
 
     console.log(temparray1, 'before');
-    const newdata = { style: data.style, trending: data.trending, checked: data.checked, productname: data.productname, skucode: data.skucode, price: data.price, category: data.category, gender: data.gender, id: id, description: data.description, file: temparray2, discount: data.discount };
+    const newdata = { style: style, trending: trending, checked: checked, productname: productname, skucode: skucode, price: price, category: category, gender: data.gender, id: id, description: description, file: temparray2, discount: discount };
     console.log(newdata);
 
 
@@ -192,11 +193,24 @@ export default function Addproduct() {
     // } else {
     //   console.log("Not added");
     // }
-    temparray1.push(newdata)
-    console.log(newdata)
-    setData(temparray1)
-    console.log(temparray1, 'after')
-    localStorage.setItem('productdetail', JSON.stringify(temparray1));
+
+
+    if (xyz == "") {
+
+      temparray1.push(newdata)
+      console.log(newdata)
+      setData(temparray1)
+      console.log(temparray1, 'after')
+      localStorage.setItem('productdetail', JSON.stringify(temparray1));
+      console.log('first')
+
+    } else {
+      let objIndex = temparray1.findIndex((obj => obj.id == ids));
+      console.log('asdasdas')
+      temparray1[objIndex].productname = productname
+      localStorage.setItem('productdetail', JSON.stringify(temparray1))
+    }
+
 
 
     temparray2 = []
@@ -495,7 +509,7 @@ export default function Addproduct() {
 
                   <div className="form-group">
                     <label htmlFor="description">description</label>
-                    <Field
+                    <input
                       as="textarea"
                       defaultValue={xyz.description}
                       name="description"

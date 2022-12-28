@@ -73,11 +73,6 @@ export default function Login() {
 
 
 
-    const toregister = () => {
-        window.location.href = "/register"
-    }
-
-
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -137,10 +132,10 @@ export default function Login() {
                     </div>
 
                     <div className='refisterif'>
-                        <a onClick={toregister} >If you don't have an account</a>
+                        <a href="https://localhost:3000/register" >If you don't have an account</a>
                     </div>
 
-                    
+
                     <div class="mb6-sm prl0-lg fs14-sm">
                         <button type="submit" class="loginafter ">Login</button>
                     </div>
