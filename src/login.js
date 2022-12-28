@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { dataRef } from './firebase';
 import { FireHydrantAltTwoTone } from '@mui/icons-material';
+import logos from './assets/snkrs.png'
+import nike from './assets/nike.jpg'
 
 
 let loginarray = []
@@ -29,7 +31,7 @@ export default function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [match, setMatch] = useState(JSON.parse(localStorage.getItem('Register')));
+    const match = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : []
     // const [flag, setFlag] = useState(false);
     let flags = false;
     const [allNewData, setNewData] = useState([]);
@@ -61,14 +63,14 @@ export default function Login() {
         setPassword('')
 
     }
-  
+
     // const  firedatas = (data) =>{
     //     dataRef.ref('Login User').set({
     //         email:data.email,
     //         password:data.password,
     //     }).catch(alert);
     // }
-  
+
 
 
     const toregister = () => {
@@ -104,9 +106,12 @@ export default function Login() {
     return (
         <div className='login'>
             <div className="App">
-                <h1>login form</h1>
-                <form onSubmit={formik.handleSubmit}>
-                    <div>
+                <div className='looogo'>
+                    <img src={nike} style={{ height: "80px" }} />
+                </div>
+                <h4 className='banners'>Enter your email to join us or sign in.</h4>
+                <form onSubmit={formik.handleSubmit} className="loginform">
+                    <div className='EMails'>
                         <label>Email</label>
                         <input
                             type="email"
@@ -115,7 +120,7 @@ export default function Login() {
                             onChange={formik.handleChange}
                         />
                         {formik.errors.email && formik.touched.email && (
-                            <p>{formik.errors.email}</p>
+                            <p className='erros'>{formik.errors.email}</p>
                         )}
                     </div>
                     <div >
@@ -127,16 +132,17 @@ export default function Login() {
                             onChange={formik.handleChange}
                         />
                         {formik.errors.password && formik.touched.password && (
-                            <p>{formik.errors.password}</p>
+                            <p className='erros'>{formik.errors.password}</p>
                         )}
                     </div>
 
-                    <div>
+                    <div className='refisterif'>
                         <a onClick={toregister} >If you don't have an account</a>
                     </div>
 
-                    <div>
-                        <button type="submit">Submit</button>
+                    
+                    <div class="mb6-sm prl0-lg fs14-sm">
+                        <button type="submit" class="loginafter ">Login</button>
                     </div>
                 </form>
             </div>

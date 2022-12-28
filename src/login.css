@@ -1,54 +1,97 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  .App {
-    color: #333;
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
-  form {
-    display: block;
-    margin: 0 auto;
-    text-align: left;
-    width: 50%;
-  }
-  
- .login {
-    margin: 24px 0;
-  }
-  
-  label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 4px;
-  }
-  
-  input {
-    border: 1px solid #333;
-    border-radius: 4px;
-    height: 28px;
-    width: 100%;
-  }
-  
-  p {
-    color: #d41a1a;
-    font-size: 12px;
-    margin: 4px 0 8px 0;
-  }
-  
-  button {
-    background: #e5e5e5;
-    border: 1px solid #e5e5e5;
-    border-radius: 6px;
-    font-size: 18px;
-    padding: 8px 16px;
-  }
-  button.btn.btn-primary.btn-block {
-    margin-top: 15px;
+  box-sizing: border-box;
 }
 
+.App {
+  color: #333;
+  font-family: sans-serif;
+  text-align: center;
+}
 
+form {
+  display: block;
+  margin: 0 auto;
+  text-align: left;
+  width: 50%;
+}
 
+.login {
+  margin: 24px 0;
+}
 
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+input {
+  border: 1px solid #333;
+  border-radius: 4px;
+  height: 40px;
+  width: 100%;
+}
+
+p {
+  color: #d41a1a;
+  font-size: 12px;
+  margin: 4px 0 8px 0;
+}
+
+button {
+  background: #e5e5e5;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 8px 16px;
+}
+button.btn.btn-primary.btn-block {
+  margin-top: 15px;
+}
+
+h4.banners {
+  color: #000000;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 32px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.looogo {
+  position: relative;
+  right: 160px;
+}
+
+form.loginform {
+  border: none;
+}
+
+label {
+  color: #000000;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 32px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.refisterif {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+button.loginafter {
+  width: 100%;
+  min-height: 60px;
+  padding: 18px 24px;
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+}
+
+p.erros {
+  color: #d41a1a;
+  font-size: 12px;
+  margin: 4px 0 8px 0;
+}
