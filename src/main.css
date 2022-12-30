@@ -18,8 +18,8 @@
 }
 
 .pe-3 {
-    padding-right: 1rem!important;
-    margin-bottom: 14px;
+  padding-right: 1rem !important;
+  margin-bottom: 14px;
 }
 
 .navbar-nav .nav-link {
@@ -144,7 +144,7 @@ p.bannerparagraph {
   -o-object-fit: cover;
   object-fit: cover;
   width: 100%;
-  height: 500px
+  height: 500px;
 }
 
 main {
@@ -165,28 +165,26 @@ button.cfade {
   border: 2px solid #999999;
 }
 
-
 button.cfade {
-    background-color: #e5e5e5;
-    color: rgb(80, 67, 67);
-    transition: background-color 1s;
-  }
-  
-  button.cfade:hover {
-    background-color: black;
-    color: white;
-  }
-  
-  button.cfade:focus,
-  button.cfade:active {
-    background-color: black;
-    transition: none;
-  }
-
-  .col-lg-4.service-column:not(:last-child) {
-    border-right: 2px solid;
+  background-color: #e5e5e5;
+  color: rgb(80, 67, 67);
+  transition: background-color 1s;
 }
 
+button.cfade:hover {
+  background-color: black;
+  color: white;
+}
+
+button.cfade:focus,
+button.cfade:active {
+  background-color: black;
+  transition: none;
+}
+
+.col-lg-4.service-column:not(:last-child) {
+  border-right: 2px solid;
+}
 
 img.courosal {
   width: 150px;
@@ -207,8 +205,12 @@ img.courosal {
 }
 
 @keyframes scroll {
-  0% {transform: translateX(0);}
-  100% {transform: translatex(-1000%)}
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translatex(-1000%);
+  }
 }
 
 video {
@@ -226,9 +228,55 @@ video {
   margin-top: var(--bs-gutter-y);
 } */
 
-h1.added{
+h1.added {
   margin-bottom: 35px;
 }
-.container-fluid{
+.container-fluid {
   margin-bottom: 30px;
+}
+
+@media screen and (max-width: 500px) {
+  .pe-3 {
+    display: none;
+  }
+  .grid {
+    /* display: grid; */
+    /* grid-gap: 12px; */
+    margin: 4px;
+  }
+  .project-grid {
+    grid-column-start: 1;
+    -ms-grid-column-span: 7;
+    grid-column-end: span 7;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-row-gap: 15rem;
+    grid-column-gap: 2rem;
+    margin: 0rem auto;
+  }
+
+  .project-grid a img {
+    margin-bottom: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+  }
+
+  button.cfade {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+      line-height: 1.5;
+    padding: 0.7rem 0.75rem;
+    font-size: 7px;
+    /* border-radius: 0; */
+    /* border: 2px solid #999999; */
+  }
+}
+
+img.logout{
+  vertical-align: middle;
+  /* height: 48px; */
+  height: 23px;
+  margin-top: 18px;
+  margin-left: 30px;
 }

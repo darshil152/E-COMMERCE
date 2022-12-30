@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { json } from "react-router-dom";
 import { Switch } from "@material-ui/core";
+import { db } from "./firebase";
 
 let temparray1 = [];
 let temparray2 = [];
@@ -208,6 +209,10 @@ export default function Addproduct() {
       let objIndex = temparray1.findIndex((obj => obj.id == ids));
       console.log('asdasdas')
       temparray1[objIndex].productname = productname
+      temparray1[objIndex].skucode = skucode
+      temparray1[objIndex].price = price
+      temparray1[objIndex].discount = discount
+      temparray1[objIndex].description = description
       localStorage.setItem('productdetail', JSON.stringify(temparray1))
     }
 

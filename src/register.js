@@ -3,7 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { DataArray } from '@mui/icons-material';
 import { dataRef } from './firebase';
+import data from './Data';
 
+
+let arratempoarrayys = [];
 
 
 const LoginSchema = Yup.object().shape({
@@ -41,19 +44,17 @@ export default function Register() {
 
 
 
-    let arraya = [];
-    const [picure, setPicture] = useState(arraya);
-    const [file, setFile] = useState("")
+    const [picure, setPicture] = useState(arratempoarrayys);
 
 
     const getBase64 = (file) => {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            arraya.push(reader.result)
-            console.log(arraya);
+            arratempoarrayys.push(reader.result)
+            console.log(arratempoarrayys);
         }
-        setPicture(arraya);
+        setPicture(arratempoarrayys);
     }
 
 
@@ -69,15 +70,11 @@ export default function Register() {
     const [password, setPassword] = useState('')
     const [cpassword, setCpassword] = useState('')
     const [id, setId] = useState()
+    const [file, setFile] = useState("")
     const [savedata, setNewData] = useState([]);
 
     const olddatas = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : []
     let oldflag = false
-
-
-
-
-
 
     const getData = (data) => {
         console.log(data)
@@ -88,8 +85,7 @@ export default function Register() {
         setCpassword(data.confirmpassword)
         setId(data.id)
 
-        let savedata = { name: data.name, email: data.email, password: data.password, cpassword: data.confirmpassword, id: Date.now(), file: arraya }
-        console.log(savedata);
+        let savedata = { name: data.name, email: data.email, file: arratempoarrayys, password: data.password, cpassword: data.confirmpassword, id: Date.now(), }
 
         for (let i = 0; i < olddatas.length; i++) {
             if (olddatas[i].email == data.email && olddatas[i].name == data.name) {
@@ -108,14 +104,12 @@ export default function Register() {
 
     }
 
-
-    // const acvxd = (data) => {
-    //     dataRef.ref('Login User').set({
+    // const acvxd = (e) => {
+    //     dataRef.ref("users").set({
     //         name: data.name,
-    //         email: data.email,
+    //         email:data.email
     //     }).catch(alert);
-    // }
-
+    // };
 
 
 
@@ -129,7 +123,14 @@ export default function Register() {
             <div className="row">
                 <div className="col-lg-12">
                     <Formik
-                        initialValues={{ name: "", email: "", password: "", confirmpassword: "", file: arraya, }}
+                        initialValues={{
+                            name: "",
+                            email: "",
+                            password: "",
+                            confirmpassword: "",
+                            file: arratempoarrayys,
+                            savedata:[],
+                        }}
                         validationSchema={LoginSchema}
                         onSubmit={(values, { setSubmitting }) => {
                             getData(values);
@@ -137,7 +138,7 @@ export default function Register() {
                         }}
                     >
                         {({ touched, errors, isSubmitting, values, handleChange, handleBlur, }) => (
-                            <Form>
+                            <Form className='registerform'>
 
 
                                 <div className="form-group">
@@ -211,8 +212,7 @@ export default function Register() {
                                             uploadImage(event.target.files);
                                         }} multiple />
                                     <div className="showimgae">
-                                        {/* {console.log('first', showpreview)} */}
-                                        {/* {
+                                        {
                                             picure.map((items, i) => {
                                                 return (
                                                     <>
@@ -220,7 +220,7 @@ export default function Register() {
                                                     </>
                                                 )
                                             })
-                                        }  */}
+                                        }
                                     </div>
                                 </div>
 

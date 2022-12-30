@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { red } from '@material-ui/core/colors';
 import { useState } from 'react';
-import { UploadFile } from '@mui/icons-material';
+import { UploadFile, WindowSharp } from '@mui/icons-material';
 import { width } from '@mui/system';
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -108,11 +108,13 @@ export default function Upcomming() {
             setData(array1)
             console.log(array1);
             localStorage.setItem('upcommingsneakers', JSON.stringify(array1))
+            window.location.href = "./shoes";
         } else {
             instocks.push(seconddata)
             setData1(instocks)
             console.log(instocks);
             localStorage.setItem('sneakers', JSON.stringify(instocks))
+            window.location.href = './upcommingview';
         }
     }
 

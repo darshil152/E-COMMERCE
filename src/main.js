@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import headerlogo from "./assets/headerlogo.svg"
 import profile from "./assets/profile.svg"
-import cart from "./assets/cart.svg"
+import logout from "./assets/logout.png"
 import hoodies from "./assets/hoodies.jpg"
 import imagetshirt from "./assets/imagetshirt.jpg"
 import shirts from "./assets/shirts.jpg"
@@ -23,24 +23,29 @@ import sneker from './assets/sneker.png'
 import apperal from './assets/appeal.png'
 import watch from './assets/watchjpg.jpg'
 import video from "./videos/video3mp4.mp4"
+import { jssPreset } from '@material-ui/core';
+import { unstable_createChainedFunction } from '@mui/utils';
 
 
+
+
+
+let logindata = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')) : [];
+let registerdata = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : [];
+let containdata = localStorage.getItem('productdetail') ? JSON.parse(localStorage.getItem('productdetail')) : [];
+let userinfo = [];
 
 export default function Main() {
-
-    let logindata = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')) : [];
-    let registerdata = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : [];
-    let containdata = localStorage.getItem('productdetail') ? JSON.parse(localStorage.getItem('productdetail')) : [];
-    const [currentdata, setCurrentdata] = useState([]);
+    const [currentdata, setCurrentdata] = useState('');
 
 
-    // useEffect(() => {
-    //     for (let i = 0; i < logindata.length; i++) {
-    //         if (logindata[i].email == registerdata[i].email) {
-    //             setCurrentdata(registerdata[i])
-    //         }
-    //     }
-    // }, [])
+    useEffect(() => {
+        for (let i = 0; i < registerdata.length; i++) {
+            if (registerdata[i].email == logindata[i].email) {
+                setCurrentdata(registerdata[i])
+            }
+        } console.log(currentdata);
+    }, [])
 
 
 
@@ -48,7 +53,8 @@ export default function Main() {
     console.log(getdata);
 
     let profilehandle = () => {
-        window.location.href = '/'
+        localStorage.removeItem(currentdata)
+        window.location.href = './'
     }
 
     const tshirt = () => {
@@ -57,8 +63,6 @@ export default function Main() {
     const sneaker = () => {
         window.location.href = './shoes'
     }
-
-
 
     return (
         <div className='main'>
@@ -73,8 +77,8 @@ export default function Main() {
                         <div class="collapse navbar-collapse" id="myNav">
                             <div class="navbar-nav ms-auto">
                                 <NavDropdown title="Sneakers" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="http://localhost:3000/upcommingview">All Sneakers</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">
+                                    <NavDropdown.Item href="http://localhost:3000/tshirt">All Sneakers</NavDropdown.Item>
+                                    <NavDropdown.Item href="http://localhost:3000/tshirt">
                                         Yezzy
                                     </NavDropdown.Item>
                                     <NavDropdown.Item >Jordans</NavDropdown.Item>
@@ -119,8 +123,8 @@ export default function Main() {
                         <li class=" nav-item pe-3">
                             <img src={currentdata.file} className="profile" onClick={profilehandle} style={{ borderRadius: "15px" }} />
                         </li>
-                        <li class=" nav-item pe-3">
-                            <img src={cart} className="cart" />
+                        <li class=" nav-item pe-3" >
+                            <img src={logout} className="logout" />
                         </li>
 
                     </ul>
