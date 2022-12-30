@@ -7,15 +7,10 @@ import { useEffect, useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import headerlogo from "./assets/headerlogo.svg"
-import profile from "./assets/profile.svg"
 import logout from "./assets/logout.png"
-import hoodies from "./assets/hoodies.jpg"
-import imagetshirt from "./assets/imagetshirt.jpg"
-import shirts from "./assets/shirts.jpg"
 import delivery from "./assets/delivery.png"
 import dollor from "./assets/dollor.png"
 import support from "./assets/support.png"
-import one from "./assets/one.jpg"
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -23,30 +18,27 @@ import sneker from './assets/sneker.png'
 import apperal from './assets/appeal.png'
 import watch from './assets/watchjpg.jpg'
 import video from "./videos/video3mp4.mp4"
-import { jssPreset } from '@material-ui/core';
-import { unstable_createChainedFunction } from '@mui/utils';
-
-
 
 
 
 let logindata = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')) : [];
 let registerdata = localStorage.getItem('Register') ? JSON.parse(localStorage.getItem('Register')) : [];
 let containdata = localStorage.getItem('productdetail') ? JSON.parse(localStorage.getItem('productdetail')) : [];
-let userinfo = [];
+
+let currentdata = '';
 
 export default function Main() {
-    const [currentdata, setCurrentdata] = useState('');
-
+    const [xyz, setXyz] = useState('');
 
     useEffect(() => {
         for (let i = 0; i < registerdata.length; i++) {
             if (registerdata[i].email == logindata[i].email) {
-                setCurrentdata(registerdata[i])
+                currentdata = registerdata[i]
+                setXyz(currentdata)
+                console.log('this is match');
             }
-        } console.log(currentdata);
+        }
     }, [])
-
 
 
     let getdata = JSON.parse(localStorage.getItem('featured'));

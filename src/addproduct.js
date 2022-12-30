@@ -66,7 +66,6 @@ export default function Addproduct() {
       if (olddata[i].id == ids) {
         currentdata = olddata[i];
         if (olddata[i].gender)
-
           console.log(currentdata)
         formcontainer.current.initialValues.productname = currentdata.productname;
         formcontainer.current.initialValues.skucode = currentdata.skucode;
