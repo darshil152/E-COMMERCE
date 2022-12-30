@@ -13,6 +13,7 @@ import nike from './assets/nike.jpg'
 
 let loginarray = []
 let count = 0
+let url = './register'
 
 
 export default function Login() {
@@ -132,7 +133,7 @@ export default function Login() {
                     </div>
 
                     <div className='refisterif'>
-                        <a href="https://localhost:3000/register" >If you don't have an account</a>
+                        <a href={url} >If you don't have an account</a>
                     </div>
 
 
