@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { json } from "react-router-dom";
 import { Switch } from "@material-ui/core";
 import { db } from "./firebase";
+import { CleaningServices } from "@mui/icons-material";
 
 let temparray1 = [];
 let temparray2 = [];
@@ -20,6 +21,21 @@ export default function Addproduct() {
   const formcontainer = useRef('');
 
   const [array, setArray] = useState([]);
+  const [productname, setProductname] = useState("");
+  const [skucode, setSkucode] = useState("");
+  const [category, setcategory] = useState("");
+  const [style, setStyle] = useState("");
+  const [gender, setGender] = useState("");
+  const [price, setPrice] = useState("");
+  const [checked, setChecked] = useState([]);
+  const [discount, setDiscount] = useState("");
+  const [description, setDescription] = useState("");
+  const [file, setfile] = useState("");
+  const [id, setId] = useState(Date.now());
+  const [trending, setTrending] = useState('');
+  const [showpreview, setShowpreview] = useState(temparray2)
+
+  const [data, setData] = useState([]);
   let flag = false;
 
   useEffect(() => {
@@ -76,27 +92,15 @@ export default function Addproduct() {
         formcontainer.current.initialValues.description = currentdata.description;
         formcontainer.current.initialValues.trending = currentdata.trending;
         formcontainer.current.initialValues.file = currentdata.file;
+        setProductname(currentdata.productname)
+        console.log(currentdata.productname)
         setXyz(currentdata)
       }
       // setCurrentdata({currentdata, productname:currentdata.productname})
     }
   }, [ids])
 
-  const [productname, setProductname] = useState("");
-  const [skucode, setSkucode] = useState("");
-  const [category, setcategory] = useState("");
-  const [style, setStyle] = useState("");
-  const [gender, setGender] = useState("");
-  const [price, setPrice] = useState("");
-  const [checked, setChecked] = useState([]);
-  const [discount, setDiscount] = useState("");
-  const [description, setDescription] = useState("");
-  const [file, setfile] = useState("");
-  const [id, setId] = useState(Date.now());
-  const [trending, setTrending] = useState('');
-  const [showpreview, setShowpreview] = useState(temparray2)
 
-  const [data, setData] = useState([]);
 
   const LoginSchema = Yup.object().shape({
     // productname: Yup.string().required("productname is required"),
@@ -176,10 +180,12 @@ export default function Addproduct() {
     // setfile(data.file);
     // setTrending(data.trending)
 
-
+    console.log(productname);
     console.log(temparray1, 'before');
     const newdata = { style: style, trending: trending, checked: checked, productname: productname, skucode: skucode, price: price, category: category, gender: data.gender, id: id, description: description, file: temparray2, discount: discount };
     console.log(newdata);
+
+    console.log(productname);
 
 
     // for (let i = 0; i < newdata.length; i++) {
@@ -208,10 +214,6 @@ export default function Addproduct() {
       let objIndex = temparray1.findIndex((obj => obj.id == ids));
       console.log('asdasdas')
       temparray1[objIndex].productname = productname
-      temparray1[objIndex].skucode = skucode
-      temparray1[objIndex].price = price
-      temparray1[objIndex].discount = discount
-      temparray1[objIndex].description = description
       localStorage.setItem('productdetail', JSON.stringify(temparray1))
     }
 
