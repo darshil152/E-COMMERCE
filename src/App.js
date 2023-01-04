@@ -15,6 +15,7 @@ import './order.css'
 import './view.css'
 import './new.css'
 import './upcommin.css'
+import './sample.css'
 // import Cartcontext from './cartcontext';
 
 function App() {

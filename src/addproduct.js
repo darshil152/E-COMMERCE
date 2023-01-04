@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { json } from "react-router-dom";
 import { Switch } from "@material-ui/core";
 import { db } from "./firebase";
-import { CleaningServices } from "@mui/icons-material";
+import { CleaningServices, SyncLock } from "@mui/icons-material";
 
 let temparray1 = [];
 let temparray2 = [];
@@ -16,7 +16,6 @@ let count = 0;
 
 
 export default function Addproduct() {
-
 
   const formcontainer = useRef('');
 
@@ -92,9 +91,12 @@ export default function Addproduct() {
         formcontainer.current.initialValues.description = currentdata.description;
         formcontainer.current.initialValues.trending = currentdata.trending;
         formcontainer.current.initialValues.file = currentdata.file;
-        setProductname(currentdata.productname)
-        console.log(currentdata.productname)
-        setXyz(currentdata)
+        setProductname(currentdata.productname);
+        setSkucode(currentdata.skucode);
+        setPrice(currentdata.price);
+        setDiscount(currentdata.discount);
+        setcategory(currentdata.category);
+        setXyz(currentdata);
       }
       // setCurrentdata({currentdata, productname:currentdata.productname})
     }
@@ -214,11 +216,12 @@ export default function Addproduct() {
       let objIndex = temparray1.findIndex((obj => obj.id == ids));
       console.log('asdasdas')
       temparray1[objIndex].productname = productname
+      temparray1[objIndex].skucode = skucode
+      temparray1[objIndex].price = price
+      temparray1[objIndex].category = category
+      temparray1[objIndex].discount = discount
       localStorage.setItem('productdetail', JSON.stringify(temparray1))
     }
-
-
-
     temparray2 = []
 
     // setTimeout(() => {
@@ -410,11 +413,12 @@ export default function Addproduct() {
                         {" "}
                         Cloths
                       </option>
-                      <option defaultValue="Electronics" label="Electronics">
+                      <option defaultValue={"Electronics"} label="Electronics">
+                        {" "}
                         Electronics
                       </option>
-
-                      <option defaultValue="Footware" label="Footware">
+                      <option defaultValue={"Footware"} label="Footware">
+                        {" "}
                         Footware
                       </option>
                     </select>
@@ -493,10 +497,10 @@ export default function Addproduct() {
                   </div>
 
                   <div className="form-group">
-                    <input id="file" name="file" className={`form-control ${touched.file && errors.file ? "is-invalid" : ""
+                    <input id="file" name="file" defaultvalue={xyz.file} className={`form-control ${touched.file && errors.file ? "is-invalid" : ""
                       }`} type="file" onChange={(event) => {
                         uploadImage(event.target.files);
-                      }} multiple defaultvalue={xyz.file} />
+                      }} multiple />
                     <div className="showimgae">
                       {/* {console.log('first', showpreview)} */}
                       {

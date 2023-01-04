@@ -29,6 +29,7 @@ import Upcomming from "./upcomming";
 import Upcommingview from "./upcommingview";
 import View1 from "./view1";
 import Data from "./Data";
+import Sample from "./Sample";
 
 
 
@@ -60,6 +61,7 @@ export default function ReactRouter() {
                 <Route path="/order/:id" element={<Order />}> </Route>
                 <Route path="/view/:id" element={<View />}> </Route>
                 <Route path="/upcomming" element={<Upcomming />}> </Route>
+                <Route path="/sample" element={<Sample />}> </Route>
                 <Route path="/upcommingview" element={<Upcommingview />}> </Route>
                 <Route path="/view1/:id" element={<View1 />}> </Route>
             </Routes>

@@ -81,7 +81,7 @@ export default function Producttable() {
                 filter: true,
                 sort: false,
                 customBodyRender: (value, tableMeta, updateValue) => (
-                    <img src={value} />
+                    <img src={value[1]} style={{width:"150px"}}/>
                 )
             }
         },
