@@ -80,8 +80,8 @@ export default function Producttable() {
             options: {
                 filter: true,
                 sort: false,
-                customBodyRender: (value, tableMeta, updateValue) => (
-                    <img src={value[1]} style={{width:"150px"}}/>
+                customBodyRender: (value, tableMeta, rowData) => (
+                    console.log(value)
                 )
             }
         },
@@ -123,6 +123,7 @@ export default function Producttable() {
     ];
 
     const [abc, setAbc] = useState(JSON.parse(localStorage.getItem('productdetail')));
+    console.log(abc);
     const [data, setData] = useState([])
     // const [viewmodal, setViewmodal] = useState(false);
 

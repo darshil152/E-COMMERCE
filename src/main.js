@@ -69,7 +69,7 @@ export default function Main() {
                         <div class="collapse navbar-collapse" id="myNav">
                             <div class="navbar-nav ms-auto">
                                 <NavDropdown title="Sneakers" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="http://localhost:3000/tshirt">All Sneakers</NavDropdown.Item>
+                                    <NavDropdown.Item href="http://localhost:3000/upcommingview">All Sneakers</NavDropdown.Item>
                                     <NavDropdown.Item href="http://localhost:3000/tshirt">
                                         Yezzy
                                     </NavDropdown.Item>

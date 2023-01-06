@@ -50,6 +50,7 @@ export default function Addproduct() {
   }, [temparray1]);
 
 
+
   useEffect(() => {
     count++
     if (count == 1) {
@@ -101,7 +102,6 @@ export default function Addproduct() {
       // setCurrentdata({currentdata, productname:currentdata.productname})
     }
   }, [ids])
-
 
 
   const LoginSchema = Yup.object().shape({
@@ -379,7 +379,7 @@ export default function Addproduct() {
                     <label htmlFor="discount">discount</label>
                     <input
                       type="text"
-                      defaultValue={xyz.discount}
+                      defaultValue={values.discount}
                       onChange={(e) => discounthandleChange(e)}
                       name="discount"
                       placeholder="Enter discount"
@@ -477,6 +477,7 @@ export default function Addproduct() {
                       <input
                         type="radio"
                         name="gender"
+                        id="male"
                         defaultValue="Male"
                         checked={values.gender === "Male"}
                         onChange={() => setFieldValue("gender", "Male")}
@@ -487,6 +488,7 @@ export default function Addproduct() {
                       <input
                         type="radio"
                         name="gender"
+                        id="female"
                         defaultValue="Female"
                         checked={values.gender === "Female"}
                         onChange={() => setFieldValue("gender", "Female")}
@@ -497,7 +499,7 @@ export default function Addproduct() {
                   </div>
 
                   <div className="form-group">
-                    <input id="file" name="file" defaultvalue={xyz.file} className={`form-control ${touched.file && errors.file ? "is-invalid" : ""
+                    <input id="file" name="file" defaultvalue={xyz.files} className={`form-control ${touched.file && errors.file ? "is-invalid" : ""
                       }`} type="file" onChange={(event) => {
                         uploadImage(event.target.files);
                       }} multiple />
