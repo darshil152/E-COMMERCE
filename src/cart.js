@@ -1,34 +1,42 @@
-import { FlareSharp } from '@mui/icons-material';
 import React from 'react'
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { remove } from "./store/cartSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Cart() {
 
-
-  const data = localStorage.getItem('finaldata') ? localStorage.getItem('finaldata') : [];
-  const mixdata = localStorage.getItem('sneakers') ? JSON.parse(localStorage.getItem('sneakers')) : [];
-  let [currentdata, setCurrentdata] = [];
+    const dispatch = useDispatch();
+    const products = useSelector((state) => state.cart);
 
 
-  console.log(data, '--------------------', mixdata);
-
-
-  useEffect(() => {
-    console.log(data);
-    for (let i = 0; i < mixdata.length; i++) {
-      console.log('asdashgdjhgj');
-      if (mixdata[i].id == data) {
-        setCurrentdata(mixdata[i].id)
-      }
+    const handleRemove = (data) => {
+        dispatch(remove(data))
+        toast.success('Product remove successfully ', {
+            position: toast.POSITION.TOP_RIGHT
+        });
     }
-    console.log(currentdata);
-  }, [currentdata])
 
-
-
-  return (
-    <div>
-
-    </div>
-  )
+    return (
+        <div>
+            <h3>Cart</h3>
+            <div className="cartWrapper">
+                {products.map((product) => (
+                    <div key={product.id} className="cartCard">
+                        <img src={product.file[0]} alt="" style={{width:100}} />
+                        <h5 style={{fontSize:23}}>{product.name}</h5>
+                        <h5 style={{fontSize:23}}>₹{product.price}</h5>
+                        <h5 style={{fontSize:23}}>{product.sku}</h5>
+                        <button
+                            className="btn"
+                            onClick={() => handleRemove(product.id)}
+                        >
+                            Remove
+                        </button>
+                    </div>
+                ))}
+            </div>
+            <ToastContainer />
+        </div>
+    )
 }

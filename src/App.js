@@ -16,15 +16,17 @@ import './view.css'
 import './new.css'
 import './upcommin.css'
 import './sample.css'
+import store from './store/store';
+
+import { Provider } from 'react-redux';
 // import Cartcontext from './cartcontext';
 
 function App() {
   return (
     <div className="App">
-      {/* <Cartcontext> */}
-      <ReactRouter />
-      {/* </Cartcontext> */}
-
+      <Provider store={store} >
+        <ReactRouter />
+      </Provider>
     </div >
   );
 }

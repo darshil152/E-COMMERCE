@@ -36,6 +36,14 @@ export default function Tshirt() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [carts, setCarts] = useState({})
 
+
+    // const dispatch = useDispatch();
+    // const send = (e)=>{
+    //     console.log(e);
+    //     dispatch(ADD(e));
+    //   }
+    
+
     //-------------addtocart------------------------//
     const [add, setAdd] = useState([])
     const addtocart = (data) => {
@@ -301,7 +309,7 @@ export default function Tshirt() {
                         {/* <button onClick={sorting}>Low to high</button> */}
                     </div>
                     {
-                        getteesdata.length > 0 && getteesdata.map((item, i) => {
+                         getteesdata.length > 0 && getteesdata.map((item, i) => {
                             return (
                                 <div class="col-md-3 col-sm-6">
                                     <div class="product-grid">
@@ -318,7 +326,7 @@ export default function Tshirt() {
                                         <div class="product-content">
                                             <h3 class="title">{item.productname}</h3>
                                             <div class="price">₹{item.price}</div>
-                                            <a class="add-to-cart" onClick={() => addtocarts(item.id)} >add to cart</a>
+                                            {/* <a class="add-to-cart" onClick={() => send(item)} >add to cart</a> */}
                                         </div>
                                     </div>
                                 </div>

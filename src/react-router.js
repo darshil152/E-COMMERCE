@@ -30,6 +30,7 @@ import Upcommingview from "./upcommingview";
 import View1 from "./view1";
 import Data from "./Data";
 import Sample from "./Sample";
+import Navbar from "./Navbar";
 
 
 
@@ -37,6 +38,7 @@ import Sample from "./Sample";
 export default function ReactRouter() {
     return (
         <BrowserRouter>
+         <Navbar/>
             <Routes>
                 <Route path="/" element={<Login />}> </Route>
                 <Route path="/register" element={<Register />}> </Route>
