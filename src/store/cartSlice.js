@@ -1,7 +1,6 @@
 
-import { SatelliteAlt } from "@mui/icons-material";
 import { createSlice } from "@reduxjs/toolkit";
-// import productData from "../productData";
+
 
 const initialState = {
     cart: [],
@@ -9,6 +8,7 @@ const initialState = {
     totalQuantity: 0,
     totalPrice: 0,
 };
+
 
 const cartSlice = createSlice({
     name: "cart",
@@ -20,8 +20,9 @@ const cartSlice = createSlice({
                 state.cart[find].quantity += 1;
             } else {
                 state.cart.push(action.payload);
-            }
+            }``
         },
+
 
         getCartTotal: (state) => {
             let { totalQuantity, totalPrice } = state.cart.reduce(
@@ -40,6 +41,7 @@ const cartSlice = createSlice({
             state.totalPrice = parseFloat(totalPrice.toFixed(2));
             state.totalQuantity = totalQuantity;
         },
+
 
         removeItem: (state, action) => {
             state.cart = state.cart.filter((item) => item.id !== action.payload);

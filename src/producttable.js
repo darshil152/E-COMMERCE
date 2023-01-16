@@ -81,7 +81,7 @@ export default function Producttable() {
                 filter: true,
                 sort: false,
                 customBodyRender: (value, tableMeta, rowData) => (
-                    console.log(value)
+                    <img src={value[1]} className="profilepic" style={{width:100,borderRadius:500}} />
                 )
             }
         },
