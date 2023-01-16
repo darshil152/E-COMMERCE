@@ -43,7 +43,8 @@ code {
 }
 .cartCount {
   font-weight: bold;
-  text-transform: uppercase;
+  text-transform: uppercase; 
+  margin-right: 50px;
   margin-left: 40px;
 }
 .navLink {

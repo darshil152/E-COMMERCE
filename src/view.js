@@ -6,9 +6,10 @@ import { Navbar } from 'react-bootstrap';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { useDispatch } from 'react-redux';
-import {add} from "./store/cartSlice"
+import {addToCart} from "./store/cartSlice"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 let newdata = []
 let count = 0
@@ -48,7 +49,7 @@ export default function View() {
 
 
     const snekerdata = (currentdata) => {
-         dispatch(add(currentdata));
+         dispatch(addToCart(currentdata));
          toast.success('Product added successfully ', {
             position: toast.POSITION.TOP_RIGHT
         });

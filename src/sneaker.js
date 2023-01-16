@@ -8,6 +8,7 @@ import { UploadFile } from '@mui/icons-material';
 import { width } from '@mui/system';
 import { dataRef } from './firebase';
 import firebase from './firebase';
+import { add } from './store/cartSlice';
 
 
 let count = 0
@@ -31,6 +32,17 @@ export default function Sneaker() {
             }
         }
     }, [array1])
+    
+   useEffect(()=>{
+    count++
+    if(count == 1){
+        const addeddata1 = JSON.parse(localStorage.getItem('sneakers'));
+        if(addeddata1){
+            array1 = addeddata1
+            setData(array1)
+        } 
+    }
+   })
 
     
     const [showimage, setShowimage] = useState(array2)

@@ -1,42 +1,150 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { remove } from "./store/cartSlice";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-export default function Cart() {
+import {
+  getCartTotal,
+  removeItem,
+  decreaseItemQuantity,
+  increaseItemQuantity,
+} from "./store/cartSlice";
 
-    const dispatch = useDispatch();
-    const products = useSelector((state) => state.cart);
+const CartPage = () => {
+  const { cart, totalQuantity, totalPrice } = useSelector((state) => state.allCart);
 
+  const dispatch = useDispatch();
 
-    const handleRemove = (data) => {
-        dispatch(remove(data))
-        toast.success('Product remove successfully ', {
-            position: toast.POSITION.TOP_RIGHT
-        });
-    }
+  useEffect(() => {
+    dispatch(getCartTotal());
+  }, [cart]);
 
-    return (
-        <div>
-            <h3>Cart</h3>
-            <div className="cartWrapper">
-                {products.map((product) => (
-                    <div key={product.id} className="cartCard">
-                        <img src={product.file[0]} alt="" style={{width:100}} />
-                        <h5 style={{fontSize:23}}>{product.name}</h5>
-                        <h5 style={{fontSize:23}}>₹{product.price}</h5>
-                        <h5 style={{fontSize:23}}>{product.sku}</h5>
-                        <button
-                            className="btn"
-                            onClick={() => handleRemove(product.id)}
+  return (
+    <div>
+      <section className="h-100 gradient-custom">
+        <div className="container py-5">
+          <div className="row d-flex justify-content-center my-4">
+            <div className="col-md-8">
+              <div className="card mb-4">
+                <div className="card-header py-3">
+                  <h5 className="mb-0">Cart - {cart.length} items</h5>
+                </div>
+                <div className="card-body">
+                  {cart?.map((data) => (
+                    <div className="row">
+                      <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                        <div
+                          className="bg-image hover-overlay hover-zoom ripple rounded"
+                          data-mdb-ripple-color="light"
                         >
-                            Remove
+                          <img
+                            src={data.file[1]}
+                            style={{width:200}}
+                            className="w-100"
+                            alt="Blue Jeans Jacket"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                        <p>
+                          <strong>{data.name}</strong>
+                        </p>
+
+                        <button
+                          type="button"
+                          className="btn btn-primary btn-sm me-1 mb-2"
+                          data-mdb-toggle="tooltip"
+                          title="Remove item"
+                          onClick={() => dispatch(removeItem(data.id))}
+                        >
+                          <i className="fas fa-trash" style={{height:22}}></i>
                         </button>
+                      </div>
+
+                      <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                        <div
+                          className="d-flex mb-4"
+                          style={{ maxWidth: "300px" }}
+                        >
+                          <button
+                            className="btn btn-primary px-3 me-2"
+                            onClick={() =>
+                              dispatch(decreaseItemQuantity(data.id))
+                            }
+                          >
+                            <i className="fas fa-minus"></i>
+                          </button>
+
+                          <div className="form-outline">
+                            <input
+                              id="form1"
+                              min="0"
+                              name="quantity"
+                              value={data.quantity}
+                              type="number"
+                              className="form-control"
+                              onChange={() => null}
+                            />
+                            <label className="form-label" for="form1">
+                              Quantity
+                            </label>
+                          </div>
+
+                          <button
+                            className="btn btn-primary px-3 ms-2"
+                            onClick={() =>
+                              dispatch(increaseItemQuantity(data.id))
+                            }
+                          >
+                            <i className="fas fa-plus"></i>
+                          </button>
+                        </div>
+
+                        <p className="text-start text-md-center">
+                          <strong>{data.price}</strong>
+                        </p>
+                      </div>
+                      <hr className="my-4" />
                     </div>
-                ))}
+                  ))}
+                </div>
+              </div>
             </div>
-            <ToastContainer />
+            <div className="col-md-4">
+              <div className="card mb-4">
+                <div className="card-header py-3">
+                  <h5 className="mb-0">Summary</h5>
+                </div>
+                <div className="card-body">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                      Total Quantity
+                      <span>{totalQuantity}</span>
+                    </li>
+
+                    <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                      <div>
+                        <strong>Total amount</strong>
+                      </div>
+                      <span>
+                        <strong>₹{totalPrice}</strong>
+                      </span>
+                    </li>
+                  </ul>
+
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-lg btn-block"
+                  >
+                    Go to checkout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    )
-}
+      </section>
+    </div>
+  );
+};
+
+export default CartPage;
