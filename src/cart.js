@@ -15,6 +15,9 @@ const CartPage = () => {
 
   useEffect(() => {
     dispatch(getCartTotal());
+    // cart['quantity'] = 0
+    console.log('cart :: ', cart)
+
   }, [cart]);
 
   return (
@@ -36,8 +39,8 @@ const CartPage = () => {
                           data-mdb-ripple-color="light"
                         >
                           <img
-                            src={data.file[1]}
-                            style={{width:200}}
+                            src={data.file[0]}
+                            style={{ width: 200 }}
                             className="w-100"
                             alt="Blue Jeans Jacket"
                           />
@@ -56,7 +59,7 @@ const CartPage = () => {
                           title="Remove item"
                           onClick={() => dispatch(removeItem(data.id))}
                         >
-                          <i className="fas fa-trash" style={{height:22}}></i>
+                          <i className="fas fa-trash" style={{ height: 22 }}></i>
                         </button>
                       </div>
 
