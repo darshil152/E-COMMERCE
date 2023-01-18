@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 import {
   getCartTotal,
@@ -22,6 +24,7 @@ const CartPage = () => {
 
   return (
     <div>
+
       <section className="h-100 gradient-custom">
         <div className="container py-5">
           <div className="row d-flex justify-content-center my-4">
@@ -146,6 +149,7 @@ const CartPage = () => {
           </div>
         </div>
       </section>
+      <ToastContainer />
     </div>
   );
 };

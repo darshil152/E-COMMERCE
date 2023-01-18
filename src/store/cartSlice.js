@@ -1,6 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from "react-toastify";
+
 import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
@@ -57,8 +58,9 @@ const cartSlice = createSlice({
 
         removeItem: (state, action) => {
             state.cart = state.cart.filter((item) => item.id !== action.payload);
-
-
+            toast.error("Product removed from cart", {
+                position: "bottom-left",
+            });
             localStorage.setItem("cart", JSON.stringify(state.cart));
 
         },
