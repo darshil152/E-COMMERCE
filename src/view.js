@@ -36,6 +36,10 @@ export default function View() {
 
 
     useEffect(() => {
+
+    })
+
+    useEffect(() => {
         let url = window.location.href
         let id = url.substring(url.lastIndexOf('/') + 1)
         let retrivedata = localStorage.getItem('sneakers') ? JSON.parse(localStorage.getItem('sneakers')) : [];
@@ -52,6 +56,7 @@ export default function View() {
         console.log(currentdata)
         currentdata['quantity'] = 1
         console.log('after :: ', currentdata)
+        localStorage.setItem('cartItems', JSON.stringify(currentdata))
         dispatch(addToCart(currentdata));
         toast.success('Product added successfully ', {
             position: toast.POSITION.TOP_RIGHT

@@ -129,7 +129,7 @@ export default function Register() {
                             password: "",
                             confirmpassword: "",
                             file: arratempoarrayys,
-                            savedata:[],
+                            savedata: [],
                         }}
                         validationSchema={LoginSchema}
                         onSubmit={(values, { setSubmitting }) => {
