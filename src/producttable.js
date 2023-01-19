@@ -14,7 +14,6 @@ const options = {
     filterType: 'checkbox',
 }
 
-
 export default function Producttable() {
 
     const columns = [

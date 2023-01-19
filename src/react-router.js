@@ -31,6 +31,7 @@ import View1 from "./view1";
 import Data from "./Data";
 import Sample from "./Sample";
 import Navbar from "./Navbar";
+import Checkout from "./Checkout";
 
 
 
@@ -66,6 +67,7 @@ export default function ReactRouter() {
                 <Route path="/sample" element={<Sample />}> </Route>
                 <Route path="/upcommingview" element={<Upcommingview />}> </Route>
                 <Route path="/view1/:id" element={<View1 />}> </Route>
+                <Route path="/checkout" element={<Checkout />}> </Route>
             </Routes>
         </BrowserRouter>
     )

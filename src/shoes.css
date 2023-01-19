@@ -7,8 +7,6 @@
 .item {
   min-height: 200px;
   transition: transform 250ms;
-
-  /* background-color: #eee; */
 }
 img.dunk {
   height: 325px;

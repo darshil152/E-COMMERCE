@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 import {
   getCartTotal,
@@ -13,12 +15,21 @@ const CartPage = () => {
 
   const dispatch = useDispatch();
 
+  const checkout = (cart) => {
+    // window.location.href = './checkout' 
+    console.log(cart);
+  }
+
   useEffect(() => {
     dispatch(getCartTotal());
+    // cart['quantity'] = 0
+    console.log('cart :: ', cart)
+
   }, [cart]);
 
   return (
     <div>
+
       <section className="h-100 gradient-custom">
         <div className="container py-5">
           <div className="row d-flex justify-content-center my-4">
@@ -36,27 +47,33 @@ const CartPage = () => {
                           data-mdb-ripple-color="light"
                         >
                           <img
-                            src={data.file[1]}
-                            style={{width:200}}
+                            src={data.file[0]}
+                            style={{ width: 200 }}
                             className="w-100"
                             alt="Blue Jeans Jacket"
                           />
+                          
                         </div>
                       </div>
 
                       <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
                         <p>
-                          <strong>{data.name}</strong>
+                          <strong style={{ color: "black",fontSize:20,fontWeight:"bold" }}>Name: {data.name}</strong>
+                          <p>
+                            <strong style={{ color: "black",fontSize:15,fontWeight:500 }}>SIZE : US  {data.size}</strong>
+                          </p>
                         </p>
 
                         <button
                           type="button"
-                          className="btn btn-primary btn-sm me-1 mb-2"
+
+                          className=" btn-sm me-1 mb-2"
+                          style={{ backgroundColor: "black", color: "white" }}
                           data-mdb-toggle="tooltip"
                           title="Remove item"
                           onClick={() => dispatch(removeItem(data.id))}
                         >
-                          <i className="fas fa-trash" style={{height:22}}></i>
+                          <i className="fas fa-trash" style={{ height: 22 }}></i>
                         </button>
                       </div>
 
@@ -66,7 +83,8 @@ const CartPage = () => {
                           style={{ maxWidth: "300px" }}
                         >
                           <button
-                            className="btn btn-primary px-3 me-2"
+                            className=" px-3 me-2"
+                            style={{ backgroundColor: "black", color: "white", height: 43, border: 0 }}
                             onClick={() =>
                               dispatch(decreaseItemQuantity(data.id))
                             }
@@ -91,6 +109,7 @@ const CartPage = () => {
 
                           <button
                             className="btn btn-primary px-3 ms-2"
+                            style={{ backgroundColor: "black", color: "white", height: 43, border: 0 }}
                             onClick={() =>
                               dispatch(increaseItemQuantity(data.id))
                             }
@@ -100,7 +119,7 @@ const CartPage = () => {
                         </div>
 
                         <p className="text-start text-md-center">
-                          <strong>{data.price}</strong>
+                          <strong style={{color:"black"}}>Amount :₹{data.price}</strong>
                         </p>
                       </div>
                       <hr className="my-4" />
@@ -118,8 +137,14 @@ const CartPage = () => {
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                       Total Quantity
-                      <span>{totalQuantity}</span>
+                      <span>{totalQuantity} Items</span>
                     </li>
+
+                    <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                      discount
+                      <span>5%</span>
+                    </li>
+                    <hr></hr>
 
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                       <div>
@@ -133,7 +158,9 @@ const CartPage = () => {
 
                   <button
                     type="button"
+                    style={{ backgroundColor: "black", color: "white", border: 0 }}
                     className="btn btn-primary btn-lg btn-block"
+                    onClick={() => checkout(cart)}
                   >
                     Go to checkout
                   </button>
@@ -143,6 +170,7 @@ const CartPage = () => {
           </div>
         </div>
       </section>
+      <ToastContainer />
     </div>
   );
 };

@@ -6,9 +6,10 @@ import { Navbar } from 'react-bootstrap';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { useDispatch } from 'react-redux';
-import {addToCart} from "./store/cartSlice"
+import { addToCart } from "./store/cartSlice"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { current } from '@reduxjs/toolkit';
 
 
 let newdata = []
@@ -19,6 +20,7 @@ export default function View() {
     const dispatch = useDispatch();
 
     let [currentdata, setCurrentdata] = useState([]);
+    const [size, setSize] = useState('');
     const [final, setFinal] = useState([]);
 
 
@@ -36,6 +38,10 @@ export default function View() {
 
 
     useEffect(() => {
+
+    })
+
+    useEffect(() => {
         let url = window.location.href
         let id = url.substring(url.lastIndexOf('/') + 1)
         let retrivedata = localStorage.getItem('sneakers') ? JSON.parse(localStorage.getItem('sneakers')) : [];
@@ -49,11 +55,16 @@ export default function View() {
 
 
     const snekerdata = (currentdata) => {
-         dispatch(addToCart(currentdata));
-         toast.success('Product added successfully ', {
+        console.log(currentdata)
+        currentdata['quantity'] = 1
+        currentdata['size'] = size
+        console.log('after :: ', currentdata)
+        localStorage.setItem('cartItems', JSON.stringify(currentdata))
+        dispatch(addToCart(currentdata));
+        toast.success('Product added successfully ', {
             position: toast.POSITION.TOP_RIGHT
         });
-       
+
 
         // const maindata = localStorage.getItem('sneakersdata') ? JSON.parse(localStorage.getItem('sneakersdata')) : [];
         // let ismatched = false;
@@ -76,13 +87,14 @@ export default function View() {
 
 
     const choosesize = (e) => {
+        setSize(e)
         console.log(e);
     }
 
 
     return (
         <div className='container-fluid'>
-            
+
             <div className='row abc'>
                 <div className='col-sm'>
 
@@ -101,7 +113,7 @@ export default function View() {
                     <h4 className='sku'>SKU : {currentdata.sku}</h4>
                     <h1 className='size'>Us Size</h1>
 
-                                  
+
                     <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
                         <input type="radio" value="7" name="gender" />   7 Us
                         <input type="radio" value="7.5" name="gender" />  7.5 Us

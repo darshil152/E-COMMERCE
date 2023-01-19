@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
 
 
 export default function Navbar() {
+     
+    const { cart } = useSelector((state) => state.allCart);
+
     return (
         <div
             style={{
@@ -19,7 +23,7 @@ export default function Navbar() {
                 <Link className="navLink" to="/cart">
                     Cart
                 </Link>
-                <span className="cartCount">Cart items: 0</span>
+                <span className="cartCount">Cart items: {cart.length}</span>
             </div>
         </div>
     )

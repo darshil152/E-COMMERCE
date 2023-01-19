@@ -1,8 +1,9 @@
 img.logo{
     width: 60px;
-    position: fixed;
-    left: 44px;
-}   
+    position: sticky;
+    /* left: 44px; */
+    margin-right: 450px;
+}
 .col-sm.abr{
     display: flex;
     justify-content: space-evenly;
