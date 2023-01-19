@@ -22,6 +22,7 @@ export default function View() {
     let [currentdata, setCurrentdata] = useState([]);
     const [size, setSize] = useState('');
     const [final, setFinal] = useState([]);
+    const [show, setShow] = useState(true);
 
 
     useEffect(() => {
@@ -100,9 +101,8 @@ export default function View() {
 
                     {currentdata.file?.length > 0 && currentdata?.file.map((items) => {
                         return (
-                            <Zoom>
-                                <img src={items} className="top" />
-                            </Zoom>
+
+                            <img src={items} className="top" />
                         )
                     })}
                 </div>
@@ -114,7 +114,7 @@ export default function View() {
                     <h1 className='size'>Us Size</h1>
 
 
-                    <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
+                    {show ?  <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
                         <input type="radio" value="7" name="gender" />   7 Us
                         <input type="radio" value="7.5" name="gender" />  7.5 Us
                         <input type="radio" value="8" name="gender" />   8 Us
@@ -123,12 +123,23 @@ export default function View() {
                         <input type="radio" value="9.5" name="gender" />  9.5 Us
                         <input type="radio" value="10" name="gender" />   10 Us
                         <input type="radio" value="10.5" name="gender" /> 10.5 US
-                    </div>
+                    </div> :   <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
+                        <input type="radio" value="W-7" name="gender" />   7 W-US
+                        <input type="radio" value="W-7.5" name="gender" />  7.5 W-US
+                        <input type="radio" value="W-8" name="gender" />   8 W-US
+                        <input type="radio" value="W-8.5" name="gender" />  8.5 W-US
+                        <input type="radio" value="W-9" name="gender" />    9 W-US
+                        <input type="radio" value="W-9.5" name="gender" />  9.5 W-US
+                        <input type="radio" value="W-10" name="gender" />   10 W-US
+                        <input type="radio" value="W-10.5" name="gender" /> 10.5 W-US
+                    </div>}
+                    <button className='ncss-btn-primary-dark btn-lg  buying-tools-cta-button' onClick={() => setShow(!show)}>Show Women size</button>
 
                     <div class="mb6-sm prl0-lg fs14-sm">
                         <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => snekerdata(currentdata)}>₹{currentdata.price}</button>
                     </div>
                 </div>
+
                 <ToastContainer />
             </div>
 
