@@ -115,14 +115,14 @@ export default function View() {
 
 
                     {show ?  <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
-                        <input type="radio" value="7" name="gender" />   7 Us
-                        <input type="radio" value="7.5" name="gender" />  7.5 Us
-                        <input type="radio" value="8" name="gender" />   8 Us
-                        <input type="radio" value="8.5" name="gender" />  8.5 Us
-                        <input type="radio" value="9" name="gender" />    9 US
-                        <input type="radio" value="9.5" name="gender" />  9.5 Us
-                        <input type="radio" value="10" name="gender" />   10 Us
-                        <input type="radio" value="10.5" name="gender" /> 10.5 US
+                        <input type="radio" value="M-7" name="gender" />   7 M-Us
+                        <input type="radio" value="M-7.5" name="gender" />  7.5 M-Us
+                        <input type="radio" value="M-8" name="gender" />   8 M-Us
+                        <input type="radio" value="M-8.5" name="gender" />  8.5 M-Us
+                        <input type="radio" value="M-9" name="gender" />    9 M-US
+                        <input type="radio" value="M-9.5" name="gender" />  9.5 M-Us
+                        <input type="radio" value="M-10" name="gender" />   10 M-Us
+                        <input type="radio" value="M-10.5" name="gender" /> 10.5 M-US
                     </div> :   <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
                         <input type="radio" value="W-7" name="gender" />   7 W-US
                         <input type="radio" value="W-7.5" name="gender" />  7.5 W-US
