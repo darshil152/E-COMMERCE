@@ -7,6 +7,7 @@ import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { useDispatch } from 'react-redux';
 import { addToCart } from "./store/cartSlice"
+import { addToCart } from "./store/cartSlice"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { current } from '@reduxjs/toolkit';
