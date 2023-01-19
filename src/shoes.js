@@ -1,10 +1,11 @@
-import { WindowSharp } from '@mui/icons-material';
+import { ShowChart, WindowSharp } from '@mui/icons-material';
 import React from 'react'
 import { useState } from 'react'
 import Header2 from './header2';
 
 
 export default function Shoes() {
+    // cosnt[show,setShow] = useState('false')
 
 
     const viewdata = (data) => {
@@ -28,6 +29,21 @@ export default function Shoes() {
                     })
                 }
             </div>
+
+
+            {/* <div className='container'>
+                <div className='row'>
+                    {
+                        shoesdata.length > 0 && shoesdata.map((items) => {
+                            return (
+                                <div class="item" onClick={() => viewdata(items.id)}>
+                                    <img className="dunk" src={items.file[0]} />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div> */}
         </div>
     )
 }
