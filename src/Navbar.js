@@ -17,7 +17,7 @@ export default function Navbar() {
         >
             <span className="logo">REDUX STORE</span>
             <div>
-                <Link className="navLink" to="/">
+                <Link className="navLink" to="/shoes">
                     Home
                 </Link>
                 <Link className="navLink" to="/cart">

@@ -4,6 +4,8 @@ import {
     MDBCarouselItem,
 } from 'mdb-react-ui-kit';
 import { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import headerlogo from "./assets/headerlogo.svg"
@@ -53,7 +55,7 @@ export default function Main() {
         window.location.href = '/tshirt'
     }
     const sneaker = () => {
-        window.location.href = './shoes'
+        window.location.href = './sneaker'
     }
 
     return (

@@ -39,7 +39,6 @@ import Checkout from "./Checkout";
 export default function ReactRouter() {
     return (
         <BrowserRouter>
-         <Navbar/>
             <Routes>
                 <Route path="/" element={<Login />}> </Route>
                 <Route path="/register" element={<Register />}> </Route>

@@ -2,14 +2,13 @@ import { CurrencyRupee, MarkAsUnread } from '@mui/icons-material';
 import { margin } from '@mui/system';
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { Navbar } from 'react-bootstrap';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { useDispatch } from 'react-redux';
 import { addToCart } from "./store/cartSlice"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { current } from '@reduxjs/toolkit';
+import Navbar from "./Navbar";
 
 
 let newdata = []
@@ -94,7 +93,7 @@ export default function View() {
 
     return (
         <div className='container-fluid'>
-
+          <Navbar/>
             <div className='row abc'>
                 <div className='col-sm'>
 
