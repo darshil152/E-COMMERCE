@@ -22,7 +22,6 @@ export default function View() {
     let [currentdata, setCurrentdata] = useState([]);
     const [size, setSize] = useState('');
     const [final, setFinal] = useState([]);
-    const [show, setShow] = useState(true);
 
 
     useEffect(() => {
@@ -114,26 +113,16 @@ export default function View() {
                     <h1 className='size'>Us Size</h1>
 
 
-                    {show ?  <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
-                        <input type="radio" value="M-7" name="gender" />   7 M-Us
-                        <input type="radio" value="M-7.5" name="gender" />  7.5 M-Us
-                        <input type="radio" value="M-8" name="gender" />   8 M-Us
-                        <input type="radio" value="M-8.5" name="gender" />  8.5 M-Us
-                        <input type="radio" value="M-9" name="gender" />    9 M-US
-                        <input type="radio" value="M-9.5" name="gender" />  9.5 M-Us
-                        <input type="radio" value="M-10" name="gender" />   10 M-Us
-                        <input type="radio" value="M-10.5" name="gender" /> 10.5 M-US
-                    </div> :   <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
-                        <input type="radio" value="W-7" name="gender" />   7 W-US
-                        <input type="radio" value="W-7.5" name="gender" />  7.5 W-US
-                        <input type="radio" value="W-8" name="gender" />   8 W-US
-                        <input type="radio" value="W-8.5" name="gender" />  8.5 W-US
-                        <input type="radio" value="W-9" name="gender" />    9 W-US
-                        <input type="radio" value="W-9.5" name="gender" />  9.5 W-US
-                        <input type="radio" value="W-10" name="gender" />   10 W-US
-                        <input type="radio" value="W-10.5" name="gender" /> 10.5 W-US
-                    </div>}
-                    <button className='ncss-btn-primary-dark btn-lg  buying-tools-cta-button' onClick={() => setShow(!show)}>Show Women size</button>
+                    <div className='ussize' onChange={(e) => choosesize(e.target.value)}>
+                        <input type="radio" value="M-7" name="gender" />   7 Us
+                        <input type="radio" value="7.5" name="gender" />  7.5 Us
+                        <input type="radio" value="8" name="gender" />   8 Us
+                        <input type="radio" value="8.5" name="gender" />  8.5 Us
+                        <input type="radio" value="9" name="gender" />    9 US
+                        <input type="radio" value="9.5" name="gender" />  9.5 Us
+                        <input type="radio" value="10" name="gender" />   10 Us
+                        <input type="radio" value="10.5" name="gender" /> 10.5 US
+                    </div> 
 
                     <div class="mb6-sm prl0-lg fs14-sm">
                         <button type="button" class="ncss-btn-primary-dark btn-lg  buying-tools-cta-button " onClick={() => snekerdata(currentdata)}>₹{currentdata.price}</button>

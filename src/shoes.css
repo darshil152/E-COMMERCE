@@ -9,7 +9,7 @@
   transition: transform 250ms;
 }
 img.dunk {
-  height: 325px;
+  height: 265px;
 }
 .item:hover {
   cursor: pointer;
@@ -17,3 +17,8 @@ img.dunk {
 .item:hover {
   transform: translateY(-10px);
 }
+
+img.dunk1 {
+  height: 555px;
+}
+
